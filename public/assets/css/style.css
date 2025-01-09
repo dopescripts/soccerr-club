@@ -1,0 +1,510 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+/* Sets global CSS styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Sets root CSS variables */
+:root {
+  --primary-color: #ffff;
+  --secondary-color: #af101a;
+  --sub-heading-color: #af101a;
+  --body-color: #141516;
+  --body-text: #92949f;
+  --btn-color: #af101a;
+  --card-bg: #eeeded;
+  --white: #ffff;
+  --black: #141516;
+  --dark-blue: #333e48;
+  --primary-font: "Roboto", sans-serif;
+  --secondary-font: "Poppins", sans-serif;
+}
+
+/* Animates elements up from bottom of page */
+@keyframes transform-up {
+  0% {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.transform-animation {
+  animation: transform-up 1.9s ease-out;
+  animation-iteration-count: 1;
+  /* animation-composition: normal; */
+  animation-fill-mode: forwards;
+}
+
+/* Styles buttons */
+.btn {
+  font-weight: 600 !important;
+  font-size: 20px !important;
+  font-family: var(--primary-font);
+  padding: 8px 26px !important;
+  transition: 0.3s ease !important;
+  border: none !important;
+  text-transform: uppercase !important;
+}
+#offcanvasCart .btn {
+  padding: 2px 12px !important;
+}
+.form-control:focus {
+  outline: 1px solid --secondary-color !important;
+}
+/* Styles primary button */
+.btn-primary {
+  background-color: var(--btn-color) !important;
+  color: var(--primary-color) !important;
+  border: none !important;
+  border-radius: 4px !important;
+  text-transform: uppercase !important;
+  font-family: var(--primary-font) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color) !important;
+  color: var(--black) !important;
+}
+
+/* Styles secondary button */
+.btn-secondary {
+  background-color: var(--primary-color) !important;
+  color: black !important;
+  border: none !important;
+  border-radius: 4px !important;
+  text-transform: uppercase !important;
+  font-family: var(--primary-font) !important;
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+/* Styles dark button */
+.btn-dark {
+  background-color: black !important;
+  font-weight: 500 !important;
+}
+.btn-dark:hover {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+/* Styles headings */
+h1,
+h2,
+h3,
+h5,
+h6 {
+  font-family: var(--primary-font);
+  color: var(--black);
+}
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 700 !important;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 600 !important;
+}
+
+h4 {
+  font-family: var(--secondary-font) !important;
+  color: var(--black);
+}
+
+h6 {
+  font-size: 0.9rem;
+  font-weight: 600 !important;
+  line-height: 19px;
+  color: var(--secondary-color);
+  font-family: var(--primary-font);
+  text-transform: uppercase;
+}
+
+/* Styles paragraphs */
+p {
+  font-family: var(--secondary-font);
+}
+
+/* Styles card component */
+.card {
+  border: none !important;
+}
+.outline-none:active {
+  outline: none !important;
+}
+.card-bg {
+  background-color: var(--card-bg) !important;
+}
+/* Navbar styles  */
+
+nav {
+  background-color: rgba(0, 0, 0, 0.07) !important;
+  backdrop-filter: blur(1px);
+  transition: 0.4s ease background-color, 0.4s ease box-shadow;
+}
+nav.fixed-top {
+  box-shadow: 3px 3px 5px 5px rgba(0, 0, 0, 0.2);
+}
+header {
+  position: absolute !important;
+  top: 0 !important;
+  width: 100%;
+  z-index: 1000;
+}
+.nav-link {
+  color: var(--primary-color) !important;
+  font-weight: 600 !important;
+  font-family: var(--primary-font) !important;
+  font-size: 13px !important;
+}
+.nav-link:hover {
+  color: var(--secondary-color) !important;
+}
+.dropdown-item {
+  padding-top: 0 !important;
+  /* padding-left: 0 !important; */
+  color: var(--body-text) !important;
+  font-size: 15px !important;
+  transition: 0.4s ease-in-out;
+  font-weight: 500 !important;
+  font-family: var(--secondary-font) !important;
+}
+.dropdown-card {
+  max-width: 100% !important;
+  background-color: var(--card-bg) !important;
+}
+.dropdown-item:hover {
+  background-color: none !important;
+  transform: translateX(5px);
+  background: none !important;
+  color: var(--secondary-color) !important;
+}
+.dropdown-menu {
+  opacity: 0 !important;
+  display: none;
+  transform: translateY(10px) !important;
+}
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateY(0px) !important;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.dropdown .nav-link i {
+  font-size: 9px !important;
+  position: relative;
+  bottom: 1px;
+}
+.nav-link-off {
+  color: var(--dark-blue) !important;
+  text-decoration: none;
+  font-size: 16px !important;
+  font-family: var(--primary-font) !important;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+.card .nav-link-off {
+  font-weight: 500 !important;
+  font-size: 14px !important;
+}
+.nav-link-off:hover {
+  color: var(--secondary-color) !important;
+}
+.offcanvas {
+  max-width: 100vw !important;
+}
+.modal-body .nav-link {
+  color: var(--dark-blue) !important;
+  font-family: sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  border-bottom: 2px solid rgb(56, 56, 56);
+}
+.modal-body .nav-link:not(.active):hover {
+  color: var(--black) !important;
+  border-color: var(--black) !important;
+}
+.modal-body .nav-link.active {
+  color: var(--secondary-color) !important;
+}
+header input:focus {
+  outline-color: var(--secondary-color) !important;
+}
+/* main{
+    background-image: url('/assets/images/asset 4.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+} */
+
+/* 
+Main styling  
+*/
+main .carousel-item {
+  height: 100vh;
+}
+main .carousel-item img {
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+main .display-1 {
+  font-family: var(--secondary-font) !important;
+}
+main .display-1 span {
+  position: relative;
+  /* background-color: var(--secondary-color) !important; */
+}
+main .display-1 span::after {
+  position: absolute;
+  z-index: -1 !important;
+  content: "";
+  width: 100%;
+  height: 100%;
+  transform: skew(-10deg);
+  background-color: var(--secondary-color) !important;
+  bottom: 0;
+  left: 0;
+}
+main .carousel-caption {
+  max-width: 100% !important;
+}
+main .carousel .carousel-indicators button {
+  background-color: var(--secondary-color) !important;
+  border-radius: 50% !important;
+  width: 15px !important;
+  height: 15px !important;
+}
+.categories-home {
+  background-color: var(--white) !important;
+}
+/*
+Banner styles 
+*/
+.banner .card {
+  height: 550px !important;
+  border-radius: 4px !important;
+  overflow: hidden;
+}
+.banner .card img {
+  height: 100% !important;
+  object-fit: cover !important;
+}
+.banner a.btn {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+.banner a.btn-dark {
+  background-color: black !important;
+}
+.banner a.btn-dark:hover {
+  background-color: var(--secondary-color) !important;
+  color: white !important;
+}
+.banner .card img {
+  transition: 0.5s ease;
+}
+.banner .card:hover img {
+  transform: scale(1.08);
+  cursor: pointer !important;
+}
+/* 
+Product styling
+*/
+main .product-img {
+  background: var(--white) !important ;
+  min-height: 300px !important;
+  cursor: pointer;
+}
+.product-img img {
+  transition: 0.3s ease;
+}
+.product-img:hover img {
+  transform: scale(1.09);
+}
+p.text-muted {
+  font-family: roboto;
+  color: var(--body-text) !important;
+}
+span.current-price,
+span.previous-price {
+  font-family: var(--primary-font) !important;
+  font-weight: 600 !important;
+}
+.product-img {
+  overflow: hidden !important;
+}
+.product-img .product-overlay {
+  transition: 0.4s ease;
+  transform: translateX(100px);
+}
+.product-img .product-overlay .btn {
+  font-size: 15px !important;
+  padding: 3px 10px !important;
+}
+.product-img:hover .product-overlay {
+  transform: translateX(0px) !important;
+}
+.services .icon img {
+  transition: 0.4s ease;
+}
+.services .icon:hover img {
+  transform: translate(8px, 8px) !important;
+  cursor: pointer !important;
+}
+a {
+  transition: 0.4s ease !important;
+}
+/* 
+team styles 
+ */
+.team .team-link {
+  transition: 0.4s ease;
+  transform: translateX(-120%);
+  opacity: 0.1;
+}
+.team .team-img img {
+  transition: 0.4s ease;
+  filter: grayscale(80%);
+}
+.team .team-img:hover img {
+  filter: grayscale(0%);
+  cursor: pointer;
+}
+.team .team-img:hover .team-link {
+  transform: translateX(0px) !important;
+  opacity: 1;
+}
+.team .team-link a:hover {
+  transform: scale(1.1);
+  background-color: var(--card-bg);
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+/*
+ .testimonial styles 
+*/
+.testimonial span.quote-icon i {
+  opacity: 0.2;
+  font-size: 3rem;
+}
+.blog .card a.link-dark:hover {
+  color: var(--secondary-color) !important;
+}
+.testimonial .swiper-slide {
+  height: 300px !important;
+}
+
+/*
+ Newsletter styles  
+*/
+
+.newsletter {
+  background: url("/assets/images/asset 42.jpeg");
+  background-size: cover;
+  background-position: center center;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-blend-mode: darken;
+  background-repeat: no-repeat;
+  /* height: 100vh; */
+}
+
+/* 
+footer styles 
+*/
+footer .footer-link {
+  padding: 6px 8px;
+  background-color: var(--white) !important;
+  border-radius: 4px !important;
+  border: 1px solid var(--dark-blue);
+  transition: 0.2s ease-out all !important;
+}
+footer .footer-link:hover {
+  background-color: var(--card-bg) !important;
+  color: var(--white) !important;
+  border-color: var(--card-bg) !important;
+  transform: scale(1.08) !important;
+  box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.2);
+}
+/* 
+Collection page style 
+ */
+.product-hero {
+  min-width: 100% !important;
+  max-width: 100% !important;
+  height: 70vh;
+  background: url("/assets/images/collectionbackground.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: rgba(0, 0, 0, 0.2);
+  background-blend-mode: darken;
+}
+.category-detail .link-dark:hover {
+  color: var(--secondary-color) !important;
+}
+.category-detail .link-dark.active {
+  color: var(--secondary-color) !important;
+}
+#offcanvasCart .link-dark:hover {
+  color: var(--secondary-color) !important;
+}
+#offcanvasCart .link-dark.active {
+  color: var(--secondary-color) !important;
+}
+/* 
+product-detail styles 
+*/
+.product-detail .nav-link {
+  color: var(--black) !important;
+  background-color: none !important;
+  border: 1px solid var(--black);
+  font-family: Poppins !important;
+  font-weight: 700 !important;
+}
+.product-detail .nav-link.active {
+  background-color: var(--secondary-color) !important;
+  color: white !important;
+  border-color: var(--secondary-color);
+}
+.product-detail .nav-link:hover {
+  background-color: var(--dark-blue) !important;
+  color: white !important;
+  border-color: var(--dark-blue);
+}
+.product-detail .nav-link:focus {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
+}
+
+/* 
+About styles 
+ */
+
+.about-us .about-img img {
+  /* overflow: hidden !important; */
+  transition: 0.4s ease-in;
+}
+.about-us .about-img img:hover {
+  transform: scale(1.08);
+}
+
+/* Media queries  */
+@media (max-width: 786px) {
+  .carousel-item {
+    height: 80vh !important;
+  }
+}

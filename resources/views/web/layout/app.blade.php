@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Soccerr Club - @yield('title')</title>
+    <!-- Custom css link -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Bs5 icons  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- Jquery link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Swiper bundle link  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+</head>
+
+<body class="bg-white overflow-y-auto overflow-x-hidden p-0">
+    <!-- Header section  -->
+    <header class="w-100">
+        <!-- Navbar start -->
+        <nav class="navbar d-flex p-0">
+            <div class="container-fluid py-3 w-100 align-items-center">
+                <button class="navbar-toggler d-flex d-lg-none border-0 p-0 fs-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <i class="bi bi-list text-white fs-3"></i>
+                </button>
+                <a class="navbar-brand pb-2 ps-md-3" href="/"><img loading="lazy" loading="lazy" src="/assets/images/asset 0.png" alt="" class="img-fluid" width="140" /></a>
+                <ul class="mb-2 mb-lg-0 d-flex align-items-center flex-row gap-4 d-none d-lg-flex list-unstyled">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Shop <i class="bi bi-chevron-down"></i> </a>
+                        <ul class="dropdown-menu position-absolute rounded-0 p-3 border-0 shadow-sm">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <li>
+                                        <h5 class="dropdown-header fw-semibold text-black">Shop</h5>
+                                    </li>
+                                    <li><a href="product.html" class="dropdown-item">Products </a></li>
+                                    <li><a href="collection.html" class="dropdown-item">Collection </a></li>
+                                    <li><a href="product-detail.html" class="dropdown-item">Product Detail </a></li>
+                                    <li><a href="" class="dropdown-item">Cart </a></li>
+                                    <li><a href="" class="dropdown-item">Wishlist </a></li>
+                                </div>
+                                <div class="d-flex gap-2 ms-3">
+                                    <div class="card dropdown-card">
+                                        <div class="card-body text-center">
+                                            <img loading="lazy" src="/assets/images/asset 2.jpeg" alt="" class="img-fluid" />
+                                            <button class="border-0 text-white rounded fw-semibold bg-black px-4 py-2 btn-dark small mt-2">Feautured</button>
+                                        </div>
+                                    </div>
+                                    <div class="card dropdown-card">
+                                        <div class="card-body text-center">
+                                            <img loading="lazy" src="/assets/images/asset 2.jpeg" alt="" class="img-fluid" />
+                                            <button class="border-0 text-white rounded fw-semibold bg-black px-4 py-2 btn-dark small mt-2">Feautured</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Blogs </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Pages <i class="bi bi-chevron-down"></i> </a>
+                        <ul class="dropdown-menu position-absolute rounded-0 p-3 border-0 shadow-sm">
+                            <li><a href="contact.html" class="dropdown-item">Contact Us </a></li>
+                            <li><a href="about.html" class="dropdown-item">About Us </a></li>
+                            <li><a href="team.html" class="dropdown-item">Our Team </a></li>
+                            <li><a href="faq.html" class="dropdown-item">faq </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="nav-link text-decoration-none fw-semibold d-flex align-items-center gap-1"> <i class="bi bi-person fw-bold fs-4"></i> Login </a>
+                    <div class="modal fade min-vh-100" id="loginModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content py-2 px-3">
+                                <!-- Modal Header -->
+                                <div class="modal-header border-0">
+                                    <h5 class="modal-title"></h5>
+                                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <ul class="nav nav-underline nav-fill gap-0" id="myTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Login</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Register</button>
+                                        </li>
+                                    </ul>
+                                    <div class="mt-3 mb-5">
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                                <form action="{{ route('login') }}" method="POST" class="mx-1">
+                                                    @csrf
+                                                    <div class="mb-2">
+                                                        <label for="email1" class="form-label fw-semibold">Email
+                                                            Address</label>
+                                                        <input type="email" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Email Address" id="email1" required />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="password" class="form-label fw-semibold">Password</label>
+                                                        <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Password" id="password" required />
+                                                        <span class="form-text"><a href="#" class="link-dark text-decoration-none link-opacity-75-hover">Forgot
+                                                                your password?</a></span>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <button type="submit" class="btn btn-dark w-100 shadow-none">Login</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                                                <form action="" method="POST" class="mx-1">
+                                                    <div class="mb-2">
+                                                        <label for="fname" class="form-label fw-semibold">Full
+                                                            Name</label>
+                                                        <input type="text" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="ex: John Doe" id="fname" required />
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label for="email1" class="form-label fw-semibold">Email
+                                                            Address</label>
+                                                        <input type="email" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Email Address" id="email1" required />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="password" class="form-label fw-semibold">Password</label>
+                                                        <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Password" id="password" required />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="cpassword" class="form-label fw-semibold">Confirm
+                                                            Password</label>
+                                                        <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Password must match above" id="cpassword" required />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <button type="submit" class="btn btn-dark w-100 shadow-none">Register</button>
+                                                    </div>
+                                                </form>
+                                                <div class="text-center" role="presentation">
+                                                    Already have an account?
+                                                    <a class="link-danger" href="#" data-bs-toggle="modal" data-bs-target="signinModal">Login Here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="small d-block text-center">
+                                        New user discount applies only to full price items. <br />By providing your
+                                        email address, you agree to our <br />
+                                        <a href="privacy.html" class="link-danger">Privacy Policy</a> and
+                                        <a href="tos.html" class="link-danger">Terms of Service.</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $("#loginModal").appendTo("body");
+                    </script>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal" class="d-none d-lg-flex link-light text-decoration-none fw-semibold d-flex align-items-center gap-1"><i class="bi bi-search fw-bold fs-4"></i></a>
+                    <!-- Search modal  -->
+                    <div class="modal fade" id="searchModal">
+                        <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body text-center py-5">
+                                    <h4>What are you looking for?</h4>
+                                    <div class="col-8 mx-auto">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control rounded-0 shadow-none py-2 px-3 fs-6" placeholder="Search for products" aria-label="Search for products" aria-describedby="basic-addon2" />
+                                            <button class="btn btn-primary shadow-none" type="button">Search</button>
+                                        </div>
+                                        <p class="text-center">Popular searches: Lorem ipsum dolor sit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $("#searchModal").appendTo("body");
+                    </script>
+                    <!-- Search modal ends -->
+                    <a href="#WishlistOffcanvas" data-bs-toggle="offcanvas" role="button" aria-controls="WishlistOffcanvas" aria-labelledby="WishlistOffcanvasLabel" class="nav-link d-none d-lg-flex text-decoration-none fw-semibold align-items-center gap-1"><i
+                            class="bi bi-heart fw-bold fs-4"></i></a>
+                    <!-- Wishlist offcanvas -->
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="WishlistOffcanvas" aria-labelledby="WishlistOffcanvasLabel">
+                        <div class="offcanvas-header bg-body-tertiary align-items-center">
+                            <h5 class="offcanvas-title small my-0" id="WishlistOffcanvasLabel">Wishlist</h5>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body bg-white min-vh-100">
+                            <div class="container my-5">
+                                <div class="empty-card text-center">
+                                    <img loading="lazy" src="assets/images/asset 71.svg" alt="" class="img-fluid" />
+                                    <h5 class="fw-semibold my-3">Your wishlist is empty!</h5>
+                                    <p class="text-muted">No items have been added to your wishlist.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Wishlist offcanvas end -->
+                    <a data-bs-toggle="offcanvas" href="#offcanvasCart" role="button" aria-controls="offcanvasExample" class="link-light text-decoration-none fw-semibold d-flex align-items-center gap-1">
+                        <span>$0.00</span><i class="bi bi-cart fw-bold fs-4"></i> </a>
+                    <!-- Cart offcanvas -->
+                    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+                        <div class="offcanvas-header bg-body-tertiary align-items-center">
+                            <h5 class="offcanvas-title small my-0" id="offcanvasCartLabel">Shopping Cart</h5>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body bg-white min-vh-100 p-0">
+                            <div class="pt-1 pb-5 h-100">
+                                <!-- if not empty cart -->
+                                <div class="container-fluid p-0 d-flex flex-column justify-content-between h-100">
+                                    <div class="h-100 overflow-y-auto">
+                                        <script>
+                                            /**
+                                             * Decrements the value of the specific cart quantity input if it is greater than 1
+                                             */
+                                            function minusCart(button) {
+                                                let cartquant = $(button).closest(".product-cart-card").find(
+                                                    ".cartquant"); // Find the specific input within the same product div
+                                                if (cartquant.val() > 1) {
+                                                    cartquant.val(parseInt(cartquant.val()) - 1);
+                                                }
+                                            }
+
+                                            /**
+                                             * Increments the value of the specific cart quantity input by 1
+                                             */
+                                            function addCart(button) {
+                                                let cartquant = $(button).closest(".product-cart-card").find(
+                                                    ".cartquant"); // Find the specific input within the same product div
+                                                cartquant.val(parseInt(cartquant.val()) + 1);
+                                            }
+                                        </script>
+
+                                        <div class="product-cart-card p-2">
+                                            <div class="row w-100 align-items-center pb-2">
+                                                <div class="col-4 px-0 pe-2">
+                                                    <a href="">
+                                                        <img src="assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
+                                                    </a>
+                                                </div>
+                                                <div class="col-7 px-0">
+                                                    <a href="#" class="text-decoration-none fw-semibold link-dark">
+                                                        <p class="mb-0 fs-5">Product Name</p>
+                                                    </a>
+                                                    <span class="current-price fw-normal text-secondary fs-6 py-2">$3.44</span>
+                                                    <div class="d-flex align-items-center my-1">
+                                                        <button class="btn btn-outline-secondary p-0" onclick="minusCart(this)"><i class="bi bi-dash fs-6 p-0"></i></button>
+                                                        <input type="text" class="form-control form-control-sm shadow-none outline-none bg-light py-0 my-0 cartquant" value="1" />
+                                                        <button class="btn btn-outline-secondary p-0" onclick="addCart(this)"><i class="bi bi-plus fs-6 p-0"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <a href="#" class="link-dark"><i class="fa-solid fa-trash-can text-secondary"></i></a>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div class="product-cart-card p-2">
+                                            <div class="row w-100 align-items-center pb-2">
+                                                <div class="col-4 px-0 pe-2">
+                                                    <a href="">
+                                                        <img src="assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
+                                                    </a>
+                                                </div>
+                                                <div class="col-7 px-0">
+                                                    <a href="#" class="text-decoration-none fw-semibold link-dark">
+                                                        <p class="mb-0 fs-5">Product Name</p>
+                                                    </a>
+                                                    <span class="current-price fw-normal text-secondary fs-6 py-2">$3.44</span>
+                                                    <div class="d-flex align-items-center my-1">
+                                                        <button class="btn btn-outline-secondary p-0" onclick="minusCart(this)"><i class="bi bi-dash fs-6 p-0"></i></button>
+                                                        <input type="text" class="form-control form-control-sm shadow-none outline-none bg-light py-0 my-0 cartquant" value="1" />
+                                                        <button class="btn btn-outline-secondary p-0" onclick="addCart(this)"><i class="bi bi-plus fs-6 p-0"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <a href="#" class="link-dark"><i class="fa-solid fa-trash-can text-secondary"></i></a>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div class="product-cart-card p-2">
+                                            <div class="row w-100 align-items-center pb-2">
+                                                <div class="col-4 px-0 pe-2">
+                                                    <a href="">
+                                                        <img src="assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
+                                                    </a>
+                                                </div>
+                                                <div class="col-7 px-0">
+                                                    <a href="#" class="text-decoration-none fw-semibold link-dark">
+                                                        <p class="mb-0 fs-5">Product Name</p>
+                                                    </a>
+                                                    <span class="current-price fw-normal text-secondary fs-6 py-2">$3.44</span>
+                                                    <div class="d-flex align-items-center my-1">
+                                                        <button class="btn btn-outline-secondary p-0" onclick="minusCart(this)"><i class="bi bi-dash fs-6 p-0"></i></button>
+                                                        <input type="text" class="form-control form-control-sm shadow-none outline-none bg-light py-0 my-0 cartquant" value="1" />
+                                                        <button class="btn btn-outline-secondary p-0" onclick="addCart(this)"><i class="bi bi-plus fs-6 p-0"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <a href="#" class="link-dark"><i class="fa-solid fa-trash-can text-secondary"></i></a>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div class="product-cart-card p-2">
+                                            <div class="row w-100 align-items-center pb-2">
+                                                <div class="col-4 px-0 pe-2">
+                                                    <a href="">
+                                                        <img src="assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
+                                                    </a>
+                                                </div>
+                                                <div class="col-7 px-0">
+                                                    <a href="#" class="text-decoration-none fw-semibold link-dark">
+                                                        <p class="mb-0 fs-5">Product Name</p>
+                                                    </a>
+                                                    <span class="current-price fw-normal text-secondary fs-6 py-2">$3.44</span>
+                                                    <div class="d-flex align-items-center my-1">
+                                                        <button class="btn btn-outline-secondary p-0" onclick="minusCart(this)"><i class="bi bi-dash fs-6 p-0"></i></button>
+                                                        <input type="text" class="form-control form-control-sm shadow-none outline-none bg-light py-0 my-0 cartquant" value="1" />
+                                                        <button class="btn btn-outline-secondary p-0" onclick="addCart(this)"><i class="bi bi-plus fs-6 p-0"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <a href="#" class="link-dark"><i class="fa-solid fa-trash-can text-secondary"></i></a>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        </div>
+
+
+                                    </div>
+                                    <div class="w-100">
+                                        <div class="container-fluid py-2 bg-primary-subtle pb-4 border-top">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="fw-semibold m-0">Subtotal</p>
+                                                <p class="fw-semibold m-0">$3.44</p>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="fw-semibold m-0">Shipping</p>
+                                                <p class="fw-semibold m-0">$0.00</p>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <p class="fw-semibold m-0">Total</p>
+                                                <p class="fw-semibold m-0">$3.44</p>
+                                            </div>
+                                            <div class="d-grid my-2">
+                                                <a href="checkout.html" class="btn btn-secondary fw-semibold">View
+                                                    Cart</a>
+                                            </div>
+                                            <div class="d-grid my-2">
+                                                <a href="checkout.html" class="btn btn-primary fw-semibold">Checkout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Example HTML structure for products -->
+                                <div class="product">
+                                    <button onclick="minusCart(this)">-</button>
+                                    <input type="number" class="cartquant" value="1" />
+                                    <button onclick="addCart(this)">+</button>
+                                </div>
+                                <div class="product">
+                                    <button onclick="minusCart(this)">-</button>
+                                    <input type="number" class="cartquant" value="1" />
+                                    <button onclick="addCart(this)">+</button>
+                                </div>
+                                <div class="product">
+                                    <button onclick="minusCart(this)">-</button>
+                                    <input type="number" class="cartquant" value="1" />
+                                    <button onclick="addCart(this)">+</button>
+                                </div>
+
+                                <!-- if not empty cart -->
+
+                                <!-- Empty cart -->
+
+                                <!-- <div class="empty-card text-center">
+                    <img loading="lazy" src="assets/images/cartempty.svg" alt="" class="img-fluid" />
+                    <h4 class="fw-semibold my-3">Your cart is empty</h4>
+                    <a href="/" class="btn btn-primary fw-semibold">Shop Now</a>
+                  </div> -->
+
+                                <!-- Empty cart ends -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Cart offcanvas -->
+                    <!-- Modal  -->
+                </div>
+                <!-- Offcanvas on sm and md screen  -->
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header justify-content-center m-0 bg-danger py-2 text-white align-items-center">
+                        <span class="fw-semibold text-uppercase">Close</span>
+                        <button type="button" class="m-0 p-0 border-0 bg-transparent text-white fs-4 outline-none" data-bs-dismiss="offcanvas" aria-label="Close">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                    <div class="offcanvas-body min-vh-100 bg-white">
+                        <a href="" class="text-decoration-none">
+                            <h6 class="text-black text-center mt-3">What are you looking for?</h6>
+                            <form class="d-flex mt-3 text-center px-2" role="search">
+                                <input class="form-control shadow-none rounded-pill" type="search" placeholder="Search" aria-label="Search" />
+                                <button class="btn" type="submit">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </form>
+                        </a>
+                        <ul class="px-3 list-unstyled mt-4 w-100 pe-5">
+                            <li>
+                                <a href="/" class="nav-link-off text-decoration-none small border-bottom d-block pb-2">
+                                    Home</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2" data-bs-toggle="collapse" href="#collapseShop" role="button" aria-expanded="true" aria-controls="collapseExample"> Shop <i
+                                        class="bi bi-chevron-down"></i></a>
+                            </li>
+                            <div class="collapse show" id="collapseShop">
+                                <div class="card card-body mt-0 pt-2">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="product.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">Products</a>
+                                        </li>
+                                        <li>
+                                            <a href="collection.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">Collections</a>
+                                        </li>
+                                        <li>
+                                            <a href="product-detail.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">Product
+                                                Detail</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <li>
+                                <a class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2" data-bs-toggle="collapse" href="#collapsePage" role="button" aria-expanded="false" aria-controls="collapseExample"> Page <i
+                                        class="bi bi-chevron-down"></i></a>
+                            </li>
+                            <div class="collapse" id="collapsePage">
+                                <div class="card card-body mt-0 pt-2">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="contact.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">Contact
+                                                Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="about.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">About
+                                                Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="team.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">Our
+                                                team</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <li>
+                                <a class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2" href="blogs.html"> Blog </a>
+                            </li>
+                            <li>
+                                <a href="contact.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">
+                                    Contact Us</a>
+                            </li>
+                            <li>
+                                <a data-bs-toggle="offcanvas" href="#offcanvasCart" role="button" aria-controls="offcanvasExample" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">
+                                    Wishlist <span>(0)</span></a>
+                            </li>
+                            <li>
+                                <a href="" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">
+                                    Compare <span>(1)</span></a>
+                            </li>
+                            <li>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2"><i class="bi bi-person"></i> Login / Register</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Offcanvas on sm and md screen  -->
+            </div>
+        </nav>
+        <!-- Navbar end -->
+    </header>
+    <!-- Header section end -->
+    <main>
+
+        @yield('content')
+
+    </main>
+    <!-- footer start  -->
+    <footer>
+        <div class="container-fluid py-5 card-bg">
+            <div class="row w-100 justify-content-center align-items-center mx-auto gy-5 gx-4 pb-2">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 me-auto align-items-center">
+                    <img loading="lazy" src="assets/images/asset 41.png" alt="" class="img-fluid" />
+                    <p class="text-secondary mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab facilis
+                        minus optio omnis ea vitae architecto cupiditate placeat.</p>
+                    <div class="social-footer-links">
+                        <p class="lead fw-bold text-black">Follow Us</p>
+                        <div class="d-flex gap-2 justify-content-start align-items-center">
+                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="assets/images/asset 63.svg" alt="social links" class="img-fluid" /></a>
+                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="assets/images/asset 64.svg" alt="social links" class="img-fluid" /></a>
+                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="assets/images/asset 61.svg" alt="social links" class="img-fluid" /></a>
+                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="assets/images/asset 62.svg" alt="social links" class="img-fluid" /></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 me-auto align-items-center">
+                    <p class="lead fw-bolder text-black text-uppercase">Quick Links</p>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="link-dark link-underline-danger link-underline-opacity-0 link-opacity-100-hover link-underline-opacity-100-hover fw-normal">Search</a>
+                        </li>
+                        <li><a href="#" class="link-dark link-underline-danger link-underline-opacity-0 link-opacity-100-hover link-underline-opacity-100-hover fw-normal">Privacy
+                                Policy</a></li>
+                        <li><a href="#" class="link-dark link-underline-danger link-underline-opacity-0 link-opacity-100-hover link-underline-opacity-100-hover fw-normal">FAQ's</a>
+                        </li>
+                        <li><a href="#" class="link-dark link-underline-danger link-underline-opacity-0 link-opacity-100-hover link-underline-opacity-100-hover fw-normal">Contact
+                                Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 me-auto align-items-center">
+                    <p class="lead fw-bolder text-black text-uppercase">Information</p>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="link-dark link-underline-danger link-underline-opacity-0 link-opacity-100-hover link-underline-opacity-100-hover fw-normal">Home
+                                Page</a></li>
+                        <li><a href="#" class="link-dark link-underline-danger link-underline-opacity-0 link-opacity-100-hover link-underline-opacity-100-hover fw-normal">About
+                                Us</a></li>
+                        <li><a href="#" class="link-dark link-underline-danger link-underline-opacity-0 link-opacity-100-hover link-underline-opacity-100-hover fw-normal">Shop</a>
+                        </li>
+                        <li><a href="#" class="link-dark link-underline-danger link-underline-opacity-0 link-opacity-100-hover link-underline-opacity-100-hover fw-normal">Blogs</a>
+                        </li>
+                        <li><a href="#" class="link-dark link-underline-danger link-underline-opacity-0 link-opacity-100-hover link-underline-opacity-100-hover fw-normal">Team</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 me-auto align-items-center">
+                    <p class="lead fw-bolder text-black text-uppercase">Contact Us</p>
+                    <div class="d-flex gap-2 align-items-center my-3">
+                        <img loading="lazy" src="assets/images/asset 65.svg" alt="social links" class="img-fluid" />
+                        <p class="fs-4 fw-bold text-black m-0">+91 1234567890</p>
+                    </div>
+                    <div class="d-flex gap-2 align-items-center my-3">
+                        <img loading="lazy" src="assets/images/asset 66.svg" alt="social links" class="img-fluid" />
+                        <p class="fw-semibold text-black m-0">mail@gmail.com</p>
+                    </div>
+                    <div class="d-flex gap-2 align-items-center my-3">
+                        <img loading="lazy" src="assets/images/asset 67.svg" alt="social links" class="img-fluid" />
+                        <p class="text-black m-0">Store open at 10:00 am to 8:00 pm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="text-center">
+                    <p class="text-secondary pt-2">Copyright © 2023. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
