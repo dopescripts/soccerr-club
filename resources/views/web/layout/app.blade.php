@@ -108,13 +108,34 @@
                                                     <div class="mb-2">
                                                         <label for="email1" class="form-label fw-semibold">Email
                                                             Address</label>
-                                                        <input type="email" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Email Address" id="email1" required />
+                                                        <input type="email" class="form-control rounded shadow-none py-2 px-3 fs-6 @error('email') is-invalid @enderror" name="email" placeholder="Email Address" id="email1" required autofocus autocomplete="email" />
+                                                        @error('email')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="password" class="form-label fw-semibold">Password</label>
-                                                        <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Password" id="password" required />
-                                                        <span class="form-text"><a href="#" class="link-dark text-decoration-none link-opacity-75-hover">Forgot
-                                                                your password?</a></span>
+                                                        <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6 @error('password') is-invalid @enderror" placeholder="Password" id="password" name="password" required autocomplete="current-password" />
+                                                        @error('password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        
+                                                            <label class="form-check-label" for="remember">
+                                                                {{ __('Remember Me') }}
+                                                            </label>
+                                                        </div>
+                                                        @if (Route::has('password.request'))
+                                                        <span class="form-text">
+                                                            <a href="{{ route('password.request') }}" class="link-dark text-decoration-none link-opacity-75-hover">
+                                                                Forgot your password?</a>
+                                                        </span>
+                                                        @endif
                                                     </div>
                                                     <div class="mb-3">
                                                         <button type="submit" class="btn btn-dark w-100 shadow-none">Login</button>
@@ -166,6 +187,14 @@
                     <script>
                         $("#loginModal").appendTo("body");
                     </script>
+                    @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+                        <script>
+                            $(function() {
+                                $('#loginModal').modal('show');
+                            });
+                        </script>
+                    @endif
+                    
                     <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal" class="d-none d-lg-flex link-light text-decoration-none fw-semibold d-flex align-items-center gap-1"><i class="bi bi-search fw-bold fs-4"></i></a>
                     <!-- Search modal  -->
                     <div class="modal fade" id="searchModal">
@@ -368,34 +397,14 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Example HTML structure for products -->
-                                <div class="product">
-                                    <button onclick="minusCart(this)">-</button>
-                                    <input type="number" class="cartquant" value="1" />
-                                    <button onclick="addCart(this)">+</button>
-                                </div>
-                                <div class="product">
-                                    <button onclick="minusCart(this)">-</button>
-                                    <input type="number" class="cartquant" value="1" />
-                                    <button onclick="addCart(this)">+</button>
-                                </div>
-                                <div class="product">
-                                    <button onclick="minusCart(this)">-</button>
-                                    <input type="number" class="cartquant" value="1" />
-                                    <button onclick="addCart(this)">+</button>
-                                </div>
-
                                 <!-- if not empty cart -->
 
                                 <!-- Empty cart -->
-
                                 <!-- <div class="empty-card text-center">
-                    <img loading="lazy" src="assets/images/cartempty.svg" alt="" class="img-fluid" />
-                    <h4 class="fw-semibold my-3">Your cart is empty</h4>
-                    <a href="/" class="btn btn-primary fw-semibold">Shop Now</a>
-                  </div> -->
-
+                                        <img loading="lazy" src="assets/images/cartempty.svg" alt="" class="img-fluid" />
+                                        <h4 class="fw-semibold my-3">Your cart is empty</h4>
+                                        <a href="/" class="btn btn-primary fw-semibold">Shop Now</a>
+                                    </div> -->
                                 <!-- Empty cart ends -->
                             </div>
                         </div>
