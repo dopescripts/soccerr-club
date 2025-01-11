@@ -32,29 +32,29 @@
                 <a class="navbar-brand pb-2 ps-md-3" href="{{ url('/') }}"><img loading="lazy" loading="lazy" src="/assets/images/asset 0.png" alt="" class="img-fluid" width="140" /></a>
                 <ul class="mb-2 mb-lg-0 d-flex align-items-center flex-row gap-4 d-none d-lg-flex list-unstyled">
                     @foreach ($navlinks as $navitem)
-                    @if (count($navitem->dropdownitems) > 0)
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{ $navitem->name }} <i class="bi bi-chevron-down"></i> </a>
-                            <ul class="dropdown-menu position-absolute rounded-0 p-2 border-0 shadow-sm">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <li>
-                                            <h5 class="dropdown-header fw-semibold text-black">{{ $navitem->name }}</h5>
-                                        </li>
-                                        @foreach ($navitem->dropdownitems as $dropdownitem)
-                                        <li>
-                                            <a class="dropdown-item" href="{{ $dropdownitem->link }}">{{ $dropdownitem->name }}</a>
-                                        </li>
-                                        @endforeach
+                        @if (count($navitem->dropdownitems) > 0)
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{ $navitem->name }} <i class="bi bi-chevron-down"></i> </a>
+                                <ul class="dropdown-menu position-absolute rounded-0 p-2 border-0 shadow-sm">
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <li>
+                                                <h5 class="dropdown-header fw-semibold text-black">{{ $navitem->name }}</h5>
+                                            </li>
+                                            @foreach ($navitem->dropdownitems as $dropdownitem)
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ $dropdownitem->link }}">{{ $dropdownitem->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                </div>
-                            </ul>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ $navitem->link }}">{{ $navitem->name }}</a>
-                        </li>
-                    @endif
+                                </ul>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ $navitem->link }}">{{ $navitem->name }}</a>
+                            </li>
+                        @endif
                     @endforeach
                     {{-- <li class="nav-item dropdown">
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Shop <i class="bi bi-chevron-down"></i> </a>
@@ -592,7 +592,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
-      </script>
+    </script>
 </body>
 
 </html>
