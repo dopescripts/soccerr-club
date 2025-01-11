@@ -53,7 +53,7 @@
     <!-- Hero section end -->
 
     <!-- Categories section start  -->
-    <section class="categories-home w-100 py-5">
+    <section class="categories-home w-100 py-5" data-aos="fade-up">
         <div class="container-fluid my-md-3">
             <div class="row w-100 gy-5 justify-content-center align-items-center text-center mx-auto mb-5">
                 <div class="col-lg-2 col-md-4 col-sm-6 col-6">
@@ -155,7 +155,7 @@
     <section class="banner w-100 pb-5">
         <div class="container-fluid">
             <div class="row gy-4 justify-content-center mx-lg-1">
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-aos="fade-right">
                     <div class="card card-bg">
                         <img loading="lazy" src="assets/images/asset 11.jpeg" alt="" class="img-fluid" />
                         <div class="card-img-overlay d-flex flex-column align-items-start justify-content-center">
@@ -165,7 +165,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-aos="fade-right">
                     <div class="card card-bg">
                         <img loading="lazy" src="assets/images/asset 12.jpeg" alt="" class="img-fluid" />
                         <div class="card-img-overlay d-flex flex-column align-items-start justify-content-center">
@@ -175,7 +175,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12" data-aos="fade-right">
                     <div class="card card-bg">
                         <img loading="lazy" src="assets/images/asset 13.jpeg" alt="" class="img-fluid" />
                         <div class="card-img-overlay d-flex flex-column align-items-start justify-content-center">

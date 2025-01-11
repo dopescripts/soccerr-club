@@ -28,4 +28,7 @@ class Product extends Model
     public function vendor() {
         $this->belongsTo(Vendor::class);
     }
+    public function orders() {
+        $this->hasMany(Orders::class);
+    }
 }

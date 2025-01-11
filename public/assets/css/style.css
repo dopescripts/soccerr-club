@@ -9,11 +9,11 @@
 /* Sets root CSS variables */
 :root {
   --primary-color: #ffff;
-  --secondary-color: #af101a;
-  --sub-heading-color: #af101a;
+  --secondary-color: #aa6d12;
+  --sub-heading-color: #aa6d12;
   --body-color: #141516;
   --body-text: #92949f;
-  --btn-color: #af101a;
+  --btn-color: #aa6d12;
   --card-bg: #eeeded;
   --white: #ffff;
   --black: #141516;
@@ -63,7 +63,7 @@
   background-color: var(--btn-color) !important;
   color: var(--primary-color) !important;
   border: none !important;
-  border-radius: 4px !important;
+  border-radius: 8px !important;
   text-transform: uppercase !important;
   font-family: var(--primary-font) !important;
 }
@@ -78,7 +78,7 @@
   background-color: var(--primary-color) !important;
   color: black !important;
   border: none !important;
-  border-radius: 4px !important;
+  border-radius: 8px !important;
   text-transform: uppercase !important;
   font-family: var(--primary-font) !important;
 }
@@ -134,7 +134,7 @@ h6 {
 
 /* Styles paragraphs */
 p {
-  font-family: var(--secondary-font);
+  font-family: var(--secondary-font) ;
 }
 
 /* Styles card component */
@@ -167,7 +167,7 @@ header {
   color: var(--primary-color) !important;
   font-weight: 600 !important;
   font-family: var(--primary-font) !important;
-  font-size: 13px !important;
+  font-size: 16px !important;
 }
 .nav-link:hover {
   color: var(--secondary-color) !important;

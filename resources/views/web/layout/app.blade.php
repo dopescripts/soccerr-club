@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Soccerr Club - @yield('title')</title>
+    <title>@yield('title') - {{ config('app.name') }}</title>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- Custom css link -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <!-- Bs5 icons  -->
@@ -16,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body class="bg-white overflow-y-auto overflow-x-hidden p-0">
@@ -25,15 +26,37 @@
         <!-- Navbar start -->
         <nav class="navbar d-flex p-0">
             <div class="container-fluid py-3 w-100 align-items-center">
-                <button class="navbar-toggler d-flex d-lg-none border-0 p-0 fs-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <button class="navbar-toggler d-flex d-lg-none border-0 p-0 fs-5 outline-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                     <i class="bi bi-list text-white fs-3"></i>
                 </button>
-                <a class="navbar-brand pb-2 ps-md-3" href="/"><img loading="lazy" loading="lazy" src="/assets/images/asset 0.png" alt="" class="img-fluid" width="140" /></a>
+                <a class="navbar-brand pb-2 ps-md-3" href="{{ url('/') }}"><img loading="lazy" loading="lazy" src="/assets/images/asset 0.png" alt="" class="img-fluid" width="140" /></a>
                 <ul class="mb-2 mb-lg-0 d-flex align-items-center flex-row gap-4 d-none d-lg-flex list-unstyled">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
+                    @foreach ($navlinks as $navitem)
+                    @if (count($navitem->dropdownitems) > 0)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{ $navitem->name }} <i class="bi bi-chevron-down"></i> </a>
+                            <ul class="dropdown-menu position-absolute rounded-0 p-2 border-0 shadow-sm">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <li>
+                                            <h5 class="dropdown-header fw-semibold text-black">{{ $navitem->name }}</h5>
+                                        </li>
+                                        @foreach ($navitem->dropdownitems as $dropdownitem)
+                                        <li>
+                                            <a class="dropdown-item" href="{{ $dropdownitem->link }}">{{ $dropdownitem->name }}</a>
+                                        </li>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ $navitem->link }}">{{ $navitem->name }}</a>
+                        </li>
+                    @endif
+                    @endforeach
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Shop <i class="bi bi-chevron-down"></i> </a>
                         <ul class="dropdown-menu position-absolute rounded-0 p-3 border-0 shadow-sm">
                             <div class="d-flex align-items-center">
@@ -78,123 +101,147 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact Us</a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <div class="d-flex align-items-center gap-3">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="nav-link text-decoration-none fw-semibold d-flex align-items-center gap-1"> <i class="bi bi-person fw-bold fs-4"></i> Login </a>
-                    <div class="modal fade min-vh-100" id="loginModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content py-2 px-3">
-                                <!-- Modal Header -->
-                                <div class="modal-header border-0">
-                                    <h5 class="modal-title"></h5>
-                                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
-                                </div>
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <ul class="nav nav-underline nav-fill gap-0" id="myTab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Login</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Register</button>
-                                        </li>
-                                    </ul>
-                                    <div class="mt-3 mb-5">
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                                                <form action="{{ route('login') }}" method="POST" class="mx-1">
-                                                    @csrf
-                                                    <div class="mb-2">
-                                                        <label for="email1" class="form-label fw-semibold">Email
-                                                            Address</label>
-                                                        <input type="email" class="form-control rounded shadow-none py-2 px-3 fs-6 @error('email') is-invalid @enderror" name="email" placeholder="Email Address" id="email1" required autofocus autocomplete="email" />
-                                                        @error('email')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
+                    @guest
+                        @if (Route::has('login'))
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="nav-link text-decoration-none fw-semibold d-flex align-items-center gap-1"> <i class="bi bi-person fw-bold fs-4"></i> Login
+                            </a>
+                            <div class="modal fade min-vh-100" id="loginModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content py-2 px-3">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title"></h5>
+                                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <ul class="nav nav-underline nav-fill gap-0" id="myTab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Login</button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Register</button>
+                                                </li>
+                                            </ul>
+                                            <div class="mt-3 mb-5">
+                                                <div class="tab-content" id="myTabContent">
+                                                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                                        <form action="{{ route('login') }}" method="POST" class="mx-1">
+                                                            @csrf
+                                                            <div class="mb-2">
+                                                                <label for="email1" class="form-label fw-semibold">Email
+                                                                    Address</label>
+                                                                <input type="email" class="form-control rounded shadow-none py-2 px-3 fs-6 @error('email') is-invalid @enderror" name="email" placeholder="Email Address" id="email1" required autofocus
+                                                                    autocomplete="email" />
+                                                                @error('email')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="password" class="form-label fw-semibold">Password</label>
+                                                                <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6 @error('password') is-invalid @enderror" placeholder="Password" id="password" name="password" required
+                                                                    autocomplete="current-password" />
+                                                                @error('password')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                                                    <label class="form-check-label" for="remember">
+                                                                        {{ __('Remember Me') }}
+                                                                    </label>
+                                                                </div>
+                                                                @if (Route::has('password.request'))
+                                                                    <span class="form-text">
+                                                                        <a href="{{ route('password.request') }}" class="link-dark text-decoration-none link-opacity-75-hover">
+                                                                            Forgot your password?</a>
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <button type="submit" class="btn btn-dark w-100 shadow-none">Login</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label for="password" class="form-label fw-semibold">Password</label>
-                                                        <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6 @error('password') is-invalid @enderror" placeholder="Password" id="password" name="password" required autocomplete="current-password" />
-                                                        @error('password')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                        
-                                                            <label class="form-check-label" for="remember">
-                                                                {{ __('Remember Me') }}
-                                                            </label>
+                                                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                                                        <form action="" method="POST" class="mx-1">
+                                                            <div class="mb-2">
+                                                                <label for="fname" class="form-label fw-semibold">Full
+                                                                    Name</label>
+                                                                <input type="text" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="ex: John Doe" id="fname" required />
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                <label for="email1" class="form-label fw-semibold">Email
+                                                                    Address</label>
+                                                                <input type="email" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Email Address" id="email1" required />
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="password" class="form-label fw-semibold">Password</label>
+                                                                <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Password" id="password" required />
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="cpassword" class="form-label fw-semibold">Confirm
+                                                                    Password</label>
+                                                                <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Password must match above" id="cpassword" required />
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <button type="submit" class="btn btn-dark w-100 shadow-none">Register</button>
+                                                            </div>
+                                                        </form>
+                                                        <div class="text-center" role="presentation">
+                                                            Already have an account?
+                                                            <a class="link-danger" href="#" data-bs-toggle="modal" data-bs-target="signinModal">Login Here</a>
                                                         </div>
-                                                        @if (Route::has('password.request'))
-                                                        <span class="form-text">
-                                                            <a href="{{ route('password.request') }}" class="link-dark text-decoration-none link-opacity-75-hover">
-                                                                Forgot your password?</a>
-                                                        </span>
-                                                        @endif
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <button type="submit" class="btn btn-dark w-100 shadow-none">Login</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                                                <form action="" method="POST" class="mx-1">
-                                                    <div class="mb-2">
-                                                        <label for="fname" class="form-label fw-semibold">Full
-                                                            Name</label>
-                                                        <input type="text" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="ex: John Doe" id="fname" required />
-                                                    </div>
-                                                    <div class="mb-2">
-                                                        <label for="email1" class="form-label fw-semibold">Email
-                                                            Address</label>
-                                                        <input type="email" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Email Address" id="email1" required />
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="password" class="form-label fw-semibold">Password</label>
-                                                        <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Password" id="password" required />
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="cpassword" class="form-label fw-semibold">Confirm
-                                                            Password</label>
-                                                        <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Password must match above" id="cpassword" required />
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <button type="submit" class="btn btn-dark w-100 shadow-none">Register</button>
-                                                    </div>
-                                                </form>
-                                                <div class="text-center" role="presentation">
-                                                    Already have an account?
-                                                    <a class="link-danger" href="#" data-bs-toggle="modal" data-bs-target="signinModal">Login Here</a>
                                                 </div>
                                             </div>
+                                            <span class="small d-block text-center">
+                                                New user discount applies only to full price items. <br />By providing your
+                                                email address, you agree to our <br />
+                                                <a href="privacy.html" class="link-danger">Privacy Policy</a> and
+                                                <a href="tos.html" class="link-danger">Terms of Service.</a>
+                                            </span>
                                         </div>
                                     </div>
-                                    <span class="small d-block text-center">
-                                        New user discount applies only to full price items. <br />By providing your
-                                        email address, you agree to our <br />
-                                        <a href="privacy.html" class="link-danger">Privacy Policy</a> and
-                                        <a href="tos.html" class="link-danger">Terms of Service.</a>
-                                    </span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <script>
-                        $("#loginModal").appendTo("body");
-                    </script>
-                    @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+                            <script>
+                                $("#loginModal").appendTo("body");
+                            </script>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                    @if (!empty(Session::get('error_code')) && Session::get('error_code') == 5)
                         <script>
                             $(function() {
                                 $('#loginModal').modal('show');
                             });
                         </script>
                     @endif
-                    
+
                     <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal" class="d-none d-lg-flex link-light text-decoration-none fw-semibold d-flex align-items-center gap-1"><i class="bi bi-search fw-bold fs-4"></i></a>
                     <!-- Search modal  -->
                     <div class="modal fade" id="searchModal">
@@ -414,7 +461,7 @@
                 </div>
                 <!-- Offcanvas on sm and md screen  -->
                 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                    <div class="offcanvas-header justify-content-center m-0 bg-danger py-2 text-white align-items-center">
+                    <div class="offcanvas-header justify-content-center m-0 bg-warning py-2 text-white align-items-center">
                         <span class="fw-semibold text-uppercase">Close</span>
                         <button type="button" class="m-0 p-0 border-0 bg-transparent text-white fs-4 outline-none" data-bs-dismiss="offcanvas" aria-label="Close">
                             <i class="bi bi-x"></i>
@@ -431,10 +478,12 @@
                             </form>
                         </a>
                         <ul class="px-3 list-unstyled mt-4 w-100 pe-5">
-                            <li>
-                                <a href="/" class="nav-link-off text-decoration-none small border-bottom d-block pb-2">
-                                    Home</a>
-                            </li>
+                            @foreach ($navlinks as $navitem)
+                                <li>
+                                    <a href="{{ $navitem->link }}" class="nav-link-off text-decoration-none small border-bottom d-block pb-2">
+                                        {{ $navitem->name }}</a>
+                                </li>
+                            @endforeach
                             <li>
                                 <a class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2" data-bs-toggle="collapse" href="#collapseShop" role="button" aria-expanded="true" aria-controls="collapseExample"> Shop <i
                                         class="bi bi-chevron-down"></i></a>
@@ -455,46 +504,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <li>
-                                <a class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2" data-bs-toggle="collapse" href="#collapsePage" role="button" aria-expanded="false" aria-controls="collapseExample"> Page <i
-                                        class="bi bi-chevron-down"></i></a>
-                            </li>
-                            <div class="collapse" id="collapsePage">
-                                <div class="card card-body mt-0 pt-2">
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <a href="contact.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">Contact
-                                                Us</a>
-                                        </li>
-                                        <li>
-                                            <a href="about.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">About
-                                                Us</a>
-                                        </li>
-                                        <li>
-                                            <a href="team.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">Our
-                                                team</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <li>
-                                <a class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2" href="blogs.html"> Blog </a>
-                            </li>
-                            <li>
-                                <a href="contact.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">
-                                    Contact Us</a>
-                            </li>
-                            <li>
-                                <a data-bs-toggle="offcanvas" href="#offcanvasCart" role="button" aria-controls="offcanvasExample" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">
-                                    Wishlist <span>(0)</span></a>
-                            </li>
-                            <li>
-                                <a href="" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">
-                                    Compare <span>(1)</span></a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2"><i class="bi bi-person"></i> Login / Register</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -580,6 +589,10 @@
     </footer>
     <!-- footer end -->
     <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
 </body>
 
 </html>
