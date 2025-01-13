@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(NavlinksSeeder::class);
-        $this->call(dropdownitemSeeder::class);
+        // $this->call(NavlinksSeeder::class);
+        // $this->call(dropdownitemSeeder::class);
+        $this->call(HomeSliderSeeder::class);
     }
 }

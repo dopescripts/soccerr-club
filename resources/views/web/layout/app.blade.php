@@ -56,41 +56,7 @@
                             </li>
                         @endif
                     @endforeach
-                    {{-- <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Shop <i class="bi bi-chevron-down"></i> </a>
-                        <ul class="dropdown-menu position-absolute rounded-0 p-3 border-0 shadow-sm">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <li>
-                                        <h5 class="dropdown-header fw-semibold text-black">Shop</h5>
-                                    </li>
-                                    <li><a href="product.html" class="dropdown-item">Products </a></li>
-                                    <li><a href="collection.html" class="dropdown-item">Collection </a></li>
-                                    <li><a href="product-detail.html" class="dropdown-item">Product Detail </a></li>
-                                    <li><a href="" class="dropdown-item">Cart </a></li>
-                                    <li><a href="" class="dropdown-item">Wishlist </a></li>
-                                </div>
-                                <div class="d-flex gap-2 ms-3">
-                                    <div class="card dropdown-card">
-                                        <div class="card-body text-center">
-                                            <img loading="lazy" src="/assets/images/asset 2.jpeg" alt="" class="img-fluid" />
-                                            <button class="border-0 text-white rounded fw-semibold bg-black px-4 py-2 btn-dark small mt-2">Feautured</button>
-                                        </div>
-                                    </div>
-                                    <div class="card dropdown-card">
-                                        <div class="card-body text-center">
-                                            <img loading="lazy" src="/assets/images/asset 2.jpeg" alt="" class="img-fluid" />
-                                            <button class="border-0 text-white rounded fw-semibold bg-black px-4 py-2 btn-dark small mt-2">Feautured</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> Blogs </a>
-                    </li>
-                    <li class="nav-item dropdown">
+                    {{--  <li class="nav-item dropdown">
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Pages <i class="bi bi-chevron-down"></i> </a>
                         <ul class="dropdown-menu position-absolute rounded-0 p-3 border-0 shadow-sm">
                             <li><a href="contact.html" class="dropdown-item">Contact Us </a></li>
@@ -98,9 +64,6 @@
                             <li><a href="team.html" class="dropdown-item">Our Team </a></li>
                             <li><a href="faq.html" class="dropdown-item">faq </a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
                     </li> --}}
                 </ul>
                 <div class="d-flex align-items-center gap-3">
@@ -217,17 +180,20 @@
                             </script>
                         @endif
                     @else
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown list-unstyled">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-end p-2 rounded-0" aria-labelledby="navbarDropdown">
+                                <p class="ps-2 small fw-normal text-secondary my-0">
+                                    {{ Auth::user()->email }}
+                                </p>
+                                <hr class="dropdown-divider"/>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>

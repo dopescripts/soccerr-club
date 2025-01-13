@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://soccerclub.test'),
 
     'asset_url' => env('ASSET_URL', '/'),
 
