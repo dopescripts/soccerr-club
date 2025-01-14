@@ -11,7 +11,7 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img loading="lazy" src="assets/images/asset 4.jpeg" class="d-block" alt="..." />
+                    <img loading="lazy" src="/assets/images/asset 4.jpeg" class="d-block" alt="..." />
                     <div class="carousel-caption">
                         <h5 class="text-uppercase fw-bold fs-6 text-white">welcome to our Soccerr club</h5>
                         <div class="display-1 text-uppercase fw-bold transform-animation">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img loading="lazy" src="assets/images/asset 4.jpeg" class="d-block" alt="..." />
+                    <img loading="lazy" src="/assets/images/asset 4.jpeg" class="d-block" alt="..." />
                     <div class="carousel-caption">
                         <h5 class="text-uppercase fw-bold fs-6 text-white">welcome to our Soccerr club</h5>
                         <div class="display-1 text-uppercase fw-bold transform-animation">
@@ -56,60 +56,19 @@
     <section class="categories-home w-100 py-5" data-aos="fade-up">
         <div class="container-fluid my-md-3">
             <div class="row w-100 gy-5 justify-content-center align-items-center text-center mx-auto mb-5">
+                @foreach ($category as $category)
                 <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+                    <a href="{{ route('category.detail', $category->id) }}">
                     <div class="card card-bg">
                         <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="product.html" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
+                            <img loading="lazy" src="{{ asset('public/'. $category->image) }}" alt="" class="img-fluid rounded bg-white p-2" />
+                            <div class="card-subtitle mt-3"><a href="product.html" class="link-dark fw-semibold text-decoration-none text-uppercase">{{ $category->name }}</a></div>
+                            <div class="card-text text-danger">0 items</div>
                         </div>
                     </div>
+                    </a>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                    <div class="card card-bg">
-                        <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="product.html" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                    <div class="card card-bg">
-                        <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="product.html" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                    <div class="card card-bg">
-                        <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="product.html" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                    <div class="card card-bg">
-                        <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="product.html" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                    <div class="card card-bg">
-                        <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="product.html" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="marquee my-md-5">
                 <marquee behavior="scroll" direction="" class="pt-md-4" onmouseover="this.stop()" onmouseleave="this.start()">
@@ -157,7 +116,7 @@
             <div class="row gy-4 justify-content-center mx-lg-1">
                 <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-aos="fade-right">
                     <div class="card card-bg">
-                        <img loading="lazy" src="assets/images/asset 11.jpeg" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 11.jpeg" alt="" class="img-fluid" />
                         <div class="card-img-overlay d-flex flex-column align-items-start justify-content-center">
                             <div class="card-subtitle text-white fw-semibold text-uppercase">Be Well Dressed in</div>
                             <div class="card-title text-white fw-bold text-uppercase h3">Ultimate Men's gear</div>
@@ -167,7 +126,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-aos="fade-right">
                     <div class="card card-bg">
-                        <img loading="lazy" src="assets/images/asset 12.jpeg" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 12.jpeg" alt="" class="img-fluid" />
                         <div class="card-img-overlay d-flex flex-column align-items-start justify-content-center">
                             <div class="card-subtitle text-white fw-semibold text-uppercase">new arrivals</div>
                             <div class="card-title text-white fw-bold text-uppercase h3">Woman's Shoes</div>
@@ -177,7 +136,7 @@
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12 col-12" data-aos="fade-right">
                     <div class="card card-bg">
-                        <img loading="lazy" src="assets/images/asset 13.jpeg" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 13.jpeg" alt="" class="img-fluid" />
                         <div class="card-img-overlay d-flex flex-column align-items-start justify-content-center">
                             <div class="card-subtitle text-white fw-semibold text-uppercase">get rewarded</div>
                             <div class="card-title text-white fw-bold text-uppercase h3">youth soccerr gear</div>
@@ -205,7 +164,7 @@
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
                             <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                 <div>
                                     <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -248,7 +207,7 @@
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
                             <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                 <div>
                                     <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -291,7 +250,7 @@
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
                             <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                 <div>
                                     <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -334,7 +293,7 @@
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
                             <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                 <div>
                                     <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -377,7 +336,7 @@
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
                             <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                 <div>
                                     <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -420,7 +379,7 @@
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
                             <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                 <div>
                                     <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -463,7 +422,7 @@
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
                             <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                 <div>
                                     <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -506,7 +465,7 @@
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
                             <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                 <div>
                                     <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -636,7 +595,7 @@
                                 <div class="card rounded-4 card-bg">
                                     <div class="card-body">
                                         <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                            <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                            <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                             <div>
                                                 <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                                 <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -677,7 +636,7 @@
                                 <div class="card rounded-4 card-bg">
                                     <div class="card-body">
                                         <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                            <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                            <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                             <div>
                                                 <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                                 <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -718,7 +677,7 @@
                                 <div class="card rounded-4 card-bg">
                                     <div class="card-body">
                                         <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                            <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                            <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                             <div>
                                                 <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                                 <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -759,7 +718,7 @@
                                 <div class="card rounded-4 card-bg">
                                     <div class="card-body">
                                         <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                            <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                            <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                             <div>
                                                 <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                                 <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -800,7 +759,7 @@
                                 <div class="card rounded-4 card-bg">
                                     <div class="card-body">
                                         <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                            <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                            <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                             <div>
                                                 <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                                 <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -841,7 +800,7 @@
                                 <div class="card rounded-4 card-bg">
                                     <div class="card-body">
                                         <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                            <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                            <img loading="lazy" src="/assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
                                             <div>
                                                 <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
                                                 <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -900,11 +859,11 @@
                 <div class="card card-bg">
                     <div class="card-body">
                         <div class="team-img position-relative overflow-hidden">
-                            <img loading="lazy" src="assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
+                            <img loading="lazy" src="/assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
                             <div class="position-absolute top-0 start-0 team-link">
                                 <div class="d-flex flex-column gap-2 mt-2 ms-3">
-                                    <a href="#" class="footer-link"><img loading="lazy" src="assets/images/asset 61.svg" alt="" /></a>
-                                    <a href="#" class="footer-link"><img loading="lazy" src="assets/images/asset 62.svg" alt="" /></a>
+                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 61.svg" alt="" /></a>
+                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 62.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -917,11 +876,11 @@
                 <div class="card card-bg">
                     <div class="card-body">
                         <div class="team-img position-relative overflow-hidden">
-                            <img loading="lazy" src="assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
+                            <img loading="lazy" src="/assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
                             <div class="position-absolute top-0 start-0 team-link">
                                 <div class="d-flex flex-column gap-2 mt-2 ms-3">
-                                    <a href="#" class="footer-link"><img loading="lazy" src="assets/images/asset 61.svg" alt="" /></a>
-                                    <a href="#" class="footer-link"><img loading="lazy" src="assets/images/asset 62.svg" alt="" /></a>
+                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 61.svg" alt="" /></a>
+                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 62.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -934,11 +893,11 @@
                 <div class="card card-bg">
                     <div class="card-body">
                         <div class="team-img position-relative overflow-hidden">
-                            <img loading="lazy" src="assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
+                            <img loading="lazy" src="/assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
                             <div class="position-absolute top-0 start-0 team-link">
                                 <div class="d-flex flex-column gap-2 mt-2 ms-3">
-                                    <a href="#" class="footer-link"><img loading="lazy" src="assets/images/asset 61.svg" alt="" /></a>
-                                    <a href="#" class="footer-link"><img loading="lazy" src="assets/images/asset 62.svg" alt="" /></a>
+                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 61.svg" alt="" /></a>
+                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 62.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -951,11 +910,11 @@
                 <div class="card card-bg">
                     <div class="card-body">
                         <div class="team-img position-relative overflow-hidden">
-                            <img loading="lazy" src="assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
+                            <img loading="lazy" src="/assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
                             <div class="position-absolute top-0 start-0 team-link">
                                 <div class="d-flex flex-column gap-2 mt-2 ms-3">
-                                    <a href="#" class="footer-link"><img loading="lazy" src="assets/images/asset 61.svg" alt="" /></a>
-                                    <a href="#" class="footer-link"><img loading="lazy" src="assets/images/asset 62.svg" alt="" /></a>
+                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 61.svg" alt="" /></a>
+                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 62.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -986,7 +945,7 @@
                                 <div class="card p-3 py-2 card-bg">
                                     <div class="card-body">
                                         <div class="d-flex align-items-start justify-content-between">
-                                            <img loading="lazy" src="assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
+                                            <img loading="lazy" src="/assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
                                             <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
                                         </div>
                                         <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
@@ -1009,7 +968,7 @@
                                 <div class="card p-3 py-2 card-bg">
                                     <div class="card-body">
                                         <div class="d-flex align-items-start justify-content-between">
-                                            <img loading="lazy" src="assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
+                                            <img loading="lazy" src="/assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
                                             <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
                                         </div>
                                         <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
@@ -1032,7 +991,7 @@
                                 <div class="card p-3 py-2 card-bg">
                                     <div class="card-body">
                                         <div class="d-flex align-items-start justify-content-between">
-                                            <img loading="lazy" src="assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
+                                            <img loading="lazy" src="/assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
                                             <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
                                         </div>
                                         <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
@@ -1055,7 +1014,7 @@
                                 <div class="card p-3 py-2 card-bg">
                                     <div class="card-body">
                                         <div class="d-flex align-items-start justify-content-between">
-                                            <img loading="lazy" src="assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
+                                            <img loading="lazy" src="/assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
                                             <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
                                         </div>
                                         <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
@@ -1078,7 +1037,7 @@
                                 <div class="card p-3 py-2 card-bg">
                                     <div class="card-body">
                                         <div class="d-flex align-items-start justify-content-between">
-                                            <img loading="lazy" src="assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
+                                            <img loading="lazy" src="/assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
                                             <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
                                         </div>
                                         <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
@@ -1101,7 +1060,7 @@
                                 <div class="card p-3 py-2 card-bg">
                                     <div class="card-body">
                                         <div class="d-flex align-items-start justify-content-between">
-                                            <img loading="lazy" src="assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
+                                            <img loading="lazy" src="/assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
                                             <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
                                         </div>
                                         <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
@@ -1124,7 +1083,7 @@
                                 <div class="card p-3 py-2 card-bg">
                                     <div class="card-body">
                                         <div class="d-flex align-items-start justify-content-between">
-                                            <img loading="lazy" src="assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
+                                            <img loading="lazy" src="/assets/images/asset 23.jpeg" alt="" class="img-fluid rounded" />
                                             <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
                                         </div>
                                         <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
@@ -1168,7 +1127,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="card card-bg overflow-hidden rounded-4">
                         <div class="position-relative">
-                            <img loading="lazy" src="assets/images/asset 26.jpeg" class="card-img-top p-3 pb-0 rounded overflow-hidden" alt="..." />
+                            <img loading="lazy" src="/assets/images/asset 26.jpeg" class="card-img-top p-3 pb-0 rounded overflow-hidden" alt="..." />
                             <span class="position-absolute top-0 start-0 mt-4 fw-bold ms-4 badge bg-danger rounded-0">OCT,
                                 19 2024</span>
                         </div>
@@ -1184,7 +1143,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="card card-bg overflow-hidden rounded-4">
                         <div class="position-relative">
-                            <img loading="lazy" src="assets/images/asset 26.jpeg" class="card-img-top p-3 pb-0 rounded overflow-hidden" alt="..." />
+                            <img loading="lazy" src="/assets/images/asset 26.jpeg" class="card-img-top p-3 pb-0 rounded overflow-hidden" alt="..." />
                             <span class="position-absolute top-0 start-0 mt-4 fw-bold ms-4 badge bg-danger rounded-0">OCT,
                                 19 2024</span>
                         </div>
@@ -1200,7 +1159,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="card card-bg overflow-hidden rounded-4">
                         <div class="position-relative">
-                            <img loading="lazy" src="assets/images/asset 26.jpeg" class="card-img-top p-3 pb-0 rounded overflow-hidden" alt="..." />
+                            <img loading="lazy" src="/assets/images/asset 26.jpeg" class="card-img-top p-3 pb-0 rounded overflow-hidden" alt="..." />
                             <span class="position-absolute top-0 start-0 mt-4 fw-bold ms-4 badge bg-danger rounded-0">OCT,
                                 19 2024</span>
                         </div>
@@ -1216,7 +1175,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                     <div class="card card-bg overflow-hidden rounded-4">
                         <div class="position-relative">
-                            <img loading="lazy" src="assets/images/asset 26.jpeg" class="card-img-top p-3 pb-0 rounded overflow-hidden" alt="..." />
+                            <img loading="lazy" src="/assets/images/asset 26.jpeg" class="card-img-top p-3 pb-0 rounded overflow-hidden" alt="..." />
                             <span class="position-absolute top-0 start-0 mt-4 fw-bold ms-4 badge bg-danger rounded-0">OCT,
                                 19 2024</span>
                         </div>
@@ -1240,28 +1199,28 @@
             <div class="swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img loading="lazy" src="assets/images/asset 35.png" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 35.png" alt="" class="img-fluid" />
                     </div>
                     <div class="swiper-slide">
-                        <img loading="lazy" src="assets/images/asset 35.png" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 35.png" alt="" class="img-fluid" />
                     </div>
                     <div class="swiper-slide">
-                        <img loading="lazy" src="assets/images/asset 35.png" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 35.png" alt="" class="img-fluid" />
                     </div>
                     <div class="swiper-slide">
-                        <img loading="lazy" src="assets/images/asset 35.png" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 35.png" alt="" class="img-fluid" />
                     </div>
                     <div class="swiper-slide">
-                        <img loading="lazy" src="assets/images/asset 35.png" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 35.png" alt="" class="img-fluid" />
                     </div>
                     <div class="swiper-slide">
-                        <img loading="lazy" src="assets/images/asset 35.png" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 35.png" alt="" class="img-fluid" />
                     </div>
                     <div class="swiper-slide">
-                        <img loading="lazy" src="assets/images/asset 35.png" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 35.png" alt="" class="img-fluid" />
                     </div>
                     <div class="swiper-slide">
-                        <img loading="lazy" src="assets/images/asset 35.png" alt="" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 35.png" alt="" class="img-fluid" />
                     </div>
                 </div>
             </div>

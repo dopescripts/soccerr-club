@@ -7,7 +7,7 @@
     <title>@yield('title') - {{ config('app.name') }}</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- Custom css link -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
     <!-- Bs5 icons  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <!-- Jquery link -->
@@ -244,7 +244,7 @@
                         <div class="offcanvas-body bg-white min-vh-100">
                             <div class="container my-5">
                                 <div class="empty-card text-center">
-                                    <img loading="lazy" src="assets/images/asset 71.svg" alt="" class="img-fluid" />
+                                    <img loading="lazy" src="/assets/images/asset 71.svg" alt="" class="img-fluid" />
                                     <h5 class="fw-semibold my-3">Your wishlist is empty!</h5>
                                     <p class="text-muted">No items have been added to your wishlist.</p>
                                 </div>
@@ -291,7 +291,7 @@
                                             <div class="row w-100 align-items-center pb-2">
                                                 <div class="col-4 px-0 pe-2">
                                                     <a href="">
-                                                        <img src="assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
+                                                        <img src="/assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
                                                     </a>
                                                 </div>
                                                 <div class="col-7 px-0">
@@ -315,7 +315,7 @@
                                             <div class="row w-100 align-items-center pb-2">
                                                 <div class="col-4 px-0 pe-2">
                                                     <a href="">
-                                                        <img src="assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
+                                                        <img src="/assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
                                                     </a>
                                                 </div>
                                                 <div class="col-7 px-0">
@@ -339,7 +339,7 @@
                                             <div class="row w-100 align-items-center pb-2">
                                                 <div class="col-4 px-0 pe-2">
                                                     <a href="">
-                                                        <img src="assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
+                                                        <img src="/assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
                                                     </a>
                                                 </div>
                                                 <div class="col-7 px-0">
@@ -363,7 +363,7 @@
                                             <div class="row w-100 align-items-center pb-2">
                                                 <div class="col-4 px-0 pe-2">
                                                     <a href="">
-                                                        <img src="assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
+                                                        <img src="/assets/images/asset 2.jpeg" alt="" class="img-fluid rounded" />
                                                     </a>
                                                 </div>
                                                 <div class="col-7 px-0">
@@ -414,7 +414,7 @@
 
                                 <!-- Empty cart -->
                                 <!-- <div class="empty-card text-center">
-                                        <img loading="lazy" src="assets/images/cartempty.svg" alt="" class="img-fluid" />
+                                        <img loading="lazy" src="/assets/images/cartempty.svg" alt="" class="img-fluid" />
                                         <h4 class="fw-semibold my-3">Your cart is empty</h4>
                                         <a href="/" class="btn btn-primary fw-semibold">Shop Now</a>
                                     </div> -->
@@ -489,16 +489,16 @@
         <div class="container-fluid py-5 card-bg">
             <div class="row w-100 justify-content-center align-items-center mx-auto gy-5 gx-4 pb-2">
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 me-auto align-items-center">
-                    <img loading="lazy" src="assets/images/asset 41.png" alt="" class="img-fluid" />
+                    <img loading="lazy" src="/assets/images/asset 41.png" alt="" class="img-fluid" />
                     <p class="text-secondary mt-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab facilis
                         minus optio omnis ea vitae architecto cupiditate placeat.</p>
                     <div class="social-footer-links">
                         <p class="lead fw-bold text-black">Follow Us</p>
                         <div class="d-flex gap-2 justify-content-start align-items-center">
-                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="assets/images/asset 63.svg" alt="social links" class="img-fluid" /></a>
-                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="assets/images/asset 64.svg" alt="social links" class="img-fluid" /></a>
-                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="assets/images/asset 61.svg" alt="social links" class="img-fluid" /></a>
-                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="assets/images/asset 62.svg" alt="social links" class="img-fluid" /></a>
+                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="/assets/images/asset 63.svg" alt="social links" class="img-fluid" /></a>
+                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="/assets/images/asset 64.svg" alt="social links" class="img-fluid" /></a>
+                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="/assets/images/asset 61.svg" alt="social links" class="img-fluid" /></a>
+                            <a href="#" class="footer-link" title="Facebook"><img loading="lazy" src="/assets/images/asset 62.svg" alt="social links" class="img-fluid" /></a>
                         </div>
                     </div>
                 </div>
@@ -533,15 +533,15 @@
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 me-auto align-items-center">
                     <p class="lead fw-bolder text-black text-uppercase">Contact Us</p>
                     <div class="d-flex gap-2 align-items-center my-3">
-                        <img loading="lazy" src="assets/images/asset 65.svg" alt="social links" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 65.svg" alt="social links" class="img-fluid" />
                         <p class="fs-4 fw-bold text-black m-0">+91 1234567890</p>
                     </div>
                     <div class="d-flex gap-2 align-items-center my-3">
-                        <img loading="lazy" src="assets/images/asset 66.svg" alt="social links" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 66.svg" alt="social links" class="img-fluid" />
                         <p class="fw-semibold text-black m-0">mail@gmail.com</p>
                     </div>
                     <div class="d-flex gap-2 align-items-center my-3">
-                        <img loading="lazy" src="assets/images/asset 67.svg" alt="social links" class="img-fluid" />
+                        <img loading="lazy" src="/assets/images/asset 67.svg" alt="social links" class="img-fluid" />
                         <p class="text-black m-0">Store open at 10:00 am to 8:00 pm</p>
                     </div>
                 </div>
@@ -554,7 +554,7 @@
         </div>
     </footer>
     <!-- footer end -->
-    <script src="assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
