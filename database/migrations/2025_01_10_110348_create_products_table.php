@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('images')->nullable();
             $table->boolean('is_active')->default(true);
             $table->boolean('is_featured')->default(false);
+            $table->boolean('is_latest')->default(false);
             $table->decimal('discount_percentage', 5, 2)->nullable();
             $table->decimal('price', 9, 2);
             $table->unsignedBigInteger('category_id');

@@ -31,4 +31,13 @@ class Product extends Model
     public function orders() {
         $this->hasMany(Orders::class);
     }
+    public function reviews() {
+        $this->hasMany(Reviews::class);
+    }
+    public function latest() {
+        $this->belongsToMany(LatestProducts::class);
+    }
+    public function featured() {
+        $this->belongsToMany(FeaturedProducts::class);
+    }
 }

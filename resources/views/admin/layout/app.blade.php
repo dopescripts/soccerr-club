@@ -7,22 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title') Corona Admin</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="assets/vendors/jvectormap/jquery-jvectormap.css">
-    <link rel="stylesheet" href="assets/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/admin/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <link rel="shortcut icon" href="/admin/assets/images/favicon.png" />
 </head>
 
 <body>
@@ -30,15 +30,15 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-                <a class="sidebar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo" /></a>
-                <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+                <a class="sidebar-brand brand-logo" href="index.html"><img src="/admin/assets/images/logo.svg" alt="logo" /></a>
+                <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="/admin/assets/images/logo-mini.svg" alt="logo" /></a>
             </div>
             <ul class="nav">
                 <li class="nav-item profile">
                     <div class="profile-desc">
                         <div class="profile-pic">
                             <div class="count-indicator">
-                                <img class="img-xs rounded-circle " src="assets/images/faces/face15.jpg" alt="">
+                                <img class="img-xs rounded-circle " src="/admin/assets/images/faces/face15.jpg" alt="">
                                 <span class="count bg-success"></span>
                             </div>
                             <div class="profile-name">
@@ -95,11 +95,34 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#products-dropdown" aria-expanded="false" aria-controls="ui-basic">
+                      <span class="menu-icon">
+                        <i class="mdi mdi-package-variant"></i>
+                      </span>
+                      <span class="menu-title">Products</span>
+                      <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="products-dropdown">
+                      <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('admin.products') }}">View Products</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}">Add Products</a></li>
+                      </ul>
+                    </div>
+                </li>
+                <li class="nav-item menu-items">
                     <a class="nav-link" href="{{ route('admin.categories') }}">
                         <span class="menu-icon">
                             <i class="mdi mdi-dns"></i>
                         </span>
                         <span class="menu-title">Categories</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="{{ route('admin.vendors') }}">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-store"></i>
+                        </span>
+                        <span class="menu-title">Vendors</span>
                     </a>
                 </li>
                 <li class="nav-item menu-items">
@@ -117,7 +140,7 @@
                         <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
                       </ul>
                     </div>
-                  </li>
+                </li>
                 <li class="nav-item menu-items">
                     <a class="nav-link" href="{{ route('home') }}">
                         <span class="menu-icon">
@@ -133,7 +156,7 @@
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar p-0 fixed-top d-flex flex-row">
                 <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/admin/assets/images/logo-mini.svg" alt="logo" /></a>
                 </div>
                 <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -203,7 +226,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
-                                        <img src="assets/images/faces/face4.jpg" alt="image" class="rounded-circle profile-pic">
+                                        <img src="/admin/assets/images/faces/face4.jpg" alt="image" class="rounded-circle profile-pic">
                                     </div>
                                     <div class="preview-item-content">
                                         <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
@@ -213,7 +236,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
-                                        <img src="assets/images/faces/face2.jpg" alt="image" class="rounded-circle profile-pic">
+                                        <img src="/admin/assets/images/faces/face2.jpg" alt="image" class="rounded-circle profile-pic">
                                     </div>
                                     <div class="preview-item-content">
                                         <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
@@ -223,7 +246,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
-                                        <img src="assets/images/faces/face3.jpg" alt="image" class="rounded-circle profile-pic">
+                                        <img src="/admin/assets/images/faces/face3.jpg" alt="image" class="rounded-circle profile-pic">
                                     </div>
                                     <div class="preview-item-content">
                                         <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
@@ -284,7 +307,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                                 <div class="navbar-profile">
-                                    <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
+                                    <img class="img-xs rounded-circle" src="/admin/assets/images/faces/face15.jpg" alt="">
                                     <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ auth()->user()->name }}</p>
                                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                 </div>
@@ -337,28 +360,28 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/admin/assets/vendors/js/vendor.bundle.base.js"></script>
     @vite(['resources/js/app.js'])
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets/vendors/progressbar.js/progressbar.min.js"></script>
-    <script src="assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
-    <script src="assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+    <script src="/admin/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="/admin/assets/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="/admin/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="/admin/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="/admin/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
-    <script src="assets/js/settings.js"></script>
-    <script src="assets/js/todolist.js"></script>
+    <script src="/admin/assets/js/off-canvas.js"></script>
+    <script src="/admin/assets/js/hoverable-collapse.js"></script>
+    <script src="/admin/assets/js/misc.js"></script>
+    <script src="/admin/assets/js/settings.js"></script>
+    <script src="/admin/assets/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="assets/js/dashboard.js"></script>
-    <script src="assets/js/file-upload.js"></script>
-    <script src="assets/js/select2.js"></script>
-    <script src="assets/js/typehead.js.js"></script>
+    <script src="/admin/assets/js/dashboard.js"></script>
+    <script src="/admin/assets/js/file-upload.js"></script>
+    <script src="/admin/assets/js/select2.js"></script>
+    <script src="/admin/assets/js/typehead.js.js"></script>
     <script>
         const alertList = document.querySelectorAll('.alert')
         const alerts = [...alertList].map(element => new bootstrap.Alert(element))

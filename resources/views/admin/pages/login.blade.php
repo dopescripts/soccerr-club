@@ -34,7 +34,7 @@
                   </div>
                   <div class="form-group">
                     <label>Password *</label>
-                    <input type="text" class="form-control p_input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" id="password">
+                    <input type="password" class="form-control p_input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" id="password">
                   </div>
                   <div class="form-group d-flex align-items-center justify-content-between">
                     <div class="form-check">
