@@ -71,6 +71,6 @@ class AdminController extends Controller
             unlink(public_path('public/' . $category->image)); // Delete the image
         }
         $category->delete();
-        return back()->with('success', 'Category deleted successfully.');
+        return redirect()->back()->with('toast_error', 'Deleted successfully!');
     }
 }
