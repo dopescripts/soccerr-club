@@ -38,10 +38,11 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     Route::get('/categories', [\App\Http\Controllers\AdminController::class, 'categories'])->name('admin.categories');
     Route::post('/categories/store', [\App\Http\Controllers\AdminController::class, 'store_category'])->name('store.category');
     Route::post('/categories/{id}', [\App\Http\Controllers\AdminController::class, 'update_category'])->name('update.category');
-    Route::post('/categories/delete/{id}', [\App\Http\Controllers\AdminController::class, 'delete_category'])->name('delete.category');
+    Route::get('/categories/delete/{id}', [\App\Http\Controllers\AdminController::class, 'delete_category'])->name('delete.category');
     Route::get('/vendors', [\App\Http\Controllers\VendorController::class, 'vendor'])->name('admin.vendors');
     Route::post('/vendors/add', [\App\Http\Controllers\VendorController::class, 'vendor_store'])->name('vendor.store');
-    Route::post('/vendors/delete/{id}', [\App\Http\Controllers\VendorController::class, 'delete_vendor'])->name('delete.vendor');
+    Route::get('/vendors/delete/{id}', [\App\Http\Controllers\VendorController::class, 'delete_vendor'])->name('delete.vendor');
     Route::get('products', [\App\Http\Controllers\ProductsController::class, 'products'])->name('admin.products');
-    Route::get('products/add', [\App\Http\Controllers\ProductsController::class, 'products_add'])->name('products.create');
+    Route::get('product/add', [\App\Http\Controllers\ProductsController::class, 'products_add'])->name('products.create');
+    Route::post('products/create', [\App\Http\Controllers\ProductsController::class, 'products_create'])->name('products.store');
 });

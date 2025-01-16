@@ -48,7 +48,7 @@ class AdminController extends Controller
         $category = Categories::find($id);
         $request->validate([
             'category_name' => 'required',
-            'category_img' => 'file|image|mimes:jpeg,png,jpg,gif,svg|',
+            'category_img' => 'file|image|mimes:jpeg,png,jpg,gif,svg,webp|',
         ]);
         if ($request->hasFile('category_img') && $request->file('category_img')->isValid()) {
             if ($category->image && file_exists(public_path('public/' . $category->image))) {

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/admin/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/admin/assets/images/favicon.png" />
+    <link rel="stylesheet" href="/admin/assets/css/summernote-bs5.min.css">
 </head>
 
 <body>
@@ -96,17 +97,17 @@
                 </li>
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#products-dropdown" aria-expanded="false" aria-controls="ui-basic">
-                      <span class="menu-icon">
-                        <i class="mdi mdi-package-variant"></i>
-                      </span>
-                      <span class="menu-title">Products</span>
-                      <i class="menu-arrow"></i>
+                        <span class="menu-icon">
+                            <i class="mdi mdi-package-variant"></i>
+                        </span>
+                        <span class="menu-title">Products</span>
+                        <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="products-dropdown">
-                      <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('admin.products') }}">View Products</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}">Add Products</a></li>
-                      </ul>
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.products') }}">View Products</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}">Add Products</a></li>
+                        </ul>
                     </div>
                 </li>
                 <li class="nav-item menu-items">
@@ -127,18 +128,18 @@
                 </li>
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                      <span class="menu-icon">
-                        <i class="mdi mdi-laptop"></i>
-                      </span>
-                      <span class="menu-title">Basic UI Elements</span>
-                      <i class="menu-arrow"></i>
+                        <span class="menu-icon">
+                            <i class="mdi mdi-laptop"></i>
+                        </span>
+                        <span class="menu-title">Basic UI Elements</span>
+                        <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="ui-basic">
-                      <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-                      </ul>
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                        </ul>
                     </div>
                 </li>
                 <li class="nav-item menu-items">
@@ -171,7 +172,7 @@
                     </ul>
                     <ul class="navbar-nav navbar-nav-right">
                         <li class="nav-item dropdown d-none d-lg-block">
-                            <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
+                            <a class="nav-link btn btn-inverse-primary create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
                                 <h6 class="p-3 mb-0">Projects</h6>
                                 <div class="dropdown-divider"></div>
@@ -385,6 +386,31 @@
     <script>
         const alertList = document.querySelectorAll('.alert')
         const alerts = [...alertList].map(element => new bootstrap.Alert(element))
+    </script>
+    <script src="/admin/assets/js/summernote-bs5.min.js"></script>
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Hello Bootstrap 5',
+            tabsize: 2,
+            height: 180
+        });
+    </script>
+    <script>
+        @if (session('toast_success'))
+            $(document).ready(function() {
+                showSuccessToast();
+            });
+        @endif
+        @if (session('toast_error'))
+            $(document).ready(function() {
+                showDangerToast();
+            });
+        @endif
+    </script>
+    <script>
+        document.querySelectorAll('.modal').forEach((modal) => {
+            bootstrap.Modal.getInstance(modal)?.dispose();
+        });
     </script>
     <!-- End custom js for this page -->
 </body>

@@ -3,194 +3,152 @@
 @section('title', 'Products - ')
 
 @section('content')
-<div class="content-wrapper">
-    <div class="page-header d-flex justify-content-between">
-        <h3 class="page-title">
-            <span class="page-title-icon bg-gradient-warning text-white mr-2">
-                <i class="mdi mdi-package-variant"></i>
-            </span> Products
-        </h3>
-        <a href="{{ route('products.create') }}" class="btn btn-primary btn-lg btn-icon-text d-inline-flex"><i class="mdi mdi-plus-circle btn-icon-prepend"></i>
-            Add Products
-        </a>
-    </div>
-    <div class="row">
-        <div class="col-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body table-responsive">
-                    @if ($errors->any())
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li class="text-danger">{{ $error }}</li>
-                            @endforeach
-                            @foreach ($success->all() as $error)
-                                <li class="text-success">{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </div>
-            </div>
+    <div class="content-wrapper">
+        <div class="page-header d-flex justify-content-between">
+            <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-warning text-white mr-2">
+                    <i class="mdi mdi-package-variant"></i>
+                </span> Products
+            </h3>
+            <a href="{{ route('products.create') }}" class="btn btn-primary btn-lg btn-icon-text d-inline-flex">
+                <i class="mdi mdi-plus-circle btn-icon-prepend"></i> Add Products
+            </a>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-xl-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex flex-row justify-content-between">
-                        <h4 class="card-title">Messages</h4>
-                        <p class="text-muted mb-1 small">View all</p>
-                    </div>
-                    <div class="preview-list">
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <img src="/admin/assets/images/faces/face6.jpg" alt="image" class="rounded-circle" />
-                            </div>
-                            <div class="preview-item-content d-flex flex-grow">
-                                <div class="flex-grow">
-                                    <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                        <h6 class="preview-subject">Leonard</h6>
-                                        <p class="text-muted text-small">5 minutes ago</p>
-                                    </div>
-                                    <p class="text-muted">Well, it seems to be working now.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <img src="/admin/assets/images/faces/face8.jpg" alt="image" class="rounded-circle" />
-                            </div>
-                            <div class="preview-item-content d-flex flex-grow">
-                                <div class="flex-grow">
-                                    <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                        <h6 class="preview-subject">Luella Mills</h6>
-                                        <p class="text-muted text-small">10 Minutes Ago</p>
-                                    </div>
-                                    <p class="text-muted">Well, it seems to be working now.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <img src="/admin/assets/images/faces/face9.jpg" alt="image" class="rounded-circle" />
-                            </div>
-                            <div class="preview-item-content d-flex flex-grow">
-                                <div class="flex-grow">
-                                    <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                        <h6 class="preview-subject">Ethel Kelly</h6>
-                                        <p class="text-muted text-small">2 Hours Ago</p>
-                                    </div>
-                                    <p class="text-muted">Please review the tickets</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <img src="/admin/assets/images/faces/face11.jpg" alt="image" class="rounded-circle" />
-                            </div>
-                            <div class="preview-item-content d-flex flex-grow">
-                                <div class="flex-grow">
-                                    <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                        <h6 class="preview-subject">Herman May</h6>
-                                        <p class="text-muted text-small">4 Hours Ago</p>
-                                    </div>
-                                    <p class="text-muted">Thanks a lot. It was easy to fix it .</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xl-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Portfolio Slide</h4>
-                    <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel" id="owl-carousel-basic">
-                        <div class="item">
-                            <img src="/admin/assets/images/dashboard/Rectangle.jpg" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="/admin/assets/images/dashboard/Img_5.jpg" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="/admin/assets/images/dashboard/img_6.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="d-flex py-4">
-                        <div class="preview-list w-100">
-                            <div class="preview-item p-0">
-                                <div class="preview-thumbnail">
-                                    <img src="/admin/assets/images/faces/face12.jpg" class="rounded-circle" alt="">
-                                </div>
-                                <div class="preview-item-content d-flex flex-grow">
-                                    <div class="flex-grow">
-                                        <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                            <h6 class="preview-subject">CeeCee Bass</h6>
-                                            <p class="text-muted text-small">4 Hours Ago</p>
+
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body table-responsive">
+                        @if (session('success'))
+                            <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
+                        @if ($errors->any())
+                            <ul class="text-danger">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+
+                        @if ($products->count() > 0)
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Category</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Discount</th>
+                                        <th>Description</th>
+                                        <th>Quantity</th>
+                                        <th>Vendor</th>
+                                        <th>Thumbnail</th>
+                                        <th>Images</th>
+                                        <th>Tags</th>
+                                        <th>Status</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($products as $product)
+                                        <tr>
+                                            <td>{{ $product->id }}</td>
+                                            <td>{{ $product->category->name }}</td>
+                                            <td>{{ $product->name }}</td>
+                                            <td>{{ $product->price }}</td>
+                                            <td>{{ $product->discount_percentage * 100 }}%</td>
+                                            <td>
+                                                <button class="btn btn-inverse-primary" type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#descriptionModal{{ $product->id }}">
+                                                    Show Description
+                                                </button>
+                                            </td>
+                                            <td>{{ $product->quantity }}</td>
+                                            <td>{{ $product->vendor->name }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/uploads/products') . '/' . $product->thumb }}" width="100" alt="{{ $product->name }} Thumbnail">
+                                            </td>
+                                            <td><button class="btn btn-inverse-primary" data-bs-target="#imagesModal{{ $product->id }}" data-bs-toggle="modal">View Images</button></td>
+                                            <td>{{ $product->tags }}</td>
+                                            <td>@if ($product->is_active == 1) <span class="badge bg-success">Active</span> @else <span class="badge bg-danger">Inactive</span> @endif</td>
+                                            <td>
+                                                <a href="" class="btn btn-primary">
+                                                    <i class="mdi mdi-pencil"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <form action="" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="mdi mdi-delete"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="descriptionModal{{ $product->id }}" tabindex="-1"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content bg-secondary">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-dark">Description</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div>{!! $product->description !!}</div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <p class="text-muted">Well, it seems to be working now.</p>
-                                    </div>
-                                </div>
+                                        <div class="modal fade" id="imagesModal{{ $product->id }}" tabindex="-1"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Images</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="d-flex flex-wrap justify-content-around my-3">
+                                                            @php
+                                                            $images = $product->images;
+                                                            $imagesArray = json_decode($images, true);
+                                                        @endphp
+                                                        
+                                                        @foreach ($imagesArray as $image)
+                                                            <img src="{{ asset('storage/' . $image) }}" alt="Product Image" width="100">
+                                                        @endforeach
+                                                        
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <div class="d-flex justify-content-center">
+                                <h4 class="text-muted"><i class="mdi mdi-alert"></i> No records found</h4>
                             </div>
-                        </div>
-                    </div>
-                    <p class="text-muted">Well, it seems to be working now. </p>
-                    <div class="progress progress-md portfolio-progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 col-xl-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">To do list</h4>
-                    <div class="add-items d-flex">
-                        <input type="text" class="form-control todo-list-input" placeholder="enter task..">
-                        <button class="add btn btn-primary todo-list-add-btn">Add</button>
-                    </div>
-                    <div class="list-wrapper">
-                        <ul class="d-flex flex-column-reverse text-white todo-list todo-list-custom">
-                            <li>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Create invoice </label>
-                                </div>
-                                <i class="remove mdi mdi-close-box"></i>
-                            </li>
-                            <li>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Meeting with Alita </label>
-                                </div>
-                                <i class="remove mdi mdi-close-box"></i>
-                            </li>
-                            <li class="completed">
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox" checked> Prepare for presentation </label>
-                                </div>
-                                <i class="remove mdi mdi-close-box"></i>
-                            </li>
-                            <li>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Plan weekend outing </label>
-                                </div>
-                                <i class="remove mdi mdi-close-box"></i>
-                            </li>
-                            <li>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Pick up kids from school </label>
-                                </div>
-                                <i class="remove mdi mdi-close-box"></i>
-                            </li>
-                        </ul>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

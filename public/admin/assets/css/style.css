@@ -7676,6 +7676,31 @@ button::-moz-focus-inner,
 [type="submit"]::-moz-focus-inner {
   padding: 0;
   border-style: none; }
+/* For Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #000000; /* Darkest blue or black background for the scrollbar track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #003366; /* Dark blue color for the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  border: 2px solid #000000; /* Border to match the dark background */
+}
+
+/* For Firefox */
+scrollbar-width: thin; /* Thin scrollbar width */
+scrollbar-color: #003366 #000000; /* Thumb color (dark blue) and track background (black) */
+
+/* For Internet Explorer (if needed) */
+html {
+  -ms-overflow-style: scrollbar; /* Shows scrollbars in IE */
+}
 
 input[type="radio"],
 input[type="checkbox"] {

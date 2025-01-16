@@ -3,191 +3,210 @@
 @section('title', 'Add Products - ')
 
 @section('content')
-<div class="content-wrapper">
-    <div class="page-header d-flex justify-content-between">
-        <h3 class="page-title">
-            <span class="page-title-icon bg-gradient-warning text-white mr-2">
-                <i class="mdi mdi-package-variant"></i>
-            </span> Create Products
-        </h3>
-    </div>
-    <div class="row">
-        <div class="col-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body table-responsive">
-                    @if ($errors->any())
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li class="text-danger">{{ $error }}</li>
-                            @endforeach
-                            @foreach ($success->all() as $error)
-                                <li class="text-success">{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </div>
-            </div>
+    <div class="content-wrapper">
+        <div class="page-header d-flex justify-content-between">
+            <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-warning text-white mr-2">
+                    <i class="mdi mdi-package-variant"></i>
+                </span> Create Products
+            </h3>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 col-xl-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex flex-row justify-content-between">
-                        <h4 class="card-title">Messages</h4>
-                        <p class="text-muted mb-1 small">View all</p>
-                    </div>
-                    <div class="preview-list">
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <img src="/admin/assets/images/faces/face6.jpg" alt="image" class="rounded-circle" />
-                            </div>
-                            <div class="preview-item-content d-flex flex-grow">
-                                <div class="flex-grow">
-                                    <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                        <h6 class="preview-subject">Leonard</h6>
-                                        <p class="text-muted text-small">5 minutes ago</p>
-                                    </div>
-                                    <p class="text-muted">Well, it seems to be working now.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <img src="/admin/assets/images/faces/face8.jpg" alt="image" class="rounded-circle" />
-                            </div>
-                            <div class="preview-item-content d-flex flex-grow">
-                                <div class="flex-grow">
-                                    <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                        <h6 class="preview-subject">Luella Mills</h6>
-                                        <p class="text-muted text-small">10 Minutes Ago</p>
-                                    </div>
-                                    <p class="text-muted">Well, it seems to be working now.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <img src="/admin/assets/images/faces/face9.jpg" alt="image" class="rounded-circle" />
-                            </div>
-                            <div class="preview-item-content d-flex flex-grow">
-                                <div class="flex-grow">
-                                    <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                        <h6 class="preview-subject">Ethel Kelly</h6>
-                                        <p class="text-muted text-small">2 Hours Ago</p>
-                                    </div>
-                                    <p class="text-muted">Please review the tickets</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item border-bottom">
-                            <div class="preview-thumbnail">
-                                <img src="/admin/assets/images/faces/face11.jpg" alt="image" class="rounded-circle" />
-                            </div>
-                            <div class="preview-item-content d-flex flex-grow">
-                                <div class="flex-grow">
-                                    <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                        <h6 class="preview-subject">Herman May</h6>
-                                        <p class="text-muted text-small">4 Hours Ago</p>
-                                    </div>
-                                    <p class="text-muted">Thanks a lot. It was easy to fix it .</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xl-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Portfolio Slide</h4>
-                    <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel" id="owl-carousel-basic">
-                        <div class="item">
-                            <img src="/admin/assets/images/dashboard/Rectangle.jpg" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="/admin/assets/images/dashboard/Img_5.jpg" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="/admin/assets/images/dashboard/img_6.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="d-flex py-4">
-                        <div class="preview-list w-100">
-                            <div class="preview-item p-0">
-                                <div class="preview-thumbnail">
-                                    <img src="/admin/assets/images/faces/face12.jpg" class="rounded-circle" alt="">
-                                </div>
-                                <div class="preview-item-content d-flex flex-grow">
-                                    <div class="flex-grow">
-                                        <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                            <h6 class="preview-subject">CeeCee Bass</h6>
-                                            <p class="text-muted text-small">4 Hours Ago</p>
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body table-responsive">
+                        @if ($errors->any())
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-danger">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+                        <div class="col-md-12">
+                            <form class="forms-sample" action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row justify-content-between">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group row">
+                                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label pr-0">Product Name</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="name" id="exampleInputUsername2" placeholder="e.g: nike shoes 12 size" required>
+                                            </div>
                                         </div>
-                                        <p class="text-muted">Well, it seems to be working now.</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-3 col-form-label pr-0">Product Price</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text bg-primary">$</span>
+                                                    </div>
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">0.00</span>
+                                                    </div>
+                                                    <input type="text" value="0.00" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" required>
+                                                </div>
+                                                <span class="card-description pt-3 text-muted small">Enter in 0.00 format only</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group row">
+                                            <label for="quant" class="col-sm-3 col-form-label">Quantity</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" name="quant" id="quant" placeholder="Quantity i.e 10" required>
+                                                <span class="text-muted card-description small">Here (0 = Out of Stock & >0 = In Stock) </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group row">
+                                            <label for="quant" class="col-sm-3 col-form-label ">Discount</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="discount" id="quant" placeholder="Discount i.e 0.1 = 10%" required>
+                                                <span class="text-muted card-description small">Enter in 0.00 format only (where 0.1 = 10%, 0.1-0.9)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 mb-1">
+                                        <div class="form-group row justify-content-between">
+                                            <label for="category" class="col-sm-3 col-form-label">Category</label>
+                                            <div class="col-sm-9">
+                                                <select name="category" class="form-control" id="category" required>
+                                                    <option selected>Select Category</option>
+                                                    @foreach ($category as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 mb-1">
+                                        <div class="form-group row">
+                                            <label for="vendor" class="col-sm-3 col-form-label">Vendor</label>
+                                            <div class="col-sm-9">
+                                                <select name="vendor" class="form-control" id="vendor" required>
+                                                    <option selected>Select Vendor</option>
+                                                    @foreach ($vendor as $vendor)
+                                                        <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group row">
+                                            <label for="images" class="col-sm-3 col-form-label pr-0 ">Product Images</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" name="images[]" class="file-upload-default" accept="image/*" id="images" multiple>
+                                                <div class="input-group col-xs-12">
+                                                    <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Images">
+                                                    <span class="input-group-append">
+                                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group row">
+                                            <label for="thumbImg" class="col-sm-3 col-form-label">Thumbnail</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" name="thumbImg" class="file-upload-default" id="thumbImg" accept="image/*" required>
+                                                <div class="input-group col-xs-12">
+                                                    <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Thumbnail">
+                                                    <span class="input-group-append">
+                                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="preview-list col-12 mb-3">
+                                        <div class="row justify-content-end">
+                                            <div class="col-md-2">
+                                                Preview Images:
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="card">
+                                                    <div class="card-body rounded-0 bg-dark d-flex flex-row gap-4" id="preview-images">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="form-group row">
+                                    <label for="summernote" class="col-sm-2 col-form-label">Product Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="description" id="summernote"></textarea>
+                                    </div>
+                                </div>
+                                <div class="d-md-flex w-100 justify-content-between align-items-center">
+                                    <div class="form-group row w-75 mb-0 pb-0">
+                                        <div class="col-sm-3">
+                                            <label for="tags" class="col-form-label">Product Tags</label>
+                                        </div>
+                                        <div class="col-sm-9 p-0">
+                                            <input type="text" class="form-control" name="tags" id="tags" placeholder="Enter tags separated by comma">
+                                            <span class="text-muted card-description small">e.g. football, field, gear...etc</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group d-flex flex-column ml-auto p-0 mr-md-3">
+                                        <div class="form-check">
+                                            <label class="form-check-label row"> <span class="col-sm-3 text-white">Featured Product</span>
+                                                <input type="checkbox" name="featured" class="form-check-input col-sm-9">
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label row"> <span class="col-sm-3 text-white">Latest Product</span>
+                                                <input type="checkbox" name="latest" class="form-check-input col-sm-9">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mr-2 btn-lg">Add Product</button>
+                                <button class="btn btn-dark btn-lg" id="reset" type="reset">Reset</button>
+                            </form>
                         </div>
-                    </div>
-                    <p class="text-muted">Well, it seems to be working now. </p>
-                    <div class="progress progress-md portfolio-progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 col-xl-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">To do list</h4>
-                    <div class="add-items d-flex">
-                        <input type="text" class="form-control todo-list-input" placeholder="enter task..">
-                        <button class="add btn btn-primary todo-list-add-btn">Add</button>
-                    </div>
-                    <div class="list-wrapper">
-                        <ul class="d-flex flex-column-reverse text-white todo-list todo-list-custom">
-                            <li>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Create invoice </label>
-                                </div>
-                                <i class="remove mdi mdi-close-box"></i>
-                            </li>
-                            <li>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Meeting with Alita </label>
-                                </div>
-                                <i class="remove mdi mdi-close-box"></i>
-                            </li>
-                            <li class="completed">
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox" checked> Prepare for presentation </label>
-                                </div>
-                                <i class="remove mdi mdi-close-box"></i>
-                            </li>
-                            <li>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Plan weekend outing </label>
-                                </div>
-                                <i class="remove mdi mdi-close-box"></i>
-                            </li>
-                            <li>
-                                <div class="form-check form-check-primary">
-                                    <label class="form-check-label">
-                                        <input class="checkbox" type="checkbox"> Pick up kids from school </label>
-                                </div>
-                                <i class="remove mdi mdi-close-box"></i>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <script>
+        document.getElementById('images').addEventListener('change', function(event) {
+            const previewContainer = document.getElementById('preview-images');
+            previewContainer.innerHTML = ""; // Clear previous previews
+
+            const files = event.target.files;
+
+            if (files.length > 0) {
+                Array.from(files).forEach(file => {
+                    // Ensure the file is an image
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            // Create an image element
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.alt = file.name;
+                            img.style.width = '100px';
+                            img.style.height = '100px';
+                            img.style.objectFit = 'cover';
+                            img.style.border = '1px solid #ccc';
+                            img.style.borderRadius = '5px';
+
+                            // Append the image to the preview container
+                            previewContainer.appendChild(img);
+                        };
+
+                        reader.readAsDataURL(file); // Read the file
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

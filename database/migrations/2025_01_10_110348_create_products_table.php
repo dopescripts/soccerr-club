@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('tags')->nullable();
             $table->integer('quantity')->default(0);
             $table->string('thumb');
-            $table->string('images')->nullable();
+            $table->json('images')->nullable();
             $table->boolean('is_active')->default(true);
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_latest')->default(false);

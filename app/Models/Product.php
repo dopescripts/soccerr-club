@@ -4,10 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
     use HasFactory;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($products) {
+            $products->slug = Str::slug($products->name);
+        });
+    }
+
     protected $table = 'products';
 
     protected $fillable = [
@@ -22,22 +33,40 @@ class Product extends Model
         'discount_percentage',
         'price',
     ];
-    public function category() {
-        $this->belongsTo(Categories::class);
+
+    /**
+     * Get the category that owns the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Categories::class);
     }
-    public function vendor() {
-        $this->belongsTo(Vendor::class);
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
     }
-    public function orders() {
-        $this->hasMany(Orders::class);
+
+    public function orders()
+    {
+        return $this->hasMany(Orders::class);
     }
-    public function reviews() {
-        $this->hasMany(Reviews::class);
+
+    public function reviews()
+    {
+        return $this->hasMany(Reviews::class);
     }
-    public function latest() {
-        $this->belongsToMany(LatestProducts::class);
+
+    public function latest()
+    {
+        return $this->belongsToMany(LatestProducts::class);
     }
-    public function featured() {
-        $this->belongsToMany(FeaturedProducts::class);
+
+    public function featured()
+    {
+        return $this->belongsToMany(FeaturedProducts::class);
     }
 }
+

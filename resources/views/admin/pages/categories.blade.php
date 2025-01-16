@@ -3,6 +3,7 @@
 @section('title', 'Categories - ')
 
 @section('content')
+
     <div class="content-wrapper">
         <div class="page-header d-flex justify-content-between">
             <h3 class="page-title">
@@ -89,7 +90,10 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                <a href="{{ route('delete.category', $category->id) }}" class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
+                                                <form action="{{ route('delete.category', $category->id) }}" method="get">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger"><i class="mdi mdi-delete"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="CategoryEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -302,4 +306,17 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            @if(session('toast_error'))
+                $.toast({
+                    heading: 'Delete',
+                    text: '{{ session('toast_error') }}',
+                    icon: 'error',
+                    loaderBg: '#46c35f',
+                    position: 'top-right'
+                });
+            @endif
+        });
+    </script>    
 @endsection
