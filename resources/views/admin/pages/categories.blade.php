@@ -37,7 +37,7 @@
                                         <span class="input-group-append">
                                             <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                         </span>
-                                    </div>
+                                  </div>
                                 </div>
                         </div>
                         <div class="modal-footer">

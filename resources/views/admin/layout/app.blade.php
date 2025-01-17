@@ -392,7 +392,7 @@
         $('#summernote').summernote({
             placeholder: 'Hello Bootstrap 5',
             tabsize: 2,
-            height: 180
+            height: 180,
         });
     </script>
     <script>
@@ -406,11 +406,6 @@
                 showDangerToast();
             });
         @endif
-    </script>
-    <script>
-        document.querySelectorAll('.modal').forEach((modal) => {
-            bootstrap.Modal.getInstance(modal)?.dispose();
-        });
     </script>
     <!-- End custom js for this page -->
 </body>

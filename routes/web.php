@@ -33,6 +33,7 @@ Auth::routes();
 
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
 Route::get('/admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin.login');
+
 Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
     Route::get('/categories', [\App\Http\Controllers\AdminController::class, 'categories'])->name('admin.categories');
@@ -45,4 +46,6 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     Route::get('products', [\App\Http\Controllers\ProductsController::class, 'products'])->name('admin.products');
     Route::get('product/add', [\App\Http\Controllers\ProductsController::class, 'products_add'])->name('products.create');
     Route::post('products/create', [\App\Http\Controllers\ProductsController::class, 'products_create'])->name('products.store');
+    Route::get('products/update/{slug}', [\App\Http\Controllers\ProductsController::class, 'products_edit'])->name('products.edit');
+    Route::post('products/update/{id}', [\App\Http\Controllers\ProductsController::class, 'products_update'])->name('product.update');
 });

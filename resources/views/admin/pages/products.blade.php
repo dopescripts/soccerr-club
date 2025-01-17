@@ -73,7 +73,7 @@
                                             <td>{{ $product->tags }}</td>
                                             <td>@if ($product->is_active == 1) <span class="badge bg-success">Active</span> @else <span class="badge bg-danger">Inactive</span> @endif</td>
                                             <td>
-                                                <a href="" class="btn btn-primary">
+                                                <a href="{{ route('products.edit', $product->slug) }}" class="btn btn-primary">
                                                     <i class="mdi mdi-pencil"></i>
                                                 </a>
                                             </td>

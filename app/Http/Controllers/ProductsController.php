@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\FeaturedProducts;
 use App\Models\Vendor;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -33,12 +34,12 @@ class ProductsController extends Controller
             'thumbImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Images array is optional
         ]);
-    
+
         $imagePaths = [];
-    
+
         if ($request->file('thumbImg')->isValid()) {
             $product = new Product;
-    
+
             // Handle thumbnail image
             if ($request->hasFile('thumbImg')) {
                 $thumbImage = $request->file('thumbImg');
@@ -46,7 +47,7 @@ class ProductsController extends Controller
                 $thumbImage->storeAs('uploads/products', $thumbImageName, 'public'); // Save in 'storage/app/public/uploads/products'
                 $product->thumb = $thumbImageName;
             }
-    
+
             // Handle multiple images
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $file) {
@@ -56,29 +57,116 @@ class ProductsController extends Controller
                     }
                 }
             }
-    
+
             // Assign product properties
             $product->name = $request->name;
             $product->price = $request->price;
             $product->quantity = $request->quant;
             $product->description = $request->description;
             $product->images = json_encode($imagePaths);
-    
+
             if ($request->has('tags')) {
                 $product->tags = $request->tags;
             }
-    
+
             $product->is_featured = $request->has('featured') ? 1 : 0;
             $product->discount_percentage = $request->input('discount', 0); // Default to 0 if no discount
-    
+            if ($request->input('featured')) {
+                $feautured = new FeaturedProducts;
+                $feautured->product_id = $product->id;
+                $feautured->save();
+            }
             $product->category_id = $request->category;
             $product->vendor_id = $request->vendor;
-    
+
             $product->save();
-    
+
             return redirect()->back()->with('success', 'Product added successfully!');
         }
-    
+
         return redirect()->back()->with('error', 'Invalid thumbnail image.');
+    }
+
+    public function products_edit($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+        $category = Categories::all();
+        $vendor = Vendor::all();
+        $featuredProducts = FeaturedProducts::pluck('product_id')->toArray();
+        return view('admin.pages.editproduct', compact('product', 'category', 'vendor', 'featuredProducts'));
+    }
+
+    public function products_update(Request $request, $id)
+    {
+        $product = Product::findOrFail($id); // Use `findOrFail` to handle invalid IDs
+        $request->validate([
+            'name' => 'required|max:255',
+            'category' => 'required|exists:categories,id',
+            'vendor' => 'required|exists:vendors,id',
+            'description' => 'required',
+            'price' => 'required|numeric|min:0',
+            'quant' => 'required|integer|min:1',
+            'discount' => 'nullable|numeric|min:0|max:100',
+            'thumbImg' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Handle images array
+        $imagePaths = [];
+        if ($request->hasFile('images')) {
+            $existingImages = json_decode($product->images, true) ?? []; // Ensure valid JSON
+
+            foreach ($existingImages as $image) {
+                $filePath = public_path('storage/' . $image);
+                if (file_exists($filePath)) {
+                    @unlink($filePath); // Suppress errors with '@' and proceed
+                }
+            }
+
+            foreach ($request->file('images') as $file) {
+                if ($file->isValid()) {
+                    $path = $file->store('uploads/products', 'public');
+                    $imagePaths[] = $path;
+                }
+            }
+            $product->images = json_encode($imagePaths);
+        }
+
+        // Handle thumbnail image
+        if ($request->hasFile('thumbImg')) {
+            $thumbPath = public_path('storage/uploads/products/' . $product->thumb);
+            if (file_exists($thumbPath)) {
+                @unlink($thumbPath);
+            }
+            $thumbImage = $request->file('thumbImg');
+            $thumbImageName = time() . '_thumb.' . $thumbImage->getClientOriginalExtension();
+            $thumbImage->storeAs('uploads/products', $thumbImageName, 'public');
+            $product->thumb = $thumbImageName;
+        }
+
+        // Update product details
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->quantity = $request->quant;
+        $product->description = $request->description;
+        $product->tags = $request->tags ?? $product->tags; // Preserve existing tags if not updated
+        $product->is_featured = $request->has('featured') ? 1 : 0;
+        $product->discount_percentage = $request->input('discount', 0);
+        $product->category_id = $request->category;
+        $product->vendor_id = $request->vendor;
+
+        // Update featured products
+        if ($request->has('featured')) {
+            $existingFeature = FeaturedProducts::where('product_id', $product->id)->first();
+            if (!$existingFeature) {
+                $featured = new FeaturedProducts();
+                $featured->product_id = $product->id;
+                $featured->save();
+            }
+        }
+
+        $product->save();
+
+        return redirect()->route('admin.products')->with('success', 'Product updated successfully!');
     }
 }

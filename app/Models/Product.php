@@ -66,7 +66,7 @@ class Product extends Model
 
     public function featured()
     {
-        return $this->belongsToMany(FeaturedProducts::class);
+        return $this->hasMany(FeaturedProducts::class);
     }
 }
 
