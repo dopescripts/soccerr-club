@@ -71,17 +71,17 @@ class ProductsController extends Controller
 
             $product->is_featured = $request->has('featured') ? 1 : 0;
             $product->discount_percentage = $request->input('discount', 0); // Default to 0 if no discount
-            if ($request->input('featured')) {
-                $feautured = new FeaturedProducts;
-                $feautured->product_id = $product->id;
-                $feautured->save();
-            }
             $product->category_id = $request->category;
             $product->vendor_id = $request->vendor;
 
             $product->save();
-
-            return redirect()->back()->with('success', 'Product added successfully!');
+            if ($request->input('featured')) {
+                FeaturedProducts::updateOrCreate(
+                    ['product_id' => $product->id], // Check if this product already exists in FeaturedProducts
+                    [] // No additional fields to update
+                );
+            }
+            return redirect()->route('admin.products')->with('success', 'Product added successfully!');
         }
 
         return redirect()->back()->with('error', 'Invalid thumbnail image.');
@@ -168,5 +168,32 @@ class ProductsController extends Controller
         $product->save();
 
         return redirect()->route('admin.products')->with('success', 'Product updated successfully!');
+    }
+    public function products_delete($id)
+    {
+        $product = Product::find($id);
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+
+        // Delete associated images
+        $images = json_decode($product->images, true) ?? [];
+        foreach ($images as $image) {
+            $filePath = public_path('storage/' . $image);
+            if (file_exists($filePath)) {
+                @unlink($filePath); // Suppress errors with '@' and proceed
+            }
+        }
+
+        // Delete thumbnail image
+        $thumbPath = public_path('storage/uploads/products/' . $product->thumb);
+        if (file_exists($thumbPath)) {
+            @unlink($thumbPath); // Suppress errors with '@' and proceed
+        }
+
+        // Delete product
+        $product->delete();
+
+        return redirect()->route('admin.products')->with('success', 'Product deleted successfully!');
     }
 }

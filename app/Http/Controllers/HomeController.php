@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categories;
-
+use App\Models\Product;
 class HomeController extends Controller
 {
     public function index()
@@ -24,7 +24,8 @@ class HomeController extends Controller
     }
     public function products()
     {
-        return view('web.pages.allproducts');
+        $products = Product::all();
+        return view('web.pages.allproducts', compact('products'));
     }
     public function categories()
     {

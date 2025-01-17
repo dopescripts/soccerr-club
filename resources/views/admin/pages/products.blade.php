@@ -78,7 +78,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <form action="" method="POST">
+                                                <form action="{{ route('products.destroy', $product->id) }}" method="GET">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">
