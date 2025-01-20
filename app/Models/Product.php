@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 class Product extends Model
 {
     use HasFactory;
-
     protected static function boot()
     {
         parent::boot();
@@ -41,7 +40,7 @@ class Product extends Model
      */
     public function category()
     {
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Categories::class, 'category_id');
     }
 
     public function vendor()

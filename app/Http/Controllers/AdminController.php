@@ -16,8 +16,8 @@ class AdminController extends Controller
         return view('admin.pages.login');
     }
     public function categories(Categories $category){
-        $category = Categories::all();
-        return view('admin.pages.categories', compact('category'));
+        $categories = Categories::paginate(3);
+        return view('admin.pages.categories', compact('categories'));
     }
     public function store_category(Request $request, Categories $category)
     {

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 use App\Models\Navlinks;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $navlinks = Navlinks::where('status', 'enabled')->get();
         view()->share('navlinks', $navlinks);
+        Paginator::useBootstrapFive();
     }
 }

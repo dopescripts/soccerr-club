@@ -339,6 +339,15 @@ p.text-muted {
   font-family: roboto;
   color: var(--body-text) !important;
 }
+.product-desc {
+  line-height: 2.5ex;
+  height: 7.6ex; /* 2.5ex for each visible line */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center !important;
+  color: var(--body-text) !important;
+}
 span.current-price,
 span.previous-price {
   font-family: var(--primary-font) !important;

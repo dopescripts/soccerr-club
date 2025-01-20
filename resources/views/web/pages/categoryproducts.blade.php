@@ -20,7 +20,13 @@
                         <div class="card-body text-center p-2 rounded-3">
                             <img loading="lazy" src="{{ asset('public/'. $categories->image) }}" alt="" class="img-fluid rounded bg-white p-2" />
                             <div class="card-subtitle mt-3"><a href="product.html" class="link-dark fw-semibold text-decoration-none text-uppercase">{{ $categories->name }}</a></div>
-                            <div class="card-text text-danger">0 items</div>
+                            <div class="card-text text-danger">
+                                @if($categories->products->count())
+                                {{ $categories->products->count() }} items
+                                @else 
+                                <span class="text-danger">No products</span>
+                                @endif
+                            </div>
                         </div>
                     </div>
                     </a>

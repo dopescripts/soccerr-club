@@ -10,97 +10,46 @@
     </section>
     <!-- Hero Section ends-->
     <!-- Categories section start  -->
-    <section class="categories-home py-5 w-100">
+    <section class="categories-home w-100 pt-5" data-aos="fade-up">
         <div class="container-fluid my-md-3">
             <div class="row w-100 gy-5 justify-content-center align-items-center text-center mx-auto mb-5">
+                @foreach ($category as $categoryitem)
                 <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+                    <a href="{{ route('category.detail', $categoryitem->id) }}">
                     <div class="card card-bg">
                         <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
+                            <img loading="lazy" src="{{ asset('public/'. $categoryitem->image) }}" alt="" class="img-fluid rounded bg-white p-2" />
+                            <div class="card-subtitle mt-3"><a href="product.html" class="link-dark fw-semibold text-decoration-none text-uppercase">{{ $categoryitem->name }}</a></div>
+                            <div class="card-text text-danger">
+                                @if($categoryitem->products->count())
+                                {{ $categoryitem->products->count() }} items
+                                @else 
+                                <span class="text-danger">No products</span>
+                                @endif
+                            </div>
                         </div>
                     </div>
+                    </a>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                    <div class="card card-bg">
-                        <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                    <div class="card card-bg">
-                        <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                    <div class="card card-bg">
-                        <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                    <div class="card card-bg">
-                        <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-                    <div class="card card-bg">
-                        <div class="card-body text-center p-2 rounded-3">
-                            <img loading="lazy" src="assets/images/asset 5.jpeg" alt="" class="img-fluid rounded" />
-                            <div class="card-subtitle mt-3"><a href="" class="link-dark fw-semibold text-decoration-none">SPORT SHOES</a></div>
-                            <div class="card-text text-danger">4 items</div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
     <!-- Categories section end  -->
     <section class="category-detail w-100 px-1 px-md-4">
-        <div class="row justify-content-center gy-5 gx-lg-5 pb-5 w-100 mx-auto">
+        <div class="row justify-content-center gy-5 gx-lg-5 w-100 mx-auto">
             <div class="col-lg-3 col-md-4 col-sm-12 col-12 pe-lg-0 mx-auto justify-content-center">
                 <div class="card card-bg">
                     <div class="card-body py-5">
                         <h5 class="text-black fw-bolder mb-3">Product Categories</h5>
+                        @foreach ($category as $category)
                         <div class="clearfix py-1 text-black">
-                            <a href="#" class="link-dark">
-                                <div class="float-start">Football</div>
-                                <div class="float-end">(7)</div>
+                            <a href="{{ route('category.detail', $category->id) }}" class="link-dark">
+                                <div class="float-start">{{ $category->name }}</div>
+                                <div class="float-end">({{ $category->products->where('is_active', 1)->count() }})</div>
                             </a>
                         </div>
-                        <div class="clearfix py-1 text-black">
-                            <a href="#" class="link-dark">
-                                <div class="float-start">Legs Wearing</div>
-                                <div class="float-end">(7)</div>
-                            </a>
-                        </div>
-                        <div class="clearfix py-1 text-black">
-                            <a href="#" class="link-dark">
-                                <div class="float-start">Sport Shoes</div>
-                                <div class="float-end">(7)</div>
-                            </a>
-                        </div>
-                        <div class="clearfix py-1 text-black">
-                            <a href="#" class="link-dark active">
-                                <div class="float-start">T-Shirt</div>
-                                <div class="float-end">(4)</div>
-                            </a>
-                        </div>
+                        @endforeach
                         <hr />
                         <p class="d-inline-flex gap-1 w-100 mb-2">
                             <a class="link-dark w-100 d-flex justify-content-between text-decoration-none fw-semibold" data-bs-toggle="collapse" href="#collapseAvailaible" role="button" aria-expanded="false" aria-controls="collapseExample">Availaibility<i
@@ -152,7 +101,7 @@
                 <div class="card card-bg mb-3 mx-md-2 py-0">
                     <div class="card-body py-1">
                         <div class="d-flex align-items-center justify-content-between">
-                            <p class="fw-bolder text-black my-0">9 Products</p>
+                            <p class="fw-bolder text-black my-0">{{ $products->where('is_active', 1)->count() }} Products</p>
                             <div class="d-none d-lg-block">
                                 <a href="" class="link-dark"><i class="bi bi-grid-3x3-gap-fill"></i></a>
                                 <a href="" class="link-dark"><i class="bi bi-square-fill"></i></a>
@@ -171,294 +120,51 @@
                     </div>
                 </div>
                 <div class="product-row row align-items-center gy-5 justify-content-start w-100 mx-auto">
+                    @foreach ($products as $product)
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mx-auto justify-content-center">
                         <div class="card rounded-4 card-bg">
                             <div class="card-body">
                                 <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                    <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
+                                    <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
                                     <div>
-                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
+                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-{{ $product->discount_percentage*100 }}%</span>
                                         <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
                                             <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
                                                 <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i> </a>
+                                                    <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i></a>
                                                 </span>
                                                 <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i> </a>
+                                                    <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i></a>
                                                 </span>
                                                 <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i> </a>
+                                                    <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i></a>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="product-details mt-3 text-center">
-                                    <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">football ball</a></h4>
-                                    <p class="text-muted px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, dolorem!</p>
+                                    <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}</a></h4>
+                                    <div class="product-desc px-2 text-muted my-2">
+                                       {!! $product->description !!}
+                                    </div>
                                     <div class="price">
-                                        <span class="current-price fw-bold lead fw-bold text-black">$3.44</span>
-                                        <p class="previous-price text-decoration-line-through text-muted d-inline-block">$5.99</p>
+                                        <span class="current-price fw-bold lead fw-bold text-black">${{ number_format($product->price - $product->price * $product->discount_percentage, 2) }}</span>
+                                        <p class="previous-price text-decoration-line-through text-muted d-inline-block my-0">${{ $product->price }}</p>
+                                        </p>
                                     </div>
                                     <div>
-                                        <button type="button" class="btn btn-dark">Add to Cart</button>
+                                        <button type="button" class="btn btn-dark" id="addToCart" onclick="addToCart()">
+                                            Add to Cart
+                                            <span class="d-none spinner-border spinner-border-sm" id="loader" aria-hidden="true"></span>
+                                            <span class="visually-hidden" role="status">Loading...</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mx-auto justify-content-center">
-                        <div class="card rounded-4 card-bg">
-                            <div class="card-body">
-                                <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                    <img loading="lazy" src="assets/images/asset 10.jpeg" alt="" class="bg-white img-fluid" />
-                                    <div>
-                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-10%</span>
-                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
-                                            <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i> </a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-details mt-3 text-center">
-                                    <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">football ball</a></h4>
-                                    <p class="text-muted px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, dolorem!</p>
-                                    <div class="price">
-                                        <span class="current-price fw-bold lead fw-bold text-black">$3.44</span>
-                                        <p class="previous-price text-decoration-line-through text-muted d-inline-block">$5.99</p>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-dark">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mx-auto justify-content-center">
-                        <div class="card rounded-4 card-bg">
-                            <div class="card-body">
-                                <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                    <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
-                                    <div>
-                                        <span class="badge bg-danger text-white p-2 position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">NEW</span>
-                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
-                                            <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i> </a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-details mt-3 text-center">
-                                    <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">football ball</a></h4>
-                                    <p class="text-muted px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, dolorem!</p>
-                                    <div class="price">
-                                        <span class="current-price fw-bold lead fw-bold text-black">$3.44</span>
-                                        <p class="previous-price text-decoration-line-through text-muted d-inline-block">$5.99</p>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-dark">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mx-auto justify-content-center">
-                        <div class="card rounded-4 card-bg">
-                            <div class="card-body">
-                                <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                    <img loading="lazy" src="assets/images/asset 8.jpeg" alt="" class="bg-white img-fluid" />
-                                    <div>
-                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-50%</span>
-                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
-                                            <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i> </a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-details mt-3 text-center">
-                                    <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">football ball</a></h4>
-                                    <p class="text-muted px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, dolorem!</p>
-                                    <div class="price">
-                                        <span class="current-price fw-bold lead fw-bold text-black">$3.44</span>
-                                        <p class="previous-price text-decoration-line-through text-muted d-inline-block">$5.99</p>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-dark">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mx-auto justify-content-center">
-                        <div class="card rounded-4 card-bg">
-                            <div class="card-body">
-                                <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                    <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
-                                    <div>
-                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-10%</span>
-                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
-                                            <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i> </a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-details mt-3 text-center">
-                                    <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">football ball</a></h4>
-                                    <p class="text-muted px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, dolorem!</p>
-                                    <div class="price">
-                                        <span class="current-price fw-bold lead fw-bold text-black">$3.44</span>
-                                        <p class="previous-price text-decoration-line-through text-muted d-inline-block">$5.99</p>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-dark">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mx-auto justify-content-center">
-                        <div class="card rounded-4 card-bg">
-                            <div class="card-body">
-                                <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                    <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
-                                    <div>
-                                        <span class="badge bg-danger text-white p-2 position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">NEW</span>
-                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
-                                            <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i> </a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-details mt-3 text-center">
-                                    <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">football ball</a></h4>
-                                    <p class="text-muted px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, dolorem!</p>
-                                    <div class="price">
-                                        <span class="current-price fw-bold lead fw-bold text-black">$3.44</span>
-                                        <p class="previous-price text-decoration-line-through text-muted d-inline-block">$5.99</p>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-dark">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mx-auto justify-content-center">
-                        <div class="card rounded-4 card-bg">
-                            <div class="card-body">
-                                <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                    <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
-                                    <div>
-                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-10%</span>
-                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
-                                            <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i> </a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-details mt-3 text-center">
-                                    <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">football ball</a></h4>
-                                    <p class="text-muted px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, dolorem!</p>
-                                    <div class="price">
-                                        <span class="current-price fw-bold lead fw-bold text-black">$3.44</span>
-                                        <p class="previous-price text-decoration-line-through text-muted d-inline-block">$5.99</p>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-dark">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mx-auto justify-content-center">
-                        <div class="card rounded-4 card-bg">
-                            <div class="card-body">
-                                <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                    <img loading="lazy" src="assets/images/asset 9.jpeg" alt="" class="bg-white img-fluid" />
-                                    <div>
-                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-10%</span>
-                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
-                                            <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i> </a>
-                                                </span>
-                                                <span class="d-flex justify-content-center align-items-center flex-column">
-                                                    <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i> </a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-details mt-3 text-center">
-                                    <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">football ball</a></h4>
-                                    <p class="text-muted px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, dolorem!</p>
-                                    <div class="price">
-                                        <span class="current-price fw-bold lead fw-bold text-black">$3.44</span>
-                                        <p class="previous-price text-decoration-line-through text-muted d-inline-block">$5.99</p>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-dark">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

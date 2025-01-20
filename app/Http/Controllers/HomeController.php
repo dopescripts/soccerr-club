@@ -10,7 +10,9 @@ class HomeController extends Controller
     public function index()
     {
         $category = Categories::all();
-        return view('web.pages.home', compact('category'));
+        $products = Product::all();
+        $latest_products = Product::orderby('id', 'desc')->take(20)->get();
+        return view('web.pages.home', compact('category', 'products', 'latest_products'));
     }
     public function category_detail($id)
     {
@@ -25,7 +27,8 @@ class HomeController extends Controller
     public function products()
     {
         $products = Product::all();
-        return view('web.pages.allproducts', compact('products'));
+        $category = Categories::all();
+        return view('web.pages.allproducts', compact('products', 'category'));
     }
     public function categories()
     {
