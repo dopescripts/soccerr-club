@@ -58,12 +58,8 @@
                                 @foreach ($errors->all() as $error)
                                     <li class="text-danger">{{ $error }}</li>
                                 @endforeach
-                                @foreach ($success->all() as $error)
-                                    <li class="text-success">{{ $error }}</li>
-                                @endforeach
                             </ul>
                         @endif
-
                         <table class="table">
                             <thead>
                                 <tr>

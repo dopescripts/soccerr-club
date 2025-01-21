@@ -237,4 +237,33 @@
             }
         });
     </script>
+    <script>
+        <script>
+        document.querySelector('form').addEventListener('submit', (e) => {
+            const fileInput = document.querySelector('input[name="images[]"]');
+            const files = Array.from(fileInput.files);
+            // Create an array of objects with file and order index
+            // We need the order index to keep track of the order of the files
+            // because the order of the files in the FileList is not guaranteed
+            // The order index will be used to create the correct key for the
+            // form data, e.g. "images[0]", "images[1]", etc.
+            const orderedFiles = files.map((file, index) => ({
+                file: file,
+                order: index // Add order index
+            }));
+
+            // Use FormData to include ordered files
+            const formData = new FormData();
+            orderedFiles.forEach(({ file, order }) => {
+                formData.append(`images[${order}]`, file);
+            });
+
+            // Prevent default submission and submit the FormData manually if needed
+            // e.g., send via `fetch` or `axios`
+            // e.preventDefault();
+            // fetch('/your-endpoint', { method: 'POST', body: formData });
+        });
+
+    </script>
+    </script>
 @endsection

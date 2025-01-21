@@ -19,8 +19,8 @@
                             Win with <span class="px-2">pride</span>
                         </div>
                         <div class="my-lg-5 my-2">
-                            <button class="btn btn-primary mb-2 mb-md-0">SHOP NOW <i class="bi bi-arrow-right"></i></button>
-                            <button class="btn btn-secondary mb-2 mb-md-0">SEE COLLECTION</button>
+                            <a href="{{ route('products') }}" class="btn btn-primary mb-2 mb-md-0">SHOP NOW <i class="bi bi-arrow-right"></i></a>
+                            <a href="{{ route('categories') }}" class="btn btn-secondary mb-2 mb-md-0">SEE COLLECTION</a>
                         </div>
                     </div>
                 </div>
@@ -33,8 +33,8 @@
                             Win with pride
                         </div>
                         <div class="my-lg-5 my-2">
-                            <button class="btn btn-primary mb-2 mb-md-0">SHOP NOW <i class="bi bi-arrow-right"></i></button>
-                            <button class="btn btn-secondary mb-2 mb-md-0">SEE COLLECTION</button>
+                            <a href="{{ route('products') }}" class="btn btn-primary mb-2 mb-md-0">SHOP NOW <i class="bi bi-arrow-right"></i></a>
+                            <a href="{{ route('categories') }}" class="btn btn-secondary mb-2 mb-md-0">SEE COLLECTION</a>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
     <section class="categories-home w-100 py-5" data-aos="fade-up">
         <div class="container-fluid my-md-3">
             <div class="row w-100 gy-5 justify-content-center align-items-center text-center mx-auto mb-5">
-                @foreach ($category as $category)
+                @foreach ($category->take(6) as $category)
                 <div class="col-lg-2 col-md-4 col-sm-6 col-6">
                     <a href="{{ route('category.detail', $category->id) }}">
                     <div class="card card-bg">
@@ -65,9 +65,9 @@
                             <div class="card-subtitle mt-3"><a href="product.html" class="link-dark fw-semibold text-decoration-none text-uppercase">{{ $category->name }}</a></div>
                             <div class="card-text text-danger">
                                 @if($category->products->count())
-                                {{ $category->products->count() }} items
+                                    {{ $category->products->count() }} items
                                 @else 
-                                <span class="text-danger">No products</span>
+                                    <span class="text-danger">No products</span>
                                 @endif
                             </div>
                         </div>
@@ -170,8 +170,10 @@
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
-                            <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
+                            <div class="product-img d-flex justify-content-center align-items-center rounded position-relative">
+                                <a href="{{ route('product', ['slug' => $product->slug]) }}">
+                                    <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
+                                </a>
                                 <div>
                                     <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-{{ $product->discount_percentage*100 }}%</span>
                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -190,7 +192,9 @@
                                 </div>
                             </div>
                             <div class="product-details mt-3 text-center">
-                                <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}</a></h4>
+                                <h4 class="card-title">
+                                    <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}
+                                    </a></h4>
                                 <div class="product-desc px-2 text-muted my-2">
                                    {!! $product->description !!}
                                 </div>
@@ -302,8 +306,10 @@
                                 <div class="col-12">
                                     <div class="card rounded-4 card-bg">
                                         <div class="card-body">
-                                            <div href="#" class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                                <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
+                                            <div class="product-img d-flex justify-content-center align-items-center rounded position-relative">
+                                                <a href="{{ route('product', ['slug' => $product->slug]) }}">
+                                                    <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
+                                                </a>
                                                 <div>
                                                     <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-{{ $product->discount_percentage*100 }}%</span>
                                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
@@ -322,9 +328,11 @@
                                                 </div>
                                             </div>
                                             <div class="product-details mt-3 text-center">
-                                                <h4 class="card-title"><a href="#" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}</a></h4>
+                                                <h4 class="card-title">
+                                                    <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}
+                                                    </a></h4>
                                                 <div class="product-desc px-2 text-muted my-2">
-                                                {!! $product->description !!}
+                                                   {!! $product->description !!}
                                                 </div>
                                                 <div class="price">
                                                     <span class="current-price fw-bold lead fw-bold text-black">${{ number_format($product->price - $product->price * $product->discount_percentage, 2) }}</span>

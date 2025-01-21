@@ -14,6 +14,12 @@ class HomeController extends Controller
         $latest_products = Product::orderby('id', 'desc')->take(20)->get();
         return view('web.pages.home', compact('category', 'products', 'latest_products'));
     }
+    public function product($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+        $latest_products = Product::orderby('id', 'desc')->take(20)->get();
+        return view('web.pages.product', compact('latest_products', 'product'));
+    }
     public function category_detail($id)
     {
         $category = Categories::find($id);
@@ -32,7 +38,8 @@ class HomeController extends Controller
     }
     public function categories()
     {
-        return view('web.pages.categories');
+        $categories = Categories::all();
+        return view('web.pages.categories', compact('categories'));
     }
     public function contact()
     {

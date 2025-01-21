@@ -7,7 +7,7 @@ use App\Models\FeaturedProducts;
 use App\Models\Vendor;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 class ProductsController extends Controller
 {
     public function products()
@@ -50,12 +50,20 @@ class ProductsController extends Controller
 
             // Handle multiple images
             if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $file) {
+                $files = $request->file('images'); // This will now include an ordered array
+                foreach ($files as $key => $file) {
                     if ($file->isValid()) {
-                        $path = $file->store('uploads/products', 'public'); // Save to 'storage/app/public/uploads/products'
-                        $imagePaths[] = $path; // Add path to array
+                       try {
+                            $path = $file->store('uploads/products', 'public');
+                            $imagePaths[$key] = $path;
+                        } catch (\Exception $e) {
+                            // Handle errors, e.g., log or add error messages
+                            Log::error("File upload failed: " . $e->getMessage());
+                        }
+
                     }
                 }
+                ksort($imagePaths);
             }
 
             // Assign product properties
@@ -122,13 +130,20 @@ class ProductsController extends Controller
                     @unlink($filePath); // Suppress errors with '@' and proceed
                 }
             }
+                $files = $request->file('images'); // This will now include an ordered array
+                foreach ($files as $key => $file) {
+                    if ($file->isValid()) {
+                       try {
+                            $path = $file->store('uploads/products', 'public');
+                            $imagePaths[$key] = $path;
+                        } catch (\Exception $e) {
+                            // Handle errors, e.g., log or add error messages
+                            Log::error("File upload failed: " . $e->getMessage());
+                        }
 
-            foreach ($request->file('images') as $file) {
-                if ($file->isValid()) {
-                    $path = $file->store('uploads/products', 'public');
-                    $imagePaths[] = $path;
+                    }
                 }
-            }
+                ksort($imagePaths);
             $product->images = json_encode($imagePaths);
         }
 
@@ -162,6 +177,12 @@ class ProductsController extends Controller
                 $featured = new FeaturedProducts();
                 $featured->product_id = $product->id;
                 $featured->save();
+            }
+        }
+        else {
+            $existingFeature = FeaturedProducts::where('product_id', $product->id)->first();
+            if ($existingFeature) {
+                $existingFeature->delete();
             }
         }
 

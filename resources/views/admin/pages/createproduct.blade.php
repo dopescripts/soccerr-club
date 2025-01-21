@@ -176,37 +176,67 @@
         </div>
     </div>
     <script>
-        document.getElementById('images').addEventListener('change', function(event) {
+        // Track the order of selected files
+        const selectedFiles = [];
+    
+        document.getElementById('images').addEventListener('change', function (event) {
             const previewContainer = document.getElementById('preview-images');
             previewContainer.innerHTML = ""; // Clear previous previews
-
-            const files = event.target.files;
-
-            if (files.length > 0) {
-                Array.from(files).forEach(file => {
-                    // Ensure the file is an image
-                    if (file.type.startsWith('image/')) {
-                        const reader = new FileReader();
-
-                        reader.onload = function(e) {
-                            // Create an image element
-                            const img = document.createElement('img');
-                            img.src = e.target.result;
-                            img.alt = file.name;
-                            img.style.width = '100px';
-                            img.style.height = '100px';
-                            img.style.objectFit = 'cover';
-                            img.style.border = '1px solid #ccc';
-                            img.style.borderRadius = '5px';
-
-                            // Append the image to the preview container
-                            previewContainer.appendChild(img);
-                        };
-
-                        reader.readAsDataURL(file); // Read the file
-                    }
-                });
-            }
+    
+            const newFiles = Array.from(event.target.files);
+    
+            // Add new files to the selectedFiles array while avoiding duplicates
+            newFiles.forEach(file => {
+                if (!selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+                    selectedFiles.push(file); // Add only unique files
+                }
+            });
+    
+            // Generate previews in the selected order
+            selectedFiles.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+    
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.alt = file.name;
+                        img.style.width = '100px';
+                        img.style.height = '100px';
+                        img.style.objectFit = 'cover';
+                        img.style.border = '1px solid #ccc';
+                        img.style.borderRadius = '5px';
+                        img.style.margin = '5px';
+    
+                        previewContainer.appendChild(img);
+                    };
+    
+                    reader.readAsDataURL(file);
+                }
+            });
         });
-    </script>
+    
+        document.querySelector('form').addEventListener('submit', function (e) {
+            // Create FormData and append files in the selected order
+            const formData = new FormData();
+            selectedFiles.forEach((file, index) => {
+                formData.append(`images[${index}]`, file);
+            });
+    
+            // Prevent the default form submission (optional, only needed if submitting manually)
+            // e.preventDefault();
+    
+            // Example: Send formData using fetch
+            /*
+            fetch('/your-endpoint', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                console.log('Files submitted successfully');
+            }).catch(error => {
+                console.error('Error submitting files:', error);
+            });
+            */
+        });
+    </script>    
 @endsection

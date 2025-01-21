@@ -252,10 +252,10 @@ header input:focus {
 /* 
 Main styling  
 */
-main .carousel-item {
+.hero .carousel-item {
   height: 100vh;
 }
-main .carousel-item img {
+.hero .carousel-item img {
   width: 100%;
   height: 100% !important;
   object-fit: cover !important;
@@ -341,7 +341,7 @@ p.text-muted {
 }
 .product-desc {
   line-height: 2.5ex;
-  height: 7.6ex; /* 2.5ex for each visible line */
+  height: 5.0ex; /* 2.5ex for each visible line */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -511,9 +511,13 @@ About styles
   transform: scale(1.08);
 }
 
+.product-detail .carousel-item {
+  height: 500px !important;
+}
+
 /* Media queries  */
 @media (max-width: 786px) {
-  .carousel-item {
+  .hero .carousel-item {
     height: 80vh !important;
   }
 }

@@ -22,6 +22,7 @@ Route::controller(App\Http\Controllers\HomeController::class)->group(function ()
     Route::get('/', 'index')->name('home');
     Route::get('/home', 'index')->name('home');
     Route::get('/products', 'products')->name('products');
+    Route::get('/product/{slug}', 'product')->name('product');
     Route::get('/categories', 'categories')->name('categories');
     Route::get('/blogs', 'blogs')->name('blogs');
     Route::get('/contact', 'contact')->name('contact');
