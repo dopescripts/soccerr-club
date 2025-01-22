@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Models\Product;
+use App\Models\Team;
 class HomeController extends Controller
 {
     public function index()
     {
         $category = Categories::all();
         $products = Product::all();
+        $team = Team::take(4)->get();
         $latest_products = Product::orderby('id', 'desc')->take(20)->get();
-        return view('web.pages.home', compact('category', 'products', 'latest_products'));
+        return view('web.pages.home', compact('category', 'products', 'latest_products', 'team'));
     }
     public function product($slug)
     {

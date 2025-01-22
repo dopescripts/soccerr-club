@@ -50,4 +50,8 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     Route::get('products/update/{slug}', [\App\Http\Controllers\ProductsController::class, 'products_edit'])->name('products.edit');
     Route::post('products/update/{id}', [\App\Http\Controllers\ProductsController::class, 'products_update'])->name('product.update');
     Route::get('products/delete/{id}', [\App\Http\Controllers\ProductsController::class, 'products_delete'])->name('products.destroy');
+    Route::get('/team', [\App\Http\Controllers\TeamController::class, 'index'])->name('admin.team');
+    Route::post('/team/store', [\App\Http\Controllers\TeamController::class, 'store'])->name('team.store');
+    Route::post('/team/update/{id}', [\App\Http\Controllers\TeamController::class, 'update'])->name('team.update');
+    Route::get('/team/delete/{id}', [\App\Http\Controllers\TeamController::class, 'delete'])->name('team.delete');
 });

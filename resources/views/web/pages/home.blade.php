@@ -371,11 +371,12 @@
             </div>
         </div>
         <div class="row w-100 justify-content-center gy-5 align-items-center mx-auto">
+            @foreach ($team as $member)
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-bg">
                     <div class="card-body">
                         <div class="team-img position-relative overflow-hidden">
-                            <img loading="lazy" src="/assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
+                            <img loading="lazy" src="{{ asset('public/team' . "/" . $member->image) }}" alt="" class="img-fluid object-fit-cover" />
                             <div class="position-absolute top-0 start-0 team-link">
                                 <div class="d-flex flex-column gap-2 mt-2 ms-3">
                                     <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 61.svg" alt="" /></a>
@@ -383,62 +384,12 @@
                                 </div>
                             </div>
                         </div>
-                        <h4 class="ps-1 fw-bolder text-uppercase my-3">Ava elizabeth</h4>
-                        <p class="ps-1 text-muted fw-semibold">Customer Service Lead</p>
+                        <h4 class="ps-1 fw-bolder text-uppercase my-3">{{ $member->name }}</h4>
+                        <p class="ps-1 text-muted fw-semibold">{{ $member->post }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-bg">
-                    <div class="card-body">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img loading="lazy" src="/assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
-                            <div class="position-absolute top-0 start-0 team-link">
-                                <div class="d-flex flex-column gap-2 mt-2 ms-3">
-                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 61.svg" alt="" /></a>
-                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 62.svg" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <h4 class="ps-1 fw-bolder text-uppercase my-3">Ava elizabeth</h4>
-                        <p class="ps-1 text-muted fw-semibold">Customer Service Lead</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-bg">
-                    <div class="card-body">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img loading="lazy" src="/assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
-                            <div class="position-absolute top-0 start-0 team-link">
-                                <div class="d-flex flex-column gap-2 mt-2 ms-3">
-                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 61.svg" alt="" /></a>
-                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 62.svg" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <h4 class="ps-1 fw-bolder text-uppercase my-3">Ava elizabeth</h4>
-                        <p class="ps-1 text-muted fw-semibold">Customer Service Lead</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-bg">
-                    <div class="card-body">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img loading="lazy" src="/assets/images/asset 18.jpeg" alt="" class="img-fluid object-fit-cover" />
-                            <div class="position-absolute top-0 start-0 team-link">
-                                <div class="d-flex flex-column gap-2 mt-2 ms-3">
-                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 61.svg" alt="" /></a>
-                                    <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 62.svg" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <h4 class="ps-1 fw-bolder text-uppercase my-3">Ava elizabeth</h4>
-                        <p class="ps-1 text-muted fw-semibold">Customer Service Lead</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
     <!-- team section  -->
