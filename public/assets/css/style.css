@@ -326,7 +326,6 @@ Product styling
 */
 main .product-img {
   background: var(--white) !important ;
-  min-height: 300px !important;
   cursor: pointer;
 }
 .product-img img {
@@ -359,6 +358,13 @@ span.previous-price {
 .product-img .product-overlay {
   transition: 0.4s ease;
   transform: translateX(100px);
+}
+.product-img img {
+  height: 280px;
+  width: 100% !important;
+  padding: 10px !important;
+  object-fit: contain;
+  object-position: center center;
 }
 .product-img .product-overlay .btn {
   font-size: 15px !important;
@@ -462,6 +468,11 @@ Collection page style
   background-color: rgba(0, 0, 0, 0.2);
   background-blend-mode: darken;
 }
+.categories-home .card-body img {
+  height: 180px !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
 .category-detail .link-dark:hover {
   color: var(--secondary-color) !important;
 }
@@ -516,8 +527,21 @@ About styles
 }
 
 /* Media queries  */
+@media (max-width: 1000px) {
+  .product-img img {
+    height: 350px;
+    object-fit: contain;
+  }
+}
 @media (max-width: 786px) {
   .hero .carousel-item {
     height: 80vh !important;
+  }
+}
+@media (max-width: 576px) {
+  .product-img img {
+    height: 500px;
+    padding: 20px !important;
+    object-fit: contain;
   }
 }
