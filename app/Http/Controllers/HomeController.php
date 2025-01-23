@@ -34,7 +34,7 @@ class HomeController extends Controller
     }
     public function products()
     {
-        $products = Product::all();
+        $products = Product::orderby('id', 'desc')->get();
         $category = Categories::all();
         return view('web.pages.allproducts', compact('products', 'category'));
     }
@@ -53,6 +53,7 @@ class HomeController extends Controller
     }
     public function team()
     {
-        return view('web.pages.team');
+        $team = Team::all();
+        return view('web.pages.team', compact('team'));
     }
 }

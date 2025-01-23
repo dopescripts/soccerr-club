@@ -12,7 +12,7 @@ class ProductsController extends Controller
 {
     public function products()
     {
-        $products = Product::all();
+        $products = Product::paginate(3);
         return view('admin.pages.products', compact('products'));
     }
     public function products_add()

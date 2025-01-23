@@ -116,11 +116,84 @@
     </section>
     <!-- Categories section end  -->
 
+        <!-- feautured-products -->
+        <section class="feautured-products w-100">
+            <div class="container-fluid px-lg-3">
+                <div class="heading mb-2">
+                    <h6 class="mb-0">products</h6>
+                    <div class="d-flex justify-content-between align-items-baseline">
+                        <h1 class="text-black">Featured Products</h1>
+                        <a href="{{ route('products') }}" class="link-danger fw-semibold pe-lg-2 link-offset-1-hover">SEE ALL PRODUCTS</a>
+                    </div>
+                </div>
+                <div class="product-row row w-100 align-items-center gy-5 mx-auto justify-contents-start">
+                    @foreach ($products->take(8)->where('is_featured', 1) as $product)
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card rounded-4 card-bg">
+                            <div class="card-body">
+                                <div class="product-img d-flex justify-content-center align-items-center rounded position-relative">
+                                    <a href="{{ route('product', ['slug' => $product->slug]) }}">
+                                        <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
+                                    </a>
+                                    <div>
+                                        @if ($product->discount_percentage > 0.0 && $product->quantity > 1)
+                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                            -{{ $product->discount_percentage*100 }}%
+                                        </span>
+                                        @elseif ( $product->quantity < 1) 
+                                        <span class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                            OUT OF STOCK
+                                        </span>
+                                        @endif
+                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
+                                            <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
+                                                <span class="d-flex justify-content-center align-items-center flex-column">
+                                                    <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i></a>
+                                                </span>
+                                                <span class="d-flex justify-content-center align-items-center flex-column">
+                                                    <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i></a>
+                                                </span>
+                                                <span class="d-flex justify-content-center align-items-center flex-column">
+                                                    <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i></a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-details mt-3 text-center">
+                                    <h4 class="card-title" title="{{ $product->name }}">
+                                        <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}
+                                        </a></h4>
+                                    <div class="product-desc px-2 text-muted my-2">
+                                       {!! $product->description !!}
+                                    </div>
+                                    <div class="price">
+                                        <span class="current-price fw-bold lead fw-bold text-black">${{ number_format($product->price - $product->price * $product->discount_percentage, 2) }}</span>
+                                        <p class="previous-price text-decoration-line-through text-muted d-inline-block my-0">${{ $product->price }}</p>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-dark" id="addToCart" onclick="addToCart()">
+                                            Add to Cart
+                                            <span class="d-none spinner-border spinner-border-sm" id="loader" aria-hidden="true"></span>
+                                            <span class="visually-hidden" role="status">Loading...</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+        <!-- feautured-products end -->
+
     <!-- Banners  -->
     <section class="banner w-100 pb-5">
         <div class="container-fluid">
             <div class="row gy-4 justify-content-center mx-lg-1">
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-aos="fade-right">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="card card-bg">
                         <img loading="lazy" src="/assets/images/asset 11.jpeg" alt="" class="img-fluid" />
                         <div class="card-img-overlay d-flex flex-column align-items-start justify-content-center">
@@ -130,7 +203,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 col-12" data-aos="fade-right">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                     <div class="card card-bg">
                         <img loading="lazy" src="/assets/images/asset 12.jpeg" alt="" class="img-fluid" />
                         <div class="card-img-overlay d-flex flex-column align-items-start justify-content-center">
@@ -140,7 +213,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-sm-12 col-12" data-aos="fade-right">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12">
                     <div class="card card-bg">
                         <img loading="lazy" src="/assets/images/asset 13.jpeg" alt="" class="img-fluid" />
                         <div class="card-img-overlay d-flex flex-column align-items-start justify-content-center">
@@ -154,71 +227,6 @@
         </div>
     </section>
     <!-- Banners  -->
-
-    <!-- feautured-products -->
-    <section class="feautured-producsts w-100">
-        <div class="container-fluid px-lg-3">
-            <div class="heading mb-2">
-                <h6 class="mb-0">products</h6>
-                <div class="d-flex justify-content-between align-items-baseline">
-                    <h1 class="text-black">Featured Products</h1>
-                    <a href="{{ route('products') }}" class="link-danger fw-semibold pe-lg-2 link-offset-1-hover">SEE ALL PRODUCTS</a>
-                </div>
-            </div>
-            <div class="product-row row w-100 align-items-center gy-5 mx-auto justify-contents-start">
-                @foreach ($products->take(8)->where('is_featured', 1) as $product)
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card rounded-4 card-bg">
-                        <div class="card-body">
-                            <div class="product-img d-flex justify-content-center align-items-center rounded position-relative">
-                                <a href="{{ route('product', ['slug' => $product->slug]) }}">
-                                    <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
-                                </a>
-                                <div>
-                                    <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-{{ $product->discount_percentage*100 }}%</span>
-                                    <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
-                                        <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
-                                            <span class="d-flex justify-content-center align-items-center flex-column">
-                                                <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i></a>
-                                            </span>
-                                            <span class="d-flex justify-content-center align-items-center flex-column">
-                                                <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i></a>
-                                            </span>
-                                            <span class="d-flex justify-content-center align-items-center flex-column">
-                                                <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i></a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-details mt-3 text-center">
-                                <h4 class="card-title">
-                                    <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}
-                                    </a></h4>
-                                <div class="product-desc px-2 text-muted my-2">
-                                   {!! $product->description !!}
-                                </div>
-                                <div class="price">
-                                    <span class="current-price fw-bold lead fw-bold text-black">${{ number_format($product->price - $product->price * $product->discount_percentage, 2) }}</span>
-                                    <p class="previous-price text-decoration-line-through text-muted d-inline-block my-0">${{ $product->price }}</p>
-                                    </p>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-dark" id="addToCart" onclick="addToCart()">
-                                        Add to Cart
-                                        <span class="d-none spinner-border spinner-border-sm" id="loader" aria-hidden="true"></span>
-                                        <span class="visually-hidden" role="status">Loading...</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    <!-- feautured-products end -->
 
     <!-- services -->
     <section class="services w-100 py-5">
@@ -311,8 +319,15 @@
                                                     <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
                                                 </a>
                                                 <div>
-                                                    <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-{{ $product->discount_percentage*100 }}%</span>
-                                                    <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
+@if ($product->discount_percentage > 0.0 && $product->quantity > 1)
+                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                            -{{ $product->discount_percentage*100 }}%
+                                        </span>
+                                        @elseif ( $product->quantity < 1) 
+                                        <span class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                            OUT OF STOCK
+                                        </span>
+                                        @endif                                                    <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
                                                         <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
                                                             <span class="d-flex justify-content-center align-items-center flex-column">
                                                                 <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i></a>
@@ -328,7 +343,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-details mt-3 text-center">
-                                                <h4 class="card-title">
+                                                <h4 class="card-title" title="{{ $product->name }}">
                                                     <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}
                                                     </a></h4>
                                                 <div class="product-desc px-2 text-muted my-2">
@@ -375,8 +390,8 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-bg">
                     <div class="card-body">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img loading="lazy" src="{{ asset('public/team' . "/" . $member->image) }}" alt="" class="img-fluid object-fit-cover" />
+                        <div class="team-img position-relative overflow-hidden text-center">
+                            <img loading="lazy" src="{{ asset('public/team' . "/" . $member->image) }}" alt="" class="img-fluid" />
                             <div class="position-absolute top-0 start-0 team-link">
                                 <div class="d-flex flex-column gap-2 mt-2 ms-3">
                                     <a href="#" class="footer-link"><img loading="lazy" src="/assets/images/asset 61.svg" alt="" /></a>

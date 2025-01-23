@@ -146,6 +146,9 @@
                                 <h4 class="text-muted"><i class="mdi mdi-alert"></i> No records found</h4>
                             </div>
                         @endif
+                        <div>
+                            {{ $products->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

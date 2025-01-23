@@ -166,9 +166,9 @@
                                 </div>
                             </div>
                             <div class="product-details mt-3 text-center">
-                                <h4 class="card-title">
-                                    <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}
-                                    </a></h4>
+<h4 class="card-title" title="{{ $product->name }}">
+                                        <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}
+                                        </a></h4>
                                 <div class="product-desc px-2 text-muted my-2">
                                    {!! $product->description !!}
                                 </div>

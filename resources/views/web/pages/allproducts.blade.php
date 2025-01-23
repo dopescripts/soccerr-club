@@ -37,7 +37,7 @@
     </section>
     <!-- Categories section end  -->
     <section class="category-detail w-100 px-1 px-md-4">
-        <div class="row justify-content-center gy-5 gx-lg-5 w-100 mx-auto">
+        <div class="row justify-content-center gy-5 gx-lg-5 w-100 mx-auto mb-5">
             <div class="col-lg-3 col-md-4 col-sm-12 col-12 pe-lg-0 mx-auto justify-content-center">
                 <div class="card card-bg">
                     <div class="card-body py-5">
@@ -129,8 +129,15 @@
                                         <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
                                     </a>
                                     <div>
-                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-{{ $product->discount_percentage*100 }}%</span>
-                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
+@if ($product->discount_percentage > 0.0 && $product->quantity > 1)
+                                        <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                            -{{ $product->discount_percentage*100 }}%
+                                        </span>
+                                        @elseif ( $product->quantity < 1) 
+                                        <span class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                            OUT OF STOCK
+                                        </span>
+                                        @endif                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
                                             <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
                                                 <span class="d-flex justify-content-center align-items-center flex-column">
                                                     <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i></a>
@@ -146,7 +153,7 @@
                                     </div>
                                 </div>
                                 <div class="product-details mt-3 text-center">
-                                    <h4 class="card-title">
+                                    <h4 class="card-title" title="{{ $product->name }}">
                                         <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}
                                         </a></h4>
                                     <div class="product-desc px-2 text-muted my-2">

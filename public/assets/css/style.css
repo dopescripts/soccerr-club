@@ -470,7 +470,7 @@ Collection page style
 }
 .categories-home .card-body img {
   height: 180px !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center center !important;
 }
 .category-detail .link-dark:hover {
@@ -521,9 +521,15 @@ About styles
 .about-us .about-img img:hover {
   transform: scale(1.08);
 }
+.product-detail .carousel-item img {
+  height: 400px !important;
+}
 
-.product-detail .carousel-item {
-  height: 500px !important;
+.product-details .card-title {
+  line-height: 2.5ex;
+  height: 5ex;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 /* Media queries  */
@@ -531,6 +537,11 @@ About styles
   .product-img img {
     height: 350px;
     object-fit: contain;
+  }
+  .categories-home .card-body img {
+    height: 250px !important;
+    object-fit: contain !important;
+    object-position: center center !important;
   }
 }
 @media (max-width: 786px) {
