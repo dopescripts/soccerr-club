@@ -101,6 +101,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>email</th>
+                                <th>Products</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -111,6 +112,7 @@
                                         <td>{{ $vendor->id }}</td>
                                         <td>{{ $vendor->name }}</td>
                                         <td>{{ $vendor->email }}</td>
+                                        <td>{{ $vendor->products->count() }}</td>
                                         <td>
                                             <a href="{{ route('delete.vendor', $vendor->id) }}" class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
                                         </td>

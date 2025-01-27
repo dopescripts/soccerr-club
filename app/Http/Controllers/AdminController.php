@@ -4,19 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categories;
+use App\Models\Product;
+use App\Models\Vendor;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin.pages.home');
+        $products = Product::orderby('id', 'desc')->where('is_active', '1')->take(6)->get();
+        $vendors = Vendor::all();
+        return view('admin.pages.home', compact('products', 'vendors'));
     }
     public function login()
     {
         return view('admin.pages.login');
     }
     public function categories(Categories $category){
-        $categories = Categories::paginate(3);
+        $categories = Categories::paginate(4);
         return view('admin.pages.categories', compact('categories'));
     }
     public function store_category(Request $request, Categories $category)

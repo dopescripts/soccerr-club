@@ -13,6 +13,9 @@
 <section class="categories-home w-100 py-5" data-aos="fade-up">
     <div class="container-fluid my-md-3">
         <div class="row w-100 gy-5 justify-content-center align-items-center text-center mx-auto mb-5">
+            @php
+            $categories = getCategories();
+            @endphp
             @foreach ($categories->take(6) as $categoryitem)
             <div class="col-lg-2 col-md-4 col-sm-6 col-6">
                 <a href="{{ route('category.detail', $categoryitem->id) }}">
@@ -149,7 +152,15 @@
                                     <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
                                 </a>
                                 <div>
-                                    <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-{{ $product->discount_percentage*100 }}%</span>
+                                    @if ($product->discount_percentage > 0.0 && $product->quantity > 1)
+                                    <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                        -{{ $product->discount_percentage*100 }}%
+                                    </span>
+                                    @elseif ( $product->quantity < 1) 
+                                    <span class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                        OUT OF STOCK
+                                    </span>
+                                    @endif
                                     <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
                                         <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
                                             <span class="d-flex justify-content-center align-items-center flex-column">
@@ -166,11 +177,11 @@
                                 </div>
                             </div>
                             <div class="product-details mt-3 text-center">
-<h4 class="card-title" title="{{ $product->name }}">
-                                        <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}
-                                        </a></h4>
+                                <h4 class="card-title" title="{{ $product->name }}">
+                                    <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ Str::limit($product->name, 32) }}
+                                    </a></h4>
                                 <div class="product-desc px-2 text-muted my-2">
-                                   {!! $product->description !!}
+                                   {!! Str::limit($product->description, 60) !!}
                                 </div>
                                 <div class="price">
                                     <span class="current-price fw-bold lead fw-bold text-black">${{ number_format($product->price - $product->price * $product->discount_percentage, 2) }}</span>

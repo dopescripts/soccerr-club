@@ -12,7 +12,7 @@ class ProductsController extends Controller
 {
     public function products()
     {
-        $products = Product::paginate(3);
+        $products = Product::paginate(5);
         return view('admin.pages.products', compact('products'));
     }
     public function products_add()
@@ -216,5 +216,29 @@ class ProductsController extends Controller
         $product->delete();
 
         return redirect()->route('admin.products')->with('success', 'Product deleted successfully!');
+    }
+    public function deactivate(Request $request, $id)
+    {
+        $product = Product::find($id);
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+
+        $product->is_active = 0;
+        $product->save();
+
+        return redirect()->route('admin.products')->with('success', 'Product status updated successfully!');
+    }
+    public function activate(Request $request, $id)
+    {
+        $product = Product::find($id);
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+
+        $product->is_active = 1;
+        $product->save();
+
+        return redirect()->route('admin.products')->with('success', 'Product status updated successfully!');
     }
 }

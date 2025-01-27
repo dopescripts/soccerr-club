@@ -11,14 +11,26 @@
     <!-- Hero Section ends-->
     <!-- Collection section start  -->
     <section class="collection py-5 w-100">
-        <div class="container-fluid mx-lg-2">
+        <div class="container-fluid px-lg-5">
           <div class="row justify-content-start align-items-center gy-5 w-100 mx-auto">
+            @php
+            $categories = getCategories(); 
+            @endphp
             @foreach ($categories as $categoryitem)
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mx-auto mx-md-0 justify-content-start">
               <div class="card">
                 <div class="card-body text-center border rounded border-black">
-                  <img loading="lazy" src="{{ asset('public/' . $categoryitem->image) }}" alt="" class="img-fluid p-2" />
-                  <a href="{{ route('category.detail', $categoryitem->id) }}" class="link-dark fw-semibold text-decoration-none pt-3">{{ $categoryitem->name }}</a>
+                  <a href="{{ route('category.detail', $categoryitem->id) }}">
+                    <img loading="lazy" src="{{ asset('public/' . $categoryitem->image) }}" alt="" class="img-fluid p-2" />
+                  </a>
+                  <a href="{{ route('category.detail', $categoryitem->id) }}" class="link-dark fw-semibold text-decoration-none pt-3 fs-4">{{ $categoryitem->name }}</a>
+                  <p class="text-danger">
+                    @if ($categoryitem->products()->count() > 0 )
+                      {{$categoryitem->products()->count() . " items"}}
+                    @else 
+                      No Products 
+                    @endif   
+                  </p>
                 </div>
               </div>
             </div>

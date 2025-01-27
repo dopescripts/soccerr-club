@@ -2,7 +2,32 @@
 @section('title', 'Product')
 @section('content')
 <!-- Hero Section -->
-<section class="product-hero text-center text-white w-100">
+<style>
+    .star-rating {
+        direction: rtl;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .star-rating input {
+        display: none;
+    }
+
+    .star-rating label {
+        color: #ddd;
+        font-size: 24px;
+        padding: 0 2px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover~label,
+    .star-rating input:checked~label {
+        color: #ffc107;
+    }
+</style>
+<section class="product-hero product-detail-hero text-center text-white w-100">
     <div class="d-flex h-100 align-items-center flex-column justify-content-center">
         <h1 class="text-white fw-bolder text-capitalize">{{ $product->name }}</h1>
         <p>Home/product/{{ $product->slug }}</p>
@@ -24,11 +49,10 @@
                                     <img src="{{ asset( 'storage/' . $images[0]) }}" class="img-fluid"
                                         alt="{{$product->name}} pic">
                                 </div>
-                                @for ($i = 1; $i < count($images); $i++) 
-                                <div class="carousel-item">
+                                @for ($i = 1; $i < count($images); $i++) <div class="carousel-item">
                                     <img src="{{ asset( 'storage/' . $images[$i]) }}" class="img-fluid"
                                         alt="{{$product->name}} pic">
-                                </div>
+                            </div>
                             @endfor
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -43,11 +67,12 @@
                         </button>
                     </div>
                     <div class="d-flex my-4 thumbnail gap-3 col-md-10 justify-content-center mx-auto">
-                        @for ($i = 0; $i < count($images); $i++) 
-                            <button  class="border-0 outline-none shadow" type="button"  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $i }}">
+                        @for ($i = 0; $i < count($images); $i++) <button class="border-0 outline-none shadow"
+                            type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $i }}">
                             <img src="{{ asset( 'storage/' . $images[$i]) }}" alt="" class="img-fluid rounded-3 thumb">
-                            </button  class="border-0 outline-none shadow" type="button"  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $i }}">
-                        @endfor
+                            </button class="border-0 outline-none shadow" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $i }}">
+                            @endfor
                     </div>
                 </div>
 
@@ -65,11 +90,14 @@
                     <div class="d-md-flex justify-content-between align-items-center my-3">
                         <div class="price d-flex align-items-center gap-2">
                             <div>
-                                <span class="new-price text-dark fs-5 fw-semibold">${{ number_format($product->price - $product->price * $product->discount_percentage, 2) }}</span>
+                                <span class="new-price text-dark fs-5 fw-semibold">${{ number_format($product->price -
+                                    $product->price * $product->discount_percentage, 2) }}</span>
                                 <span
-                                    class="old-price text-secondary small fw-semibold text-decoration-line-through">${{ $product->price }}</span>
+                                    class="old-price text-secondary small fw-semibold text-decoration-line-through">${{
+                                    $product->price }}</span>
                             </div>
-                            <span class="badge rounded-0 bg-black fw-normal">-{{ $product->discount_percentage*100 }}%</span>
+                            <span class="badge rounded-0 bg-black fw-normal">-{{ $product->discount_percentage*100
+                                }}%</span>
                         </div>
                         <div class="action d-flex align-items-center gap-3">
                             <a href="#"
@@ -186,7 +214,8 @@
                     {!! $product->description !!}
                 </div>
             </div>
-            <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                tabindex="0">
                 <div class="my-5">
                     <h3 class="text-black fw-bolder text-center">Customer Reviews</h3>
                     <div class="d-md-flex justify-content-center text-center align-items-center my-5 mx-auto gap-5">
@@ -202,8 +231,54 @@
                         </div>
                         <div class="fs-2 fw-light text-muted mb-3 mb-md-0">|</div>
                         <div>
-                            <button class="btn btn-primary fw-bold rounded-0 shadow-none outline-none">Write a
-                                review</button>
+                            <button class="btn btn-primary fw-bold rounded-0 shadow-none outline-none" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#reviewCollapse" aria-expanded="false"
+                                aria-controls="reviewExample">
+                                Write a review
+                            </button>
+                        </div>
+                    </div>
+                    <div class="collapse" id="reviewCollapse">
+                        <div class="col-xl-6 col-lg-6 col-md-10 col-sm-12 col-12 justify-content-center mx-auto">
+                            <div class="card card-bg">
+                                <div class="card-body">
+                                    
+                                    @guest
+                                        @if (Route::has('login'))
+                                            <p class="text-center">Please <a href="{{ route('login') }}">Login</a> or <a href="{{ route('register') }}">Register</a> to write a review.</p>
+                                        @endif
+                                    @else
+                                        <h4 class="card-title fw-bold text-center text-black mb-2">Write a review</h4>
+                                        <div class="text-center">
+                                            <p class="lead mb-1">RATING</p>
+                                            <form action="" action="POST">
+                                                <input type="hidden" name="product" value="{{ $product->id }}">
+                                                <input type="hidden" name="user" value="{{ Auth::user()->name }}">
+                                                <div class="star-rating animated-stars">
+                                                    <input type="radio" id="star5" name="rating" value="5">
+                                                    <label for="star5" class="bi bi-star-fill"></label>
+                                                    <input type="radio" id="star4" name="rating" value="4">
+                                                    <label for="star4" class="bi bi-star-fill"></label>
+                                                    <input type="radio" id="star3" name="rating" value="3">
+                                                    <label for="star3" class="bi bi-star-fill"></label>
+                                                    <input type="radio" id="star2" name="rating" value="2">
+                                                    <label for="star2" class="bi bi-star-fill"></label>
+                                                    <input type="radio" id="star1" name="rating" value="1">
+                                                    <label for="star1" class="bi bi-star-fill"></label>
+                                                </div>
+                                                <p class="lead mb-1">REVIEW</p>
+                                                <div class="col-11 justify-content-center my-3 mx-auto">
+                                                    <textarea name="review" id="review" cols="30" rows="6"
+                                                        class="form-control outline-none shadow-none fs-5"
+                                                        placeholder="Write your review here..."></textarea>
+                                                </div>
+                                                <button type="reset" class="btn btn-light mb-3 mx-2">CANCEL</button>
+                                                <button type="submit" class="btn btn-success mb-3">SUBMIT REVIEW</button>
+                                            </form>
+                                        </div>
+                                    @endguest
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -240,7 +315,15 @@
                                             <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
                                         </a>
                                         <div>
-                                            <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">-{{ $product->discount_percentage*100 }}%</span>
+                                            @if ($product->discount_percentage > 0.0 && $product->quantity > 1)
+                                            <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                                -{{ $product->discount_percentage*100 }}%
+                                            </span>
+                                            @elseif ( $product->quantity < 1) 
+                                            <span class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                                OUT OF STOCK
+                                            </span>
+                                            @endif
                                             <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
                                                 <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
                                                     <span class="d-flex justify-content-center align-items-center flex-column">
@@ -257,11 +340,11 @@
                                         </div>
                                     </div>
                                     <div class="product-details mt-3 text-center">
-                                        <h4 class="card-title">
-                                            <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ $product->name }}
+                                        <h4 class="card-title" title="{{ $product->name }}">
+                                            <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ Str::limit($product->name, 32) }}
                                             </a></h4>
                                         <div class="product-desc px-2 text-muted my-2">
-                                           {!! $product->description !!}
+                                           {!! Str::limit($product->description, 60) !!}
                                         </div>
                                         <div class="price">
                                             <span class="current-price fw-bold lead fw-bold text-black">${{ number_format($product->price - $product->price * $product->discount_percentage, 2) }}</span>
@@ -314,4 +397,14 @@
     </div>
 </section>
 <!-- newsletter  -->
+<script>
+    document.querySelectorAll('.star-rating:not(.readonly) label').forEach(star => {
+        star.addEventListener('click', function() {
+            this.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+        });
+    });
+</script>
 @endsection

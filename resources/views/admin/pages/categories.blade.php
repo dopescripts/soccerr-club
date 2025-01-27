@@ -77,7 +77,7 @@
                                         <tr>
                                             <td>{{ $category->id }}</td>
                                             <td>{{ $category->name }}</td>
-                                            <td>0</td>
+                                            <td>{{ $category->products()->count()}}</td>
                                             <td><img src="{{ asset('public/' . $category->image) }}" alt="" class="img-fluid"></td>
                                             <td>
                                                 <!-- Pass category data to the edit modal -->
