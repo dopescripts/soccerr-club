@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Models\Product;
 use App\Models\Team;
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index()
@@ -33,7 +34,7 @@ class HomeController extends Controller
     }
     public function products()
     {
-        $products = Product::orderby('id', 'desc')->get();
+        $products = Product::orderby('id', 'desc')->get()->where('is_active', 1);
         return view('web.pages.allproducts', compact('products'));
     }
     public function categories()
@@ -52,5 +53,11 @@ class HomeController extends Controller
     {
         $team = Team::all();
         return view('web.pages.team', compact('team'));
+    }
+    public function checkout()
+    {
+        $cart = getCart();
+        $user = Auth::user();
+        return view('web.pages.checkout', compact('cart', 'user'));
     }
 }

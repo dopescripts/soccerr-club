@@ -17,7 +17,7 @@ class Product extends Model
             $products->slug = Str::slug($products->name);
         });
     }
-
+    protected $primaryKey = 'id';
     protected $table = 'products';
 
     protected $fillable = [
@@ -66,6 +66,14 @@ class Product extends Model
     public function featured()
     {
         return $this->hasMany(FeaturedProducts::class);
+    }
+    public function cart()
+    {
+        return $this->hasMany(Cart::class, 'product_id');
+    }
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class, 'product_id');
     }
 }
 

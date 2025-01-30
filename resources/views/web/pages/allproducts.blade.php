@@ -66,12 +66,12 @@
                         <form action="">
                             <label for="instock" class="form-label d-inline-flex gap-2 align-items-center mb-1"><input
                                     type="checkbox" name="instock" id="instock" class="form-check mb-0" /> In Stock
-                                (4)</label>
+                                ({{ $products->where("quantity", ">", "0")->count() }})</label>
                         </form>
                         <form action="">
                             <label for="outstock" class="form-label d-inline-flex gap-2 align-items-center mb-1"><input
                                     type="checkbox" name="instock" id="outstock" class="form-check mb-0" /> Out of Stock
-                                (0)</label>
+                                ({{ $products->where("quanity", "==", "0")->count() }})</label>
                         </form>
                     </div>
                     <hr />
@@ -112,7 +112,9 @@
                             data-bs-toggle="collapse" href="#feautured" role="button" aria-expanded="false">Featured
                             Products<i class="bi bi-plus"></i> </a>
                     </p>
-                    <div class="collapse" id="feautured">...</div>
+                    <div class="collapse" id="feautured">
+                        ..........
+                    </div>
                     <hr />
                 </div>
             </div>
@@ -146,53 +148,71 @@
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mx-auto justify-content-center">
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
-                            <div class="product-img d-flex justify-content-center align-items-center rounded position-relative">
+                            <div
+                                class="product-img d-flex justify-content-center align-items-center rounded position-relative">
                                 <a href="{{ route('product', ['slug' => $product->slug]) }}">
-                                    <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}" alt="" class="bg-white img-fluid p-2" />
+                                    <img loading="lazy" src="{{ asset('storage/uploads/products'. '/' . $product->thumb)}}"
+                                        alt="" class="bg-white img-fluid p-2" />
                                 </a>
                                 <div>
                                     @if ($product->discount_percentage > 0.0 && $product->quantity > 1)
-                                    <span class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                    <span
+                                        class="badge bg-black position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
                                         -{{ $product->discount_percentage*100 }}%
                                     </span>
-                                    @elseif ( $product->quantity < 1) 
-                                    <span class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
+                                    @elseif ( $product->quantity < 1) <span
+                                        class="badge bg-danger position-absolute top-0 start-0 mt-2 ms-2 fw-bold rounded-0">
                                         OUT OF STOCK
-                                    </span>
-                                    @endif
-                                    <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
-                                        <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
-                                            <span class="d-flex justify-content-center align-items-center flex-column">
-                                                <a href="#" class="d-inline-block btn btn-dark" title="Add to Wishlist"><i class="bi bi-heart"></i></a>
-                                            </span>
-                                            <span class="d-flex justify-content-center align-items-center flex-column">
-                                                <a href="#" class="d-inline-block btn btn-dark" title="Quick View"><i class="bi bi-eye"></i></a>
-                                            </span>
-                                            <span class="d-flex justify-content-center align-items-center flex-column">
-                                                <a href="#" class="d-inline-block btn btn-dark" title="Compare"><i class="bi bi-stack"></i></a>
-                                            </span>
+                                        </span>
+                                        @endif
+                                        <div class="product-overlay position-absolute mt-2 me-2 end-0 top-0">
+                                            <div class="d-flex flex-column gap-1 justify-content-center align-items-center">
+                                                <span class="d-flex justify-content-center align-items-center flex-column">
+                                                    @if (isProductInWishlist($product->id))
+                                                    <a href="{{ route('wishlist.remove', $product->slug) }}" class="d-inline-block btn btn-dark"
+                                                        title="Remove from Wishlist"><i class="bi bi-heart-fill"></i>
+                                                    </a>
+                                                    @else
+                                                    <a href="{{ route('wishlist.add', $product->slug) }}" class="d-inline-block btn btn-dark"
+                                                        title="Add to Wishlist"><i class="bi bi-heart"></i>
+                                                    </a>
+                                                    @endif
+                                                </span>
+                                                <span class="d-flex justify-content-center align-items-center flex-column">
+                                                    <a href="{{ route('product', $product->slug) }}" class="d-inline-block btn btn-dark" title="Quick View"><i
+                                                            class="bi bi-eye"></i></a>
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="product-details mt-3 text-center">
                                 <h4 class="card-title" title="{{ $product->name }}">
-                                    <a href="{{ route('product', ['slug' => $product->slug]) }}" class="text-black fw-semibold text-decoration-none text-uppercase">{{ Str::limit($product->name, 32) }}
-                                    </a></h4>
+                                    <a href="{{ route('product', ['slug' => $product->slug]) }}"
+                                        class="text-black fw-semibold text-decoration-none text-uppercase">{{
+                                        Str::limit($product->name, 32) }}
+                                    </a>
+                                </h4>
                                 <div class="product-desc px-2 text-muted my-2">
-                                   {!! Str::limit($product->description, 60) !!}
+                                    {!! Str::limit($product->description, 60) !!}
                                 </div>
                                 <div class="price">
-                                    <span class="current-price fw-bold lead fw-bold text-black">${{ number_format($product->price - $product->price * $product->discount_percentage, 2) }}</span>
-                                    <p class="previous-price text-decoration-line-through text-muted d-inline-block my-0">${{ $product->price }}</p>
+                                    <span class="current-price fw-bold lead fw-bold text-black">${{
+                                        number_format($product->price - $product->price * $product->discount_percentage, 2)
+                                        }}</span>
+                                    <p class="previous-price text-decoration-line-through text-muted d-inline-block my-0">
+                                        ${{ $product->price }}</p>
                                     </p>
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-dark" id="addToCart" onclick="addToCart()">
-                                        Add to Cart
-                                        <span class="d-none spinner-border spinner-border-sm" id="loader" aria-hidden="true"></span>
-                                        <span class="visually-hidden" role="status">Loading...</span>
-                                    </button>
+                                    <form action="{{ route('cart.add', $product->slug) }}" method="get">
+                                        <button type="submit" class="btn btn-dark" id="addToCart" onclick="addToCart()">
+                                            Add to Cart
+                                            <span class="d-none spinner-border spinner-border-sm" id="loader"
+                                                aria-hidden="true"></span>
+                                            <span class="visually-hidden" role="status">Loading...</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

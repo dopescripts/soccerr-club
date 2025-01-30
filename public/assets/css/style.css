@@ -97,6 +97,9 @@
   background-color: var(--secondary-color) !important;
   color: var(--primary-color) !important;
 }
+.btn-dark:active {
+  transform: scale(1.1) !important;
+}
 
 /* Styles headings */
 h1,
