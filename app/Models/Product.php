@@ -47,12 +47,6 @@ class Product extends Model
     {
         return $this->belongsTo(Vendor::class);
     }
-
-    public function orders()
-    {
-        return $this->hasMany(Orders::class);
-    }
-
     public function reviews()
     {
         return $this->hasMany(Reviews::class);
@@ -69,7 +63,7 @@ class Product extends Model
     }
     public function cart()
     {
-        return $this->hasMany(Cart::class, 'product_id');
+        return $this->hasMany(CartItem::class, 'product_id');
     }
     public function wishlist()
     {

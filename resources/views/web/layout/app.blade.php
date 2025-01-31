@@ -65,16 +65,6 @@
                     </li>
                     @endif
                     @endforeach
-                    {{-- <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Pages <i class="bi bi-chevron-down"></i> </a>
-                        <ul class="dropdown-menu position-absolute rounded-0 p-3 border-0 shadow-sm">
-                            <li><a href="contact.html" class="dropdown-item">Contact Us </a></li>
-                            <li><a href="about.html" class="dropdown-item">About Us </a></li>
-                            <li><a href="team.html" class="dropdown-item">Our Team </a></li>
-                            <li><a href="faq.html" class="dropdown-item">faq </a></li>
-                        </ul>
-                    </li> --}}
                 </ul>
                 <div class="d-flex align-items-center gap-3">
                     @guest

@@ -31,14 +31,6 @@ Route::controller(App\Http\Controllers\HomeController::class)->group(function ()
     Route::get('/category/{id}', 'category_detail')->name('category.detail');
 });
 Auth::routes();
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
-    Route::get('/cart/add/{slug}', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
-    Route::get('/cart/remove/{slug}', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
-    Route::get('/wishlist/add/{slug}', [App\Http\Controllers\WishlistController::class, 'add'])->name('wishlist.add');
-    Route::get('/wishlist/remove/{slug}', [App\Http\Controllers\WishlistController::class, 'remove'])->name('wishlist.remove');
-    Route::get('/checkout/{order_id}', [App\Http\Controllers\HomeController::class, 'checkout'])->name('checkout');
-});
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
 Route::get('/admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin.login');
 

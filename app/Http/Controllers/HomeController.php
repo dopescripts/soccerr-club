@@ -54,10 +54,10 @@ class HomeController extends Controller
         $team = Team::all();
         return view('web.pages.team', compact('team'));
     }
-    public function checkout()
+    public function checkout($order_id)
     {
         $cart = getCart();
         $user = Auth::user();
-        return view('web.pages.checkout', compact('cart', 'user'));
+        return view('web.pages.checkout', compact('cart', 'user'), ['order_id' => $order_id]);
     }
 }

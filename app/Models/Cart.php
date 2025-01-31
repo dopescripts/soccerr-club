@@ -9,24 +9,23 @@ class Cart extends Model
 {
     use HasFactory;
     protected $table = 'carts';
+    protected $fillable = ['user_id'];
 
-    protected $fillable = [
-        'user_id',
-        'product_id',
-        'quantity',
-        'sub_total',
-        'shipping',
-        'total',
-    ];
-
+    // Automatically set the user_id to the authenticated user's ID
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($cart) {
+            $cart->user_id = auth()->id();
+        });
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
-    public function product()
+    public function cartItems()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(CartItem::class);
     }
 }
