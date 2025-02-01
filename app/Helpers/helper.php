@@ -35,4 +35,12 @@ function isProductInWishlist($productId)
     }
     return false;
 }
+function getCart()
+{
+    if (Auth::check()) {
+        $cart = Cart::where('user_id', Auth::id())->first();
+        return $cart;
+    }
+    return null;
+}
 ?>

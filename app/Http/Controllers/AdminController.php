@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Models\Product;
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -76,5 +77,9 @@ class AdminController extends Controller
         }
         $category->delete();
         return redirect()->back()->with('toast_error', 'Deleted successfully!');
+    }
+    public function users(){
+        $users = User::paginate(10);
+        return view('admin.pages.users', compact('users'));
     }
 }

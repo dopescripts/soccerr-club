@@ -27,10 +27,10 @@
             color: #ffc107;
         }
     </style>
-    <section class="product-hero product-detail-hero text-center text-white w-100">
-        <div class="d-flex h-100 align-items-center flex-column justify-content-center">
+    <section class="product-hero product-detail-hero text-center text-white w-100 mx-auto">
+        <div class="d-flex h-100 align-items-center flex-column justify-content-center col-md-10 mx-auto">
             <h1 class="text-white fw-bolder text-capitalize">{{ $product->name }}</h1>
-            <p>Home/product/{{ $product->slug }}</p>
+            <p class="text-secondary">Home/product/{{ $product->slug }}</p>
         </div>
     </section>
     <!-- Product section start  -->
@@ -115,29 +115,20 @@
                                 @endif
                             </p>
                             <div class="col-lg-5 col-md-5 col-sm-6 col-8 my-3 mt-1 mx-auto mx-lg-0">
-                                @if (!isProductinCart($product->id))
-                                    <form action="{{ route('cart.add', $product->slug) }}" method="get">
-                                        <div class="input-group w-100 border">
-                                            <button type="button" class="btn btn-light rounded-0" onclick="minusCart()"><i class="bi bi-dash fs-4"></i>
-                                            </button>
-                                            <input type="text" name="quantity" class="form-control shadow-none outline-none border-0 bg-light" value="1" id="cartquant" max="{{ $product->quantity - 1 }}" aria-valuemax="{{ $product->quantity - 1 }}" readonly required />
-                                            <button type="button" class="btn btn-light rounded-0" onclick="addCart()">
-                                                <i class="bi bi-plus fs-4"></i>
-                                            </button>
-                                        </div>
+                                <form action="{{ route('cart.add', $product->slug) }}" method="get">
+                                    <div class="input-group w-100 border">
+                                        <button type="button" class="btn btn-light rounded-0" onclick="minusCart()"><i class="bi bi-dash fs-4"></i>
+                                        </button>
+                                        <input type="text" name="quantity" class="form-control shadow-none outline-none border-0 bg-light" value="1" id="cartquant" max="{{ $product->quantity - 1 }}" aria-valuemax="{{ $product->quantity - 1 }}" readonly required />
+                                        <button type="button" class="btn btn-light rounded-0" onclick="addCart()">
+                                            <i class="bi bi-plus fs-4"></i>
+                                        </button>
+                                    </div>
                             </div>
                             <div class="my-2"><i class="bi bi-eye bg-secondary text-light px-3 py-2 rounded-pill"></i> {{ rand(1, 100) }} people are viewing this right now</div>
                             <div class="d-flex flex-column flex-lg-row gap-2 align-items-center my-3">
                                 <button type="submit" class="btn btn-secondary shadow-sm flex-grow-1 flex-lg-0"><i class="bi bi-cart"></i> Add to Cart</button>
                                 </form>
-                            @else
-                                <form action="{{ route('cart.remove', $product->slug) }}" method="get">
-                            </div>
-                            <div class="my-2"><i class="bi bi-eye bg-secondary text-light px-3 py-2 rounded-pill"></i> {{ rand(1, 100) }} people are viewing this right now</div>
-                            <div class="d-flex flex-column flex-lg-row gap-2 align-items-center my-3">
-                                <button type="submit" class="btn btn-danger shadow-sm flex-grow-1 flex-lg-0"><i class="bi bi-cart"></i> Remove from Cart</button>
-                                </form>
-                                @endif
 
                                 <button type="button" class="btn btn-dark flex-grow-1">Buy it Now</button>
                             </div>

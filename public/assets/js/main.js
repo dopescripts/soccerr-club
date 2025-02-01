@@ -8,7 +8,7 @@ var swiper1 = new Swiper(".products-swipper .swiper", {
     clickable: true,
   },
   autoplay: {
-    delay: 2000, // time in milliseconds between transitions
+    delay: 5000, // time in milliseconds between transitions
   },
   navigation: {
     nextEl: ".swiper-button-next",

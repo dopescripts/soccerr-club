@@ -463,12 +463,13 @@ Collection page style
   background: url("/assets/images/collectionbackground.png");
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-position: center center;
   background-color: rgba(0, 0, 0, 0.2);
   background-blend-mode: darken;
 }
 .product-detail-hero {
-  height: 60vh;
+  height: 70vh;
 }
 .categories-home .card-body img {
   height: 180px !important;

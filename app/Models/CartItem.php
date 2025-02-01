@@ -25,8 +25,4 @@ class CartItem extends Model
     {
         return $this->belongsTo(Product::class);
     }
-    public function getTotalAttribute()
-    {
-        return $this->sub_total + $this->shipping;
-    }
 }

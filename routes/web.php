@@ -30,6 +30,16 @@ Route::controller(App\Http\Controllers\HomeController::class)->group(function ()
     Route::get('/team', 'team')->name('team');
     Route::get('/category/{id}', 'category_detail')->name('category.detail');
 });
+Route::controller(App\Http\Controllers\CartController::class)->group(function () {
+    Route::get('/cart', 'index')->name('cart');
+    Route::get('/cart/add/{slug}', 'add')->name('cart.add');
+    Route::get('/cart/remove/{slug}', 'remove')->name('cart.remove');
+});
+Route::controller(App\Http\Controllers\WishlistController::class)->group(function () {
+    Route::get('/wishlist', 'index')->name('wishlist');
+    Route::get('/wishlist/add/{slug}', 'add')->name('wishlist.add');
+    Route::get('/wishlist/remove/{slug}', 'remove')->name('wishlist.remove');
+});
 Auth::routes();
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
 Route::get('/admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin.login');
@@ -55,4 +65,5 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     Route::get('/team/delete/{id}', [\App\Http\Controllers\TeamController::class, 'delete'])->name('team.delete');
     Route::get('/product/deactivate/{id}', [\App\Http\Controllers\ProductsController::class, 'deactivate'])->name('product.deactivate');
     Route::get('/product/activate/{id}', [\App\Http\Controllers\ProductsController::class, 'activate'])->name('product.activate');
+    Route::get('/users', [\App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
 });
