@@ -29,6 +29,8 @@ Route::controller(App\Http\Controllers\HomeController::class)->group(function ()
     Route::get('/about', 'about')->name('about');
     Route::get('/team', 'team')->name('team');
     Route::get('/category/{id}', 'category_detail')->name('category.detail');
+    Route::get('/blog/{slug}', 'blog_detail')->name('blog.detail');
+    Route::get('/checkout/{id}', 'checkout')->name('checkout');
 });
 Route::controller(App\Http\Controllers\CartController::class)->group(function () {
     Route::get('/cart', 'index')->name('cart');
@@ -39,6 +41,9 @@ Route::controller(App\Http\Controllers\WishlistController::class)->group(functio
     Route::get('/wishlist', 'index')->name('wishlist');
     Route::get('/wishlist/add/{slug}', 'add')->name('wishlist.add');
     Route::get('/wishlist/remove/{slug}', 'remove')->name('wishlist.remove');
+});
+Route::middleware(['auth'])->group(function () {
+    Route::post('/place-order', [App\Http\Controllers\OrderController::class, 'place_order'])->name('place.order');
 });
 Auth::routes();
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
@@ -66,4 +71,5 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     Route::get('/product/deactivate/{id}', [\App\Http\Controllers\ProductsController::class, 'deactivate'])->name('product.deactivate');
     Route::get('/product/activate/{id}', [\App\Http\Controllers\ProductsController::class, 'activate'])->name('product.activate');
     Route::get('/users', [\App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
+    Route::get('/orders/pending', [\App\Http\Controllers\AdminController::class, 'pending'])->name('admin.orders.pending');
 });

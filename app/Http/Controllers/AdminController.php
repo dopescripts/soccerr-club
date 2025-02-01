@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Models\Product;
 use App\Models\Vendor;
+use App\Models\Order;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
@@ -14,7 +15,8 @@ class AdminController extends Controller
     public function index(){
         $products = Product::orderby('id', 'desc')->where('is_active', '1')->take(6)->get();
         $vendors = Vendor::all();
-        return view('admin.pages.home', compact('products', 'vendors'));
+        $orders = Order::all();
+        return view('admin.pages.home', compact('products', 'vendors', 'orders'));
     }
     public function login()
     {
@@ -81,5 +83,10 @@ class AdminController extends Controller
     public function users(){
         $users = User::paginate(10);
         return view('admin.pages.users', compact('users'));
+    }
+    public function pending()
+    {
+        $orders = Order::orderby('id', 'desc')->where('status', 'pending')->get();
+        return view('admin.pages.pendingOrders', compact('orders'));
     }
 }

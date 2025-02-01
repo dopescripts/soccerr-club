@@ -114,6 +114,23 @@
                     </div>
                 </li>
                 <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#orders-dropdown" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-shopping"></i>
+                        </span>
+                        <span class="menu-title">Orders</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="orders-dropdown">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.orders.pending') }}">
+                                    Pending Orders</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}">
+                                    Approved Orders</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item menu-items">
                     <a class="nav-link" href="{{ route('admin.categories') }}">
                         <span class="menu-icon">
                             <i class="mdi mdi-view-grid"></i>

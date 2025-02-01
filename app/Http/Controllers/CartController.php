@@ -12,11 +12,12 @@ class CartController extends Controller
     public function add(Request $request, $slug)
     {
         $product = Product::where('slug', $slug)->first();
+        $p_price = number_format($product->price - $product->price * $product->discount_percentage, 2);
         $cart = Cart::firstOrCreate(['user_id' => auth()->id()]);
         $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $product->id)->first();
         if ($cartItem) {
             $cartItem->quantity = $request->has('quantity') ? $request->quantity : $cartItem->quantity + 1;
-            $cartItem->sub_total = $cartItem->sub_total * $cartItem->quantity;
+            $cartItem->sub_total = $p_price * $cartItem->quantity; // Recalculate sub_total based on product price and quantity
             $cartItem->total = $cartItem->sub_total;
             $cartItem->save();
         } else {
@@ -24,7 +25,7 @@ class CartController extends Controller
             $cartItem->cart_id = $cart->id;
             $cartItem->product_id = $product->id;
             $cartItem->quantity = $request->has('quantity') ? $request->quantity : 1;
-            $cartItem->sub_total = $product->price * $cartItem->quantity;
+            $cartItem->sub_total = $p_price * $cartItem->quantity;
             $cartItem->total = $cartItem->sub_total;
             $cartItem->save();
         }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Models\Product;
 use App\Models\Team;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
@@ -54,10 +55,14 @@ class HomeController extends Controller
         $team = Team::all();
         return view('web.pages.team', compact('team'));
     }
-    public function checkout($order_id)
+    public function checkout($id)
     {
-        $cart = getCart();
-        $user = Auth::user();
-        return view('web.pages.checkout', compact('cart', 'user'), ['order_id' => $order_id]);
+
+        $cart = Cart::find($id);
+        $cartauth = Cart::where('user_id', Auth::id())->first();
+        if ($cartauth->id != $cart->id) {
+            return redirect()->route('home')->with('error', 'You are not authorized to view this page.');
+        }
+        return view('web.pages.checkout', compact('cart'));
     }
 }

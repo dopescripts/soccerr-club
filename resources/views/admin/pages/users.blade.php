@@ -1,20 +1,20 @@
 @extends('admin.layout.app')
 
-@section('title', 'Add Products - ')
+@section('title', 'Users - ')
 
 @section('content')
     <div class="content-wrapper">
         <div class="page-header d-flex justify-content-between">
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-warning text-white mr-2">
-                    <i class="mdi mdi-package-variant"></i>
+                    <i class="mdi mdi-account"></i>
                 </span> Users on Website
             </h3>
         </div>
         <div class="row w-100">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>

@@ -32,4 +32,8 @@ class Cart extends Model
     {
         return $this->cartItems()->sum('total') + $this->shipping;
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

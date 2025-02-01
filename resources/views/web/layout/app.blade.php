@@ -358,11 +358,7 @@
                                                     <p class="fw-semibold m-0">${{ number_format($cart->total, 2) }}</p>
                                                 </div>
                                                 <div class="d-grid my-2">
-                                                    <a href="checkout.html" class="btn btn-secondary fw-semibold">View
-                                                        Cart</a>
-                                                </div>
-                                                <div class="d-grid my-2">
-                                                    <a href="{{-- route('checkout', ['order_id' => bin2hex(random_bytes(8))]) --}}" class="btn btn-primary fw-semibold">Checkout</a>
+                                                    <a href="{{ route('checkout', $cart->id) }}" class="btn btn-primary fw-semibold">Checkout</a>
                                                 </div>
                                             </div>
                                         </div>

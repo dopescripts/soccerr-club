@@ -8,7 +8,7 @@
     <!-- Bs5 cdn link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <!-- Custom css link -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
     <!-- Bs5 icons  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <!-- Jquery link -->
@@ -40,18 +40,19 @@
                         <main>
                             <div class="row g-5">
                                 <div class="col-md-12 col-lg-11">
-                                    <h4 class="mb-3">Billing address</h4>
-                                    <form class="needs-validation" action="" method="POST">
-                                        <input type="hidden" value="{{ $order_id }}" name="order_id">
-                                        
+                                    <h4 class="mb-3">Finalize Details</h4>
+                                    <form class="needs-validation" action="{{ route('place.order') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{ $cart->id }}" name="cart_id">
+
                                         <div class="row g-3">
                                             <div class="col-sm-12">
                                                 <label for="firstName" class="form-label">Full name</label>
-                                                <input type="text" class="form-control shadow-none outline-none" id="firstName" placeholder="" value="{{ $user->name }}" disabled required>
+                                                <input type="text" value="{{ $cart->user->name }}" class="form-control shadow-none outline-none" id="firstName" placeholder="" value="" disabled required>
                                             </div>
                                             <div class="col-12">
                                                 <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control shadow-none outline-none" id="email" value="{{ $user->email }}" readonly disabled placeholder="you@example.com">
+                                                <input type="email" class="form-control shadow-none outline-none" id="email" value="{{ $cart->user->email }}" readonly disabled placeholder="you@example.com">
                                                 <div class="invalid-feedback">
                                                     Please enter a valid email address for shipping updates.
                                                 </div>
@@ -117,7 +118,7 @@
                                         </div>
 
                                         <hr class="my-4">
-                                        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to Order</button>
+                                        <button class="w-100 btn btn-dark btn-lg" type="submit">Place Order</button>
                                     </form>
                                 </div>
                             </div>
@@ -125,39 +126,38 @@
                     </div>
                 </div>
                 <div class="col-md-6 h-100 border-start border-dark-subtle">
-                    @php
-                        $cart = getcart();
-                    @endphp
-                    @foreach ($cart->items as $cartitem)
-                        <div class="ms-2 d-flex align-items-center my-3">
-                            <div class="d-flex gap-3 justify-content-between align-items-center w-100">
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="col-2 position-relative p-2">
-                                        <img src="{{ asset('storage/uploads/products' . '/' . $cartitem->product->thumb) }}" alt="" class="img-fluid rounded border border-dark-subtle" />
-                                        <span class="badge text-bg-danger position-absolute rounded-circle" style="top: -4px; right: -4px;">{{ $cartitem->quantity }}</span>
+                    <div class="position-relative">
+                        @foreach ($cart->cartItems as $cartitem)
+                            <div class="ms-2 d-flex align-items-center my-3">
+                                <div class="d-sm-flex gap-3 justify-content-between align-items-center w-100">
+                                    <div class="d-md-flex align-items-center gap-3">
+                                        <div class="col-sm-5 col-md-4 col-lg-2 position-relative p-2">
+                                            <img src="{{ asset('storage/uploads/products' . '/' . $cartitem->product->thumb) }}" alt="" class="img-fluid rounded border border-dark-subtle p-2 bg-white" />
+                                            <span class="badge text-bg-danger position-absolute rounded-circle" style="top: -4px; right: -4px;">{{ $cartitem->quantity }}</span>
+                                        </div>
+                                        <p class="my-0">{{ $cartitem->product->name }}</p>
                                     </div>
-                                    <p class="my-0">{{ $cartitem->product->name }}</p>
-                                </div>
-                                <div>
-                                    <span class="fw-semibold">{{ "$" . $cartitem->sub_total }}</span>
+                                    <div>
+                                        <span class="fw-semibold">{{ "$" . $cartitem->sub_total }}</span>
+                                    </div>
                                 </div>
                             </div>
+                        @endforeach
+                        <div class="container-fluid py-3 col-10 justify-content-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="fw-semibold m-0">Subtotal</p>
+                                <p class="fw-semibold m-0">${{ number_format($cart->sub_total, 2) }}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="fw-semibold m-0">Shipping</p>
+                                <p class="fw-semibold m-0">${{ number_format($cart->shipping, 2) }}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center fs-5">
+                                <p class="fw-bold m-0">Total</p>
+                                <p class="fw-bold m-0">${{ number_format($cart->total, 2) }}</p>
+                            </div>
                         </div>
-                    @endforeach
-                    <div class="container-fluid py-3 col-10 justify-content-center">
-                      <div class="d-flex justify-content-between align-items-center">
-                          <p class="fw-semibold m-0">Subtotal</p>
-                          <p class="fw-semibold m-0">${{ number_format($cart->sub_total, 2) }}</p>
-                      </div>
-                      <div class="d-flex justify-content-between align-items-center">
-                          <p class="fw-semibold m-0">Shipping</p>
-                          <p class="fw-semibold m-0">${{ number_format($cart->shipping, 2) }}</p>
-                      </div>
-                      <div class="d-flex justify-content-between align-items-center fs-5">
-                          <p class="fw-bold m-0">Total</p>
-                          <p class="fw-bold m-0">${{ number_format($cart->total, 2) }}</p>
-                      </div>
-                  </div>
+                    </div>
                 </div>
             </div>
         </section>
