@@ -39,7 +39,7 @@
                                             <td> {{ Str::limit($order->created_at, 11) }} </td>
                                             <td><a href="{{ route('order.details', $order->order_number) }}" class="btn btn-secondary">View Products</a></td>
                                             <td>
-                                                Completed
+                                                <span class="badge badge-success">Completed</span>
                                             </td>
                                         </tr>
                                         
