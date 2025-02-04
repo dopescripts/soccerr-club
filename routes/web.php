@@ -72,4 +72,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
     Route::get('/product/activate/{id}', [\App\Http\Controllers\ProductsController::class, 'activate'])->name('product.activate');
     Route::get('/users', [\App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
     Route::get('/orders/pending', [\App\Http\Controllers\AdminController::class, 'pending'])->name('admin.orders.pending');
+    Route::post('/orders/approve', [\App\Http\Controllers\OrderController::class, 'approve'])->name('approve.order');
+    Route::get('/orders/completed', [\App\Http\Controllers\AdminController::class, 'completed'])->name('completed.orders');
+    Route::get('/orders/completed/detail/{order_number}', [\App\Http\Controllers\AdminController::class, 'order_detail'])->name('order.details');
 });

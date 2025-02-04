@@ -15,6 +15,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body table-responsive">
+                        @if ($errors->any())
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-danger">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
                         <table class="table table-sm">
                             <thead>
                                 <tr>
@@ -26,6 +33,7 @@
                                     <th>Completed/Rejected</th>
                                 </tr>
                             </thead>
+                            @if ($orders->count() > 0)
                             <tbody>
                                 @foreach ($orders as $order)
                                     <tr>
@@ -38,11 +46,17 @@
                                         <td> {{ Str::limit($order->created_at, 11) }} </td>
                                         <td><button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#viewProducts{{ $order->id }}">View Products</button></td>
                                         <td>
-                                            @if ($order->status == 'completed')
-                                                <div class="badge badge-outline-success">Completed</div>
-                                            @else
-                                                <div class="badge badge-outline-danger">Pending</div>
-                                            @endif
+                                            <div class="d-flex">
+                                                <form action="{{ route('approve.order') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="order_id" id="order" value="{{$order->id}}">
+                                                    <button class="btn btn-success mr-2" type="submit">Approve</button>
+                                                </form>
+                                                <form action="" method="POST">
+                                                    @csrf
+                                                    <button class="btn btn-danger" type="submit">Reject</button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                     <div class="modal fade" id="viewProducts{{ $order->id }}">
@@ -83,6 +97,9 @@
                                     </div>
                                 @endforeach
                             </tbody>
+                            @else
+                            No pending orders left
+                            @endif
                         </table>
                     </div>
                 </div>

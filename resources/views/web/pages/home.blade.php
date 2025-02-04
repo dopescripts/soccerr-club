@@ -447,7 +447,7 @@
             <div class="card card-bg">
                 <div class="card-body">
                     <div class="team-img position-relative overflow-hidden text-center">
-                        <img loading="lazy" src="{{ asset('public/team' . " /" . $member->image) }}" alt=""
+                        <img loading="lazy" src="{{ asset('public/team' . "/" . $member->image) }}" alt=""
                         class="img-fluid" />
                         <div class="position-absolute top-0 start-0 team-link">
                             <div class="d-flex flex-column gap-2 mt-2 ms-3">

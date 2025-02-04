@@ -119,7 +119,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-md-8 col-sm-12 col-12 ps-lg-1 justify-content-center mx-auto">
+        <div class="col-lg-9 col-md-8 col-sm-12 col-12 ps-lg-3 justify-content-center mx-auto">
             <div class="card card-bg mb-3 mx-md-2 py-0">
                 <div class="card-body py-1">
                     <div class="d-flex align-items-center justify-content-between">
@@ -143,9 +143,9 @@
                     </div>
                 </div>
             </div>
-            <div class="product-row row align-items-center gy-5 justify-content-start w-100 mx-auto">
+            <div class="product-row row align-items-center gy-5 justify-content-start w-100 px-md-2">
                 @foreach ($products as $product)
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mx-auto justify-content-center">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 justify-content-center">
                     <div class="card rounded-4 card-bg">
                         <div class="card-body">
                             <div

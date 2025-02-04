@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categories;
+use App\Models\CompletedOrder;
 use App\Models\Product;
 use App\Models\Vendor;
 use App\Models\Order;
@@ -88,5 +89,15 @@ class AdminController extends Controller
     {
         $orders = Order::orderby('id', 'desc')->where('status', 'pending')->get();
         return view('admin.pages.pendingOrders', compact('orders'));
+    }
+    public function completed()
+    {
+        $orders = CompletedOrder::orderby('id', 'desc')->where('status', 'completed')->get();
+        return view('admin.pages.completedOrders', compact('orders'));
+    }
+    public function order_detail($order_number)
+    {
+        $order = CompletedOrder::where('order_number', $order_number)->first();
+        return view('admin.pages.orderDetail', compact('order'));
     }
 }

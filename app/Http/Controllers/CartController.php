@@ -29,7 +29,7 @@ class CartController extends Controller
             $cartItem->total = $cartItem->sub_total;
             $cartItem->save();
         }
-        return back()->with('success', 'Product added to cart.');
+        return back()->with('success', 'Product added to cart');
     }
     public function remove($slug)
     {

@@ -501,7 +501,7 @@
             </div>
             <div class="container-fluid">
                 <div class="text-center">
-                    <p class="text-secondary pt-2">Copyright © 2023. All rights reserved.</p>
+                    <p class="text-secondary pt-2">Copyright © 2025. All rights reserved.</p>
                 </div>
             </div>
         </div>

@@ -125,7 +125,7 @@
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.orders.pending') }}">
                                     Pending Orders</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}">
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('completed.orders') }}">
                                     Approved Orders</a></li>
                         </ul>
                     </div>

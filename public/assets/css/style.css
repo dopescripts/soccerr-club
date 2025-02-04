@@ -491,6 +491,16 @@ Collection page style
 /* 
 product-detail styles 
 */
+.product-detail .thumbnail .thumb {
+  filter: brightness(0.75);
+  transition: 0.3s ease;
+}
+.product-detail .thumbnail .thumb:hover {
+  filter: brightness(1);
+}
+.product-detail .thumbnail button:active .thumb {
+  filter: brightness(1);
+}
 .product-detail .nav-link {
   color: var(--black) !important;
   background-color: none !important;
