@@ -10,20 +10,33 @@ use App\Models\Vendor;
 use App\Models\Order;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $products = Product::orderby('id', 'desc')->where('is_active', '1')->take(6)->get();
         $vendors = Vendor::all();
         $orders = Order::all();
-        return view('admin.pages.home', compact('products', 'vendors', 'orders'));
+        $completed_orders = CompletedOrder::all();
+        $now = Carbon::now();
+        $thirtyDaysAgo = Carbon::now()->subDays(30);
+        $last30DaysSales = $completed_orders
+            ->whereBetween('created_at', [$thirtyDaysAgo, $now])
+            ->sum('total_price');
+        // Calculate the sum of sales for today
+        $todaySales = $completed_orders
+            ->where('created_at', Carbon::today())
+            ->sum('total_price');
+        return view('admin.pages.home', compact('products', 'vendors', 'orders', 'completed_orders', 'last30DaysSales', 'todaySales'));
     }
     public function login()
     {
         return view('admin.pages.login');
     }
-    public function categories(Categories $category){
+    public function categories(Categories $category)
+    {
         $categories = Categories::paginate(4);
         return view('admin.pages.categories', compact('categories'));
     }
@@ -42,9 +55,8 @@ class AdminController extends Controller
                 $category->image = $imageName;
                 $category->name = $request->input('category_name');
                 $category->save();
-        }
-    }
-        else {
+            }
+        } else {
             // Handle error, e.g., log or return a message
             return back()->with('error', 'Invalid image file.');
         }
@@ -62,7 +74,7 @@ class AdminController extends Controller
             if ($category->image && file_exists(public_path('public/' . $category->image))) {
                 unlink(public_path('public/' . $category->image)); // Delete the old image
             }
-            
+
             $image = $request->file('category_img');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('public'), $imageName);
@@ -81,7 +93,8 @@ class AdminController extends Controller
         $category->delete();
         return redirect()->back()->with('toast_error', 'Deleted successfully!');
     }
-    public function users(){
+    public function users()
+    {
         $users = User::paginate(10);
         return view('admin.pages.users', compact('users'));
     }
