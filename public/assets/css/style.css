@@ -262,6 +262,7 @@ Main styling
   width: 100%;
   height: 100% !important;
   object-fit: cover !important;
+  filter: brightness(0.6);
   object-position: center center !important;
 }
 main .display-1 {
@@ -427,10 +428,10 @@ team styles
 */
 
 .newsletter {
-  background: url("/assets/images/asset 42.jpeg");
+  background: url("/assets/images/newsletter-bg.jpg");
   background-size: cover;
   background-position: center center;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.4);
   background-blend-mode: darken;
   background-repeat: no-repeat;
   /* height: 100vh; */

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 // });
 Route::controller(App\Http\Controllers\HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
-    Route::get('/home', 'index')->name('home');
+    Route::get('/home', 'index')->name('home.slash');
     Route::get('/products', 'products')->name('products');
     Route::get('/product/{slug}', 'product')->name('product');
     Route::get('/categories', 'categories')->name('categories');
@@ -44,6 +44,7 @@ Route::controller(App\Http\Controllers\WishlistController::class)->group(functio
 });
 Route::middleware(['auth'])->group(function () {
     Route::post('/place-order', [App\Http\Controllers\OrderController::class, 'place_order'])->name('place.order');
+    Route::post('/add-review', [App\Http\Controllers\ReviewController::class, 'add_review'])->name('add.review');
 });
 Auth::routes();
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');

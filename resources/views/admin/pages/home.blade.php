@@ -84,10 +84,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 grid-margin stretch-card">
+            <div class="col-md-4 grid-margin stretch-card" style="max-height: 60vh;">
                 <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Categories</h4>
+                    <div class="card-body position-relative" style="overflow: auto;">
+                        <h4 class="card-title position-sticky">Categories</h4>
                         @php
                             $categories = getCategories();
                         @endphp
@@ -104,9 +104,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 grid-margin stretch-card">
+            <div class="col-md-8 grid-margin stretch-card" style="max-height: 60vh;">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body overflow-auto">
                         <div class="d-flex flex-row justify-content-between mb-1">
                             <h4 class="card-title mb-1">Products</h4>
                             <p class="text-muted mb-1">Recently added products</p>
@@ -165,32 +165,42 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orders as $order)
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-muted m-0">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input">
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <img src="assets/images/faces/avatar placeholder.png" alt="image" />
-                                                <span class="pl-2">{{ $order->cart->user->name }}</span>
-                                            </td>
-                                            <td title="{{ $order->order_number, 7 }}"> {{ Str::limit($order->order_number, 7) }} </td>
-                                            <td> ${{ $order->cart->getTotalAttribute() }} </td>
-                                            <td> {{ Str::limit($order->created_at, 11) }} </td>
-                                            <td> {{ 'pending' }} </td>
-                                            <td>
-                                                @if ($order->status == 'completed')
-                                                    <div class="badge badge-outline-success">Completed</div>
-                                                @else
-                                                    <div class="badge badge-outline-danger">Pending</div>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    @if ($orders->count() > 0)
+                                        @foreach ($orders as $order)
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check form-check-muted m-0">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input">
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <img src="assets/images/faces/avatar placeholder.png" alt="image" />
+                                                    <span class="pl-2">{{ $order->cart->user->name }}</span>
+                                                </td>
+                                                <td title="{{ $order->order_number, 7 }}"> {{ Str::limit($order->order_number, 7) }} </td>
+                                                <td> ${{ $order->cart->getTotalAttribute() }} </td>
+                                                <td> {{ Str::limit($order->created_at, 11) }} </td>
+                                                <td> {{ 'pending' }} </td>
+                                                <td>
+                                                    @if ($order->status == 'completed')
+                                                        <div class="badge badge-outline-success">Completed</div>
+                                                    @else
+                                                        <div class="badge badge-outline-danger">Pending</div>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <div class="d-flex justify-content-center">
+                                            <tr>
+                                                <td>
+                                                    <h4 class="text-muted"><i class="mdi mdi-alert"></i> No records found</h4>
+                                                </td>
+                                            </tr>
+                                        </div>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

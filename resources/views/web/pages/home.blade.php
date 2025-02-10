@@ -13,7 +13,7 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img loading="lazy" src="/assets/images/asset 4.jpeg" class="d-block" alt="..." />
+                <img loading="lazy" src="/assets/images/mario-klassen-70YxSTWa2Zw-unsplash.jpg" class="d-block" alt="..." />
                 <div class="carousel-caption">
                     <h5 class="text-uppercase fw-bold fs-6 text-white">welcome to our Soccerr club</h5>
                     <div class="display-1 text-uppercase fw-bold transform-animation">
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img loading="lazy" src="/assets/images/asset 4.jpeg" class="d-block" alt="..." />
+                <img loading="lazy" src="/assets/images/fachry-zella-devandra-Yta-zdP9PVM-unsplash.jpg" class="d-block" alt="..." />
                 <div class="carousel-caption">
                     <h5 class="text-uppercase fw-bold fs-6 text-white">welcome to our Soccerr club</h5>
                     <div class="display-1 text-uppercase fw-bold transform-animation">
@@ -481,174 +481,41 @@
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
+                    @foreach ($reviews as $testimonial)
                     <div class="swiper-slide">
                         <div class="col-12">
                             <div class="card p-3 py-2 card-bg">
                                 <div class="card-body">
                                     <div class="d-flex align-items-start justify-content-between">
-                                        <img loading="lazy" src="/assets/images/asset 23.jpeg" alt=""
-                                            class="img-fluid rounded" />
+                                        <img loading="lazy" src="/admin/assets/images/faces/avatar placeholder.png" alt=""
+                                            class="img-fluid rounded" width="100" />
                                         <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
                                     </div>
-                                    <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
+                                    <p class="fw-bolder mb-0 mt-3">{{ $testimonial->user->name }}</p>
                                     <div class="d-flex gap-1 star-icons">
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-half text-danger"></i>
+                                        <i class="bi bi-star-fill" id="star"></i>
+                                        <i class="bi bi-star-fill" id="star"></i>
+                                        <i class="bi bi-star-fill" id="star"></i>
+                                        <i class="bi bi-star-fill" id="star"></i>
+                                        <i class="bi bi-star" id="star"></i>
                                     </div>
-                                    <p class="rate-text mt-2 text-secondary-emphasis">Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit. Vel iste sit et corrupti quo enim, fugit possimus
-                                        totam?</p>
+                                    <script>
+                                        let star = document.querySelectorAll('#star');
+                                        let count = {{ $testimonial->rating }};
+                                        for (let i = 0; i < count; i++) {
+                                            star[i].classList.add("text-danger");
+                                        }
+                                    </script>
+                                    @if ($testimonial->comment) 
+                                        <p class="rate-text mt-2 text-secondary-emphasis">
+                                               {{ $testimonial->comment }}
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="col-12">
-                            <div class="card p-3 py-2 card-bg">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-start justify-content-between">
-                                        <img loading="lazy" src="/assets/images/asset 23.jpeg" alt=""
-                                            class="img-fluid rounded" />
-                                        <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
-                                    </div>
-                                    <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
-                                    <div class="d-flex gap-1 star-icons">
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-half text-danger"></i>
-                                    </div>
-                                    <p class="rate-text mt-2 text-secondary-emphasis">Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit. Vel iste sit et corrupti quo enim, fugit possimus
-                                        totam?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="col-12">
-                            <div class="card p-3 py-2 card-bg">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-start justify-content-between">
-                                        <img loading="lazy" src="/assets/images/asset 23.jpeg" alt=""
-                                            class="img-fluid rounded" />
-                                        <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
-                                    </div>
-                                    <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
-                                    <div class="d-flex gap-1 star-icons">
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-half text-danger"></i>
-                                    </div>
-                                    <p class="rate-text mt-2 text-secondary-emphasis">Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit. Vel iste sit et corrupti quo enim, fugit possimus
-                                        totam?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="col-12">
-                            <div class="card p-3 py-2 card-bg">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-start justify-content-between">
-                                        <img loading="lazy" src="/assets/images/asset 23.jpeg" alt=""
-                                            class="img-fluid rounded" />
-                                        <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
-                                    </div>
-                                    <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
-                                    <div class="d-flex gap-1 star-icons">
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-half text-danger"></i>
-                                    </div>
-                                    <p class="rate-text mt-2 text-secondary-emphasis">Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit. Vel iste sit et corrupti quo enim, fugit possimus
-                                        totam?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="col-12">
-                            <div class="card p-3 py-2 card-bg">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-start justify-content-between">
-                                        <img loading="lazy" src="/assets/images/asset 23.jpeg" alt=""
-                                            class="img-fluid rounded" />
-                                        <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
-                                    </div>
-                                    <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
-                                    <div class="d-flex gap-1 star-icons">
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-half text-danger"></i>
-                                    </div>
-                                    <p class="rate-text mt-2 text-secondary-emphasis">Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit. Vel iste sit et corrupti quo enim, fugit possimus
-                                        totam?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="col-12">
-                            <div class="card p-3 py-2 card-bg">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-start justify-content-between">
-                                        <img loading="lazy" src="/assets/images/asset 23.jpeg" alt=""
-                                            class="img-fluid rounded" />
-                                        <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
-                                    </div>
-                                    <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
-                                    <div class="d-flex gap-1 star-icons">
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-half text-danger"></i>
-                                    </div>
-                                    <p class="rate-text mt-2 text-secondary-emphasis">Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit. Vel iste sit et corrupti quo enim, fugit possimus
-                                        totam?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="col-12">
-                            <div class="card p-3 py-2 card-bg">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-start justify-content-between">
-                                        <img loading="lazy" src="/assets/images/asset 23.jpeg" alt=""
-                                            class="img-fluid rounded" />
-                                        <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
-                                    </div>
-                                    <p class="fw-bolder mb-0 mt-3">Samuel Jackson</p>
-                                    <div class="d-flex gap-1 star-icons">
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-fill text-danger"></i>
-                                        <i class="bi bi-star-half text-danger"></i>
-                                    </div>
-                                    <p class="rate-text mt-2 text-secondary-emphasis">Lorem ipsum dolor sit amet
-                                        consectetur adipisicing elit. Vel iste sit et corrupti quo enim, fugit possimus
-                                        totam?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                     <!-- Repeat other slides as needed -->
                 </div>
                 <!-- If we need pagination -->

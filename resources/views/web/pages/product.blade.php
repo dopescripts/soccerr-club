@@ -198,12 +198,12 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                    <div class="tab-pane fade" id="description-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="my-5">
                             {!! $product->description !!}
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                    <div class="tab-pane fade show" id="review-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                         <div class="my-5">
                             <h3 class="text-black fw-bolder text-center">Customer Reviews</h3>
                             <div class="d-md-flex justify-content-center text-center align-items-center my-5 mx-auto gap-5">
@@ -237,9 +237,10 @@
                                                 <h4 class="card-title fw-bold text-center text-black mb-2">Write a review</h4>
                                                 <div class="text-center">
                                                     <p class="lead mb-1">RATING</p>
-                                                    <form action="" action="POST">
+                                                    <form action="{{ route('add.review') }}" method="POST">
+                                                        @csrf
                                                         <input type="hidden" name="product" value="{{ $product->id }}">
-                                                        <input type="hidden" name="user" value="{{ Auth::user()->name }}">
+                                                        <input type="hidden" name="user" value="{{ Auth::user()->id }}">
                                                         <div class="star-rating animated-stars">
                                                             <input type="radio" id="star5" name="rating" value="5">
                                                             <label for="star5" class="bi bi-star-fill"></label>
@@ -265,6 +266,40 @@
                                     </div>
                                 </div>
                             </div>
+                            @if ($reviews->count() > 0)
+                                <div class="row justify-content-center gy-2">
+                                    @foreach ($reviews as $review)
+                                        <div class="col-md-6 bg-light">
+                                            <div class="d-flex p-3 w-100 justify-content-between align-items-center">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="/admin/assets/images/faces/avatar placeholder.png" alt="" width="60">
+                                                    <span class="fw-semibold ps-2">{{ $review->user->name }}</span>
+                                                </div>
+                                                <div>
+                                                    <i class="fa fa-star" id="star"></i>
+                                                    <i class="fa fa-star" id="star"></i>
+                                                    <i class="fa fa-star" id="star"></i>
+                                                    <i class="fa fa-star" id="star"></i>
+                                                    <i class="fa fa-star" id="star"></i>
+                                                    <span>({{ $review->rating }})</span>
+                                                </div>
+                                                <script>
+                                                    let star = document.querySelectorAll('#star');
+                                                    let count = {{ $review->rating }};
+                                                    for (let i = 0; i < count; i++) {
+                                                        star[i].classList.add("text-warning");
+                                                    }
+                                                </script>
+                                            </div>
+                                            @if ($review->comment != null)
+                                                <div class="col-md-10 bg-white ms-auto p-2 rounded-4 border">
+                                                    <p>{{ $review->comment }}</p>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

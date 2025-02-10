@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Models\Product;
 use App\Models\Team;
 use App\Models\Cart;
+use App\Models\Reviews;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
@@ -16,13 +17,15 @@ class HomeController extends Controller
         $products = Product::all();
         $team = Team::take(4)->get();
         $latest_products = Product::orderby('id', 'desc')->take(20)->get();
-        return view('web.pages.home', compact('category', 'products', 'latest_products', 'team'));
+        $reviews = Reviews::orderby('id', 'desc')->take(8)->get();
+        return view('web.pages.home', compact('category', 'products', 'latest_products', 'team', 'reviews'));
     }
     public function product($slug)
     {
         $product = Product::where('slug', $slug)->first();
         $latest_products = Product::orderby('id', 'desc')->take(20)->get();
-        return view('web.pages.product', compact('latest_products', 'product'));
+        $reviews = Reviews::where('product_id', $product->id)->get();
+        return view('web.pages.product', compact('latest_products', 'product', 'reviews'));
     }
     public function category_detail($id)
     {

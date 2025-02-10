@@ -42,7 +42,7 @@
                                                 <span class="pl-2">{{ $order->cart->user->name }}</span>
                                             </td>
                                             <td title="{{ $order->order_number, 7 }}"> {{ $order->order_number }} </td>
-                                            <td> ${{ $order->cart->getTotalAttribute() }} </td>
+                                            <td> ${{ $order->total_price }} </td>
                                             <td> {{ Str::limit($order->created_at, 11) }} </td>
                                             <td><button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#viewProducts{{ $order->id }}">View Products</button></td>
                                             <td>
