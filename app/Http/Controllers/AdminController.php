@@ -50,7 +50,8 @@ class AdminController extends Controller
             $category = new Categories;
             if ($request->hasFile('category_img')) {
                 $image = $request->file('category_img');
-                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $imageOriginalName = $request->category_img;
+                $imageName = time() . $imageOriginalName .  '.' .  $image->getClientOriginalExtension();
                 $image->move(public_path('public'), $imageName);
                 $category->image = $imageName;
                 $category->name = $request->input('category_name');

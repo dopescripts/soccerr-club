@@ -31,8 +31,8 @@ class ProductsController extends Controller
             'price' => 'required|numeric|min:0',         // Use numeric validation
             'quant' => 'required|integer|min:1',         // Ensure quantity is an integer and greater than 0
             'discount' => 'nullable|numeric|min:0|max:100', // Validate discount percentage
-            'thumbImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Images array is optional
+            'thumbImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Images array is optional
         ]);
 
         $imagePaths = [];

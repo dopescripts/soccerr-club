@@ -198,12 +198,12 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade" id="description-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                    <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="my-5">
                             {!! $product->description !!}
                         </div>
                     </div>
-                    <div class="tab-pane fade show" id="review-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                    <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                         <div class="my-5">
                             <h3 class="text-black fw-bolder text-center">Customer Reviews</h3>
                             <div class="d-md-flex justify-content-center text-center align-items-center my-5 mx-auto gap-5">
@@ -267,38 +267,36 @@
                                 </div>
                             </div>
                             @if ($reviews->count() > 0)
-                                <div class="row justify-content-center gy-2">
-                                    @foreach ($reviews as $review)
-                                        <div class="col-md-6 bg-light">
-                                            <div class="d-flex p-3 w-100 justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="/admin/assets/images/faces/avatar placeholder.png" alt="" width="60">
-                                                    <span class="fw-semibold ps-2">{{ $review->user->name }}</span>
+                                @foreach ($reviews as $review)
+                                    <div class="row justify-content-center">
+                                            <div class="col-md-6 bg-light mb-3 shadow-sm">
+                                                <div class="d-flex p-3 w-100 justify-content-between align-items-center">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/admin/assets/images/faces/avatar placeholder.png" alt="" width="60">
+                                                        <span class="fw-semibold ps-2">{{ $review->user->name }}</span>
+                                                    </div>
+                                                    <div>
+                                                        @for ($i = 0; $i < 5; $i++)
+                                                            <i class="bi {{ $i < $review->rating ? 'bi-star-fill text-danger' : 'bi-star' }}"></i>
+                                                        @endfor
+                                                        <span>({{ $review->rating }})</span>
+                                                    </div>
+                                                    <script>
+                                                        let star = document.querySelectorAll('#star');
+                                                        let count = {{ $review->rating }};
+                                                        for (let i = 0; i < count; i++) {
+                                                            star[i].classList.add("text-warning");
+                                                        }
+                                                    </script>
                                                 </div>
-                                                <div>
-                                                    <i class="fa fa-star" id="star"></i>
-                                                    <i class="fa fa-star" id="star"></i>
-                                                    <i class="fa fa-star" id="star"></i>
-                                                    <i class="fa fa-star" id="star"></i>
-                                                    <i class="fa fa-star" id="star"></i>
-                                                    <span>({{ $review->rating }})</span>
-                                                </div>
-                                                <script>
-                                                    let star = document.querySelectorAll('#star');
-                                                    let count = {{ $review->rating }};
-                                                    for (let i = 0; i < count; i++) {
-                                                        star[i].classList.add("text-warning");
-                                                    }
-                                                </script>
+                                                @if ($review->comment != null)
+                                                    <div class="col-md-10 bg-white ms-auto p-2 rounded-4 border">
+                                                        <p>{{ $review->comment }}</p>
+                                                    </div>
+                                                @endif
                                             </div>
-                                            @if ($review->comment != null)
-                                                <div class="col-md-10 bg-white ms-auto p-2 rounded-4 border">
-                                                    <p>{{ $review->comment }}</p>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    @endforeach
-                                </div>
+                                    </div>
+                                @endforeach
                             @endif
                         </div>
                     </div>
@@ -377,7 +375,7 @@
                                                 </div>
                                                 <div>
                                                     <form action="{{ route('cart.add', $product->slug) }}" method="get">
-                                                        <button type="submit" class="btn btn-dark" id="addToCart" onclick="addToCart()">
+                                                        <button type="submit" class="btn btn-dark"  >
                                                             Add to Cart
                                                             <span class="d-none spinner-border spinner-border-sm" id="loader" aria-hidden="true"></span>
                                                             <span class="visually-hidden" role="status">Loading...</span>

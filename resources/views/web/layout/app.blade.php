@@ -399,30 +399,28 @@
                         </a>
                         <ul class="px-3 list-unstyled mt-4 w-100 pe-5">
                             @foreach ($navlinks as $navitem)
+                                @if (count($navitem->dropdownitems) > 0)
+                                <li>
+                                    <a class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2" data-bs-toggle="collapse" href="#collapseShop" role="button" aria-expanded="true" aria-controls="collapseExample"> {{ $navitem->name }} <i class="bi bi-chevron-down"></i></a>
+                                </li>
+                                <div class="collapse show" id="collapseShop">
+                                    <div class="card card-body mt-0 pt-2">
+                                        <ul class="list-unstyled">
+                                            @foreach ($navitem->dropdownitems as $dropdownitem)
+                                            <li>
+                                                <a href="{{ $dropdownitem->link }}" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">{{$dropdownitem->name}}</a>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                                @else
                                 <li>
                                     <a href="{{ $navitem->link }}" class="nav-link-off text-decoration-none small border-bottom d-block pb-2">
                                         {{ $navitem->name }}</a>
                                 </li>
+                                @endif
                             @endforeach
-                            <li>
-                                <a class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2" data-bs-toggle="collapse" href="#collapseShop" role="button" aria-expanded="true" aria-controls="collapseExample"> Shop <i class="bi bi-chevron-down"></i></a>
-                            </li>
-                            <div class="collapse show" id="collapseShop">
-                                <div class="card card-body mt-0 pt-2">
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <a href="product.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">Products</a>
-                                        </li>
-                                        <li>
-                                            <a href="collection.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">Collections</a>
-                                        </li>
-                                        <li>
-                                            <a href="product-detail.html" class="nav-link-off text-decoration-none small border-bottom d-block pb-2 mt-2">Product
-                                                Detail</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         </ul>
                     </div>
                 </div>

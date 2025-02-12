@@ -200,7 +200,7 @@
                             </div>
                             <div>
                                 <form action="{{ route('cart.add', $product->slug) }}" method="get">
-                                    <button type="submit" class="btn btn-dark" id="addToCart" onclick="addToCart()">
+                                    <button type="submit" class="btn btn-dark"  >
                                         Add to Cart
                                         <span class="d-none spinner-border spinner-border-sm" id="loader"
                                             aria-hidden="true"></span>
@@ -409,7 +409,7 @@
                                         </div>
                                         <div>
                                             <form action="{{ route('cart.add', $product->slug) }}" method="get">
-                                                <button type="submit" class="btn btn-dark" id="addToCart" onclick="addToCart()">
+                                                <button type="submit" class="btn btn-dark"  >
                                                     Add to Cart
                                                     <span class="d-none spinner-border spinner-border-sm" id="loader"
                                                         aria-hidden="true"></span>
@@ -482,40 +482,32 @@
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     @foreach ($reviews as $testimonial)
-                    <div class="swiper-slide">
-                        <div class="col-12">
-                            <div class="card p-3 py-2 card-bg">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-start justify-content-between">
-                                        <img loading="lazy" src="/admin/assets/images/faces/avatar placeholder.png" alt=""
-                                            class="img-fluid rounded" width="100" />
-                                        <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
+                        <div class="swiper-slide">
+                            <div class="col-12">
+                                <div class="card p-3 py-2 card-bg">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-start justify-content-between">
+                                            <img loading="lazy" src="/admin/assets/images/faces/avatar placeholder.png" alt=""
+                                                class="img-fluid rounded" width="100" />
+                                            <span class="quote-icon"><i class="fa-solid fa-quote-right"></i></span>
+                                        </div>
+                                        <p class="fw-bolder mb-0 mt-3">{{ $testimonial->user->name }}</p>
+                                        <div class="d-flex gap-1 star-icons">
+                                            @for ($i = 0; $i < 5; $i++)
+                                                <i class="bi {{ $i < $testimonial->rating ? 'bi-star-fill text-danger' : 'bi-star' }}"></i>
+                                            @endfor
+                                        </div>
+                                        @if ($testimonial->comment) 
+                                            <p class="rate-text mt-2 text-secondary-emphasis">
+                                                {{ $testimonial->comment }}
+                                            </p>
+                                        @endif
                                     </div>
-                                    <p class="fw-bolder mb-0 mt-3">{{ $testimonial->user->name }}</p>
-                                    <div class="d-flex gap-1 star-icons">
-                                        <i class="bi bi-star-fill" id="star"></i>
-                                        <i class="bi bi-star-fill" id="star"></i>
-                                        <i class="bi bi-star-fill" id="star"></i>
-                                        <i class="bi bi-star-fill" id="star"></i>
-                                        <i class="bi bi-star" id="star"></i>
-                                    </div>
-                                    <script>
-                                        let star = document.querySelectorAll('#star');
-                                        let count = {{ $testimonial->rating }};
-                                        for (let i = 0; i < count; i++) {
-                                            star[i].classList.add("text-danger");
-                                        }
-                                    </script>
-                                    @if ($testimonial->comment) 
-                                        <p class="rate-text mt-2 text-secondary-emphasis">
-                                               {{ $testimonial->comment }}
-                                        </p>
-                                    @endif
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
+
                     <!-- Repeat other slides as needed -->
                 </div>
                 <!-- If we need pagination -->

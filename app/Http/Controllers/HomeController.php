@@ -17,7 +17,7 @@ class HomeController extends Controller
         $products = Product::all();
         $team = Team::take(4)->get();
         $latest_products = Product::orderby('id', 'desc')->take(20)->get();
-        $reviews = Reviews::orderby('id', 'desc')->take(8)->get();
+        $reviews = Reviews::orderby('id', 'desc')->take(12)->get();
         return view('web.pages.home', compact('category', 'products', 'latest_products', 'team', 'reviews'));
     }
     public function product($slug)

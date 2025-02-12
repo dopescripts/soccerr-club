@@ -461,12 +461,12 @@ Collection page style
   min-width: 100% !important;
   max-width: 100% !important;
   height: 70vh;
-  background: url("/assets/images/collectionbackground.png");
+  background: url("/assets/images/pexels-pixabay-260606.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.6);
   background-blend-mode: darken;
 }
 .product-detail-hero {
