@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
                 $navlinks = Navlinks::where('status', 'enabled')->get();
                 view()->share('navlinks', $navlinks);
             } catch (\Throwable $e) {
-                report($e); // Optional: logs the error without breaking the app
+                report($e);
             }
         }
     }
