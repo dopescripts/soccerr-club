@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Navlinks;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,8 +22,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $navlinks = Navlinks::where('status', 'enabled')->get();
-        view()->share('navlinks', $navlinks);
         Paginator::useBootstrapFive();
+
+        if (!app()->runningInConsole() && Schema::hasTable('navlinks')) {
+            try {
+                $navlinks = Navlinks::where('status', 'enabled')->get();
+                view()->share('navlinks', $navlinks);
+            } catch (\Throwable $e) {
+                report($e); // Optional: logs the error without breaking the app
+            }
+        }
     }
 }
