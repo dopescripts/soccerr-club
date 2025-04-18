@@ -521,7 +521,7 @@
 <!-- testimonial section end -->
 
 <!-- Blog section  -->
-<section class="blog w-100 py-5">
+{{-- <section class="blog w-100 py-5">
     <div class="container-fluid">
         <div class="heading mb-2">
             <h6 class="mb-0">our blogs</h6>
@@ -605,11 +605,11 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- Blog section  -->
 
 <!-- brands  -->
-<section class="brands w-100 py-5">
+<section class="brands w-100 pb-5">
     <div class="brands-swiper container-fluid">
         <div class="swiper">
             <div class="swiper-wrapper">

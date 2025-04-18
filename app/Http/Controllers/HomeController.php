@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         $category = Categories::all();
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->take(8)->get();
         $team = Team::take(4)->get();
         $latest_products = Product::orderby('id', 'desc')->take(20)->get();
         $reviews = Reviews::orderby('id', 'desc')->take(12)->get();

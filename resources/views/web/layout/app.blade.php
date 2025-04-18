@@ -123,25 +123,26 @@
                                                         </form>
                                                     </div>
                                                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                                                        <form action="" method="POST" class="mx-1">
+                                                        <form method="POST" action="{{ route('register') }}" class="mx-1">
+                                                            @csrf
                                                             <div class="mb-2">
                                                                 <label for="fname" class="form-label fw-semibold">Full
                                                                     Name</label>
-                                                                <input type="text" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="ex: John Doe" id="fname" required />
+                                                                <input type="text" class="form-control rounded shadow-none py-2 px-3 fs-6" name="name" placeholder="ex: John Doe" id="fname" required />
                                                             </div>
                                                             <div class="mb-2">
                                                                 <label for="email1" class="form-label fw-semibold">Email
                                                                     Address</label>
-                                                                <input type="email" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Email Address" id="email1" required />
+                                                                <input type="email" class="form-control rounded shadow-none py-2 px-3 fs-6" name="email" placeholder="Email Address" id="email1" required />
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="password" class="form-label fw-semibold">Password</label>
-                                                                <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Password" id="password" required />
+                                                                <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" name="password" placeholder="Password" id="password" required />
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="cpassword" class="form-label fw-semibold">Confirm
                                                                     Password</label>
-                                                                <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" placeholder="Password must match above" id="cpassword" required />
+                                                                <input type="password" class="form-control rounded shadow-none py-2 px-3 fs-6" name="password_confirmation" placeholder="Password must match above" id="cpassword" required />
                                                             </div>
                                                             <div class="mb-3">
                                                                 <button type="submit" class="btn btn-dark w-100 shadow-none">Register</button>
