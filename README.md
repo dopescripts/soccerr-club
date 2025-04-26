@@ -30,7 +30,7 @@ This is a full-stack web application for a fictional Soccer Club, built using La
 - Blade templating and Layouts
 - Form validation and security best practices
 
-## What I might add in future
+## 🔮 Future Improvements
 
 - Blog Section (Dynamical Posts)
 - Newsletter Subscriptions
