@@ -11,7 +11,7 @@
         "font-awesome": "^4.7.0",
         "laravel-vite-plugin": "^1.2.0",
         "sass": "^1.56.1",
-        "vite": "^6.3.2"
+        "vite": "^6.3.6"
     },
     "dependencies": {
         "paginationjs": "^2.6.0"
