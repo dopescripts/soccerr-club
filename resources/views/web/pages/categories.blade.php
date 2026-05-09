@@ -1,5 +1,5 @@
 @extends('web.layout.app')
-@section('title', 'Categories')
+@section('title', 'Category')
 @section('content')
     <!-- Hero Section -->
     <section class="product-hero text-center text-white w-100">

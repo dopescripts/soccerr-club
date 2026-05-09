@@ -1,5 +1,14 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +27,7 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::controller(App\Http\Controllers\HomeController::class)->group(function () {
+Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/home', 'index')->name('home.slash');
     Route::get('/products', 'products')->name('products');
@@ -32,48 +41,48 @@ Route::controller(App\Http\Controllers\HomeController::class)->group(function ()
     Route::get('/blog/{slug}', 'blog_detail')->name('blog.detail');
     Route::get('/checkout/{id}', 'checkout')->name('checkout');
 });
-Route::controller(App\Http\Controllers\CartController::class)->group(function () {
+Route::controller(CartController::class)->group(function () {
     Route::get('/cart', 'index')->name('cart');
-    Route::get('/cart/add/{slug}', 'add')->name('cart.add');
-    Route::get('/cart/remove/{slug}', 'remove')->name('cart.remove');
+    Route::post('/cart/add/{slug}', 'add')->name('cart.add');
+    Route::delete('/cart/remove/{slug}', 'remove')->name('cart.remove');
 });
-Route::controller(App\Http\Controllers\WishlistController::class)->group(function () {
+Route::controller(WishlistController::class)->group(function () {
     Route::get('/wishlist', 'index')->name('wishlist');
-    Route::get('/wishlist/add/{slug}', 'add')->name('wishlist.add');
-    Route::get('/wishlist/remove/{slug}', 'remove')->name('wishlist.remove');
+    Route::post('/wishlist/add/{slug}', 'add')->name('wishlist.add');
+    Route::delete('/wishlist/remove/{slug}', 'remove')->name('wishlist.remove');
 });
 Route::middleware(['auth'])->group(function () {
-    Route::post('/place-order', [App\Http\Controllers\OrderController::class, 'place_order'])->name('place.order');
-    Route::post('/add-review', [App\Http\Controllers\ReviewController::class, 'add_review'])->name('add.review');
+    Route::post('/place-order', [OrderController::class, 'place_order'])->name('place.order');
+    Route::post('/add-review', [ReviewController::class, 'add_review'])->name('add.review');
 });
 Auth::routes();
-Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
-Route::get('/admin/login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin.login');
+Route::get('/login', [HomeController::class, 'login'])->name('login');
+Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 
 Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function () {
-    Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
-    Route::get('/categories', [\App\Http\Controllers\AdminController::class, 'categories'])->name('admin.categories');
-    Route::post('/categories/store', [\App\Http\Controllers\AdminController::class, 'store_category'])->name('store.category');
-    Route::post('/categories/{id}', [\App\Http\Controllers\AdminController::class, 'update_category'])->name('update.category');
-    Route::get('/categories/delete/{id}', [\App\Http\Controllers\AdminController::class, 'delete_category'])->name('delete.category');
-    Route::get('/vendors', [\App\Http\Controllers\VendorController::class, 'vendor'])->name('admin.vendors');
-    Route::post('/vendors/add', [\App\Http\Controllers\VendorController::class, 'vendor_store'])->name('vendor.store');
-    Route::get('/vendors/delete/{id}', [\App\Http\Controllers\VendorController::class, 'delete_vendor'])->name('delete.vendor');
-    Route::get('products', [\App\Http\Controllers\ProductsController::class, 'products'])->name('admin.products');
-    Route::get('product/add', [\App\Http\Controllers\ProductsController::class, 'products_add'])->name('products.create');
-    Route::post('products/create', [\App\Http\Controllers\ProductsController::class, 'products_create'])->name('products.store');
-    Route::get('products/update/{slug}', [\App\Http\Controllers\ProductsController::class, 'products_edit'])->name('products.edit');
-    Route::post('products/update/{id}', [\App\Http\Controllers\ProductsController::class, 'products_update'])->name('product.update');
-    Route::get('products/delete/{id}', [\App\Http\Controllers\ProductsController::class, 'products_delete'])->name('products.destroy');
-    Route::get('/team', [\App\Http\Controllers\TeamController::class, 'index'])->name('admin.team');
-    Route::post('/team/store', [\App\Http\Controllers\TeamController::class, 'store'])->name('team.store');
-    Route::post('/team/update/{id}', [\App\Http\Controllers\TeamController::class, 'update'])->name('team.update');
-    Route::get('/team/delete/{id}', [\App\Http\Controllers\TeamController::class, 'delete'])->name('team.delete');
-    Route::get('/product/deactivate/{id}', [\App\Http\Controllers\ProductsController::class, 'deactivate'])->name('product.deactivate');
-    Route::get('/product/activate/{id}', [\App\Http\Controllers\ProductsController::class, 'activate'])->name('product.activate');
-    Route::get('/users', [\App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
-    Route::get('/orders/pending', [\App\Http\Controllers\AdminController::class, 'pending'])->name('admin.orders.pending');
-    Route::post('/orders/approve', [\App\Http\Controllers\OrderController::class, 'approve'])->name('approve.order');
-    Route::get('/orders/completed', [\App\Http\Controllers\AdminController::class, 'completed'])->name('completed.orders');
-    Route::get('/orders/completed/detail/{order_number}', [\App\Http\Controllers\AdminController::class, 'order_detail'])->name('order.details');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.home');
+    Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');
+    Route::post('/categories/store', [AdminController::class, 'store_category'])->name('store.category');
+    Route::post('/categories/{id}', [AdminController::class, 'update_category'])->name('update.category');
+    Route::get('/categories/delete/{id}', [AdminController::class, 'delete_category'])->name('delete.category');
+    Route::get('/vendors', [VendorController::class, 'vendor'])->name('admin.vendors');
+    Route::post('/vendors/add', [VendorController::class, 'vendor_store'])->name('vendor.store');
+    Route::get('/vendors/delete/{id}', [VendorController::class, 'delete_vendor'])->name('delete.vendor');
+    Route::get('products', [ProductsController::class, 'products'])->name('admin.products');
+    Route::get('product/create', [ProductsController::class, 'create'])->name('products.create');
+    Route::post('products/store', [ProductsController::class, 'store'])->name('products.store');
+    Route::get('products/update/{slug}', [ProductsController::class, 'edit'])->name('products.edit');
+    Route::put('products/update/{id}', [ProductsController::class, 'update'])->name('product.update');
+    Route::delete('products/delete/{id}', [ProductsController::class, 'delete'])->name('products.destroy');
+    Route::get('/team', [TeamController::class, 'index'])->name('admin.team');
+    Route::post('/team/store', [TeamController::class, 'store'])->name('team.store');
+    Route::post('/team/update/{id}', [TeamController::class, 'update'])->name('team.update');
+    Route::get('/team/delete/{id}', [TeamController::class, 'delete'])->name('team.delete');
+    Route::get('/product/deactivate/{id}', [ProductsController::class, 'deactivate'])->name('product.deactivate');
+    Route::get('/product/activate/{id}', [ProductsController::class, 'activate'])->name('product.activate');
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/orders/pending', [AdminController::class, 'pending'])->name('admin.orders.pending');
+    Route::post('/orders/approve', [OrderController::class, 'approve'])->name('approve.order');
+    Route::get('/orders/completed', [AdminController::class, 'completed'])->name('completed.orders');
+    Route::get('/orders/completed/detail/{order_number}', [AdminController::class, 'order_detail'])->name('order.details');
 });

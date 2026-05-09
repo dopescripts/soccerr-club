@@ -21,7 +21,7 @@ class dropdownitemSeeder extends Seeder
             ],
             [
                 'navlinks_id' => 2,
-                'name' => 'Categories',
+                'name' => 'Category',
                 'link' => '/categories',
             ],
         ];

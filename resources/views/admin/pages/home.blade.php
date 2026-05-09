@@ -87,7 +87,7 @@
             <div class="col-md-4 grid-margin stretch-card" style="max-height: 60vh;">
                 <div class="card">
                     <div class="card-body position-relative" style="overflow: auto;">
-                        <h4 class="card-title position-sticky">Categories</h4>
+                        <h4 class="card-title position-sticky">Category</h4>
                         @php
                             $categories = getCategories();
                         @endphp

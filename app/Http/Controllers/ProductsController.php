@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
+use App\Models\Category;
 use App\Models\FeaturedProducts;
 use App\Models\Vendor;
 use App\Models\Product;
@@ -15,26 +17,14 @@ class ProductsController extends Controller
         $products = Product::paginate(5);
         return view('admin.pages.products', compact('products'));
     }
-    public function products_add()
+    public function create()
     {
-        $category = Categories::all();
+        $category = Category::all();
         $vendor = Vendor::all();
         return view('admin.pages.createproduct', compact('category', 'vendor'));
     }
-    public function products_create(Request $request)
+    public function store(ProductStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            'category' => 'required|exists:categories,id', // Validate category exists
-            'vendor' => 'required|exists:vendors,id',     // Validate vendor exists
-            'description' => 'required',
-            'price' => 'required|numeric|min:0',         // Use numeric validation
-            'quant' => 'required|integer|min:1',         // Ensure quantity is an integer and greater than 0
-            'discount' => 'nullable|numeric|min:0|max:100', // Validate discount percentage
-            'thumbImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Images array is optional
-        ]);
-
         $imagePaths = [];
 
         if ($request->file('thumbImg')->isValid()) {
@@ -95,30 +85,18 @@ class ProductsController extends Controller
         return redirect()->back()->with('error', 'Invalid thumbnail image.');
     }
 
-    public function products_edit($slug)
+    public function edit($slug)
     {
         $product = Product::where('slug', $slug)->first();
-        $category = Categories::all();
+        $category = Category::all();
         $vendor = Vendor::all();
         $featuredProducts = FeaturedProducts::pluck('product_id')->toArray();
         return view('admin.pages.editproduct', compact('product', 'category', 'vendor', 'featuredProducts'));
     }
 
-    public function products_update(Request $request, $id)
+    public function update(ProductUpdateRequest $request, $id)
     {
         $product = Product::findOrFail($id); // Use `findOrFail` to handle invalid IDs
-        $request->validate([
-            'name' => 'required|max:255',
-            'category' => 'required|exists:categories,id',
-            'vendor' => 'required|exists:vendors,id',
-            'description' => 'required',
-            'price' => 'required|numeric|min:0',
-            'quant' => 'required|integer|min:1',
-            'discount' => 'nullable|numeric|min:0|max:100',
-            'thumbImg' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
         // Handle images array
         $imagePaths = [];
         if ($request->hasFile('images')) {
@@ -190,7 +168,7 @@ class ProductsController extends Controller
 
         return redirect()->route('admin.products')->with('success', 'Product updated successfully!');
     }
-    public function products_delete($id)
+    public function delete($id)
     {
         $product = Product::find($id);
         if (!$product) {

@@ -41,15 +41,6 @@ class OrderController extends Controller
         if (!$order) {
             return back()->with('error', 'Order not found.');
         }
-        // $cartItems = CartItem::where('cart_id', $order->cart_id)->get();
-        // $orderItems = $cartItems->map(function ($item) {
-        //     return [
-        //         'product_id' => $item->product->id,
-        //         'product_name' => $item->product->name,
-        //         'price' => $item->product->price,
-        //         'quantity' => $item->quantity
-        //     ];
-        // })->toArray();
         if (!$order->cart) {
             return back()->with('error', 'Cart not found for this order.');
         }

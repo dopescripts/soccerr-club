@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Categories;
+use App\Models\Category;
 use App\Models\CompletedOrder;
 use App\Models\Product;
 use App\Models\Vendor;
@@ -35,19 +35,19 @@ class AdminController extends Controller
     {
         return view('admin.pages.login');
     }
-    public function categories(Categories $category)
+    public function categories(Category $category)
     {
-        $categories = Categories::paginate(4);
+        $categories = Category::paginate(4);
         return view('admin.pages.categories', compact('categories'));
     }
-    public function store_category(Request $request, Categories $category)
+    public function store_category(Request $request, Category $category)
     {
         $request->validate([
             'category_name' => 'required',
             'category_img' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg|',
         ]);
         if ($request->file('category_img')->isValid()) {
-            $category = new Categories;
+            $category = new Category;
             if ($request->hasFile('category_img')) {
                 $image = $request->file('category_img');
                 $imageOriginalName = $request->category_img;
@@ -66,7 +66,7 @@ class AdminController extends Controller
     }
     public function update_category(Request $request, $id)
     {
-        $category = Categories::find($id);
+        $category = Category::find($id);
         $request->validate([
             'category_name' => 'required',
             'category_img' => 'file|image|mimes:jpeg,png,jpg,gif,svg,webp|',
@@ -87,7 +87,7 @@ class AdminController extends Controller
     }
     public function delete_category($id)
     {
-        $category = Categories::find($id);
+        $category = Category::find($id);
         if ($category->image && file_exists(public_path('public/' . $category->image))) {
             unlink(public_path('public/' . $category->image)); // Delete the image
         }

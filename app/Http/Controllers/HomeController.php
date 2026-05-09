@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Categories;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Team;
 use App\Models\Cart;
@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $category = Categories::all();
+        $category = Category::all();
         $products = Product::orderBy('id', 'desc')->take(8)->get();
         $team = Team::take(4)->get();
         $latest_products = Product::orderby('id', 'desc')->take(20)->get();
@@ -29,7 +29,7 @@ class HomeController extends Controller
     }
     public function category_detail($id)
     {
-        $category = Categories::find($id);
+        $category = Category::find($id);
         return view('web.pages.categoryproducts', compact('category'));
     }
     public function login()

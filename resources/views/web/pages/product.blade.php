@@ -159,7 +159,7 @@
                                     <span class="ms-auto">{{ $product->vendor->name }}</span>
                                 </div>
                                 <div class="information d-flex gap-4 my-3">
-                                    <label for="" class="fw-semibold">Categories:</label>
+                                    <label for="" class="fw-semibold">Category:</label>
                                     <span class="ms-auto">{{ $product->category->name }}</span>
                                 </div>
                                 <div class="information d-flex gap-4 my-3">

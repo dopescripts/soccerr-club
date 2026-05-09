@@ -1,13 +1,13 @@
 <?php
 
-use App\Models\Categories;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\Wishlist;
 
 function getCategories()
 {
-    return Categories::orderBy('name', 'asc')->get();
+    return Category::orderBy('name', 'asc')->get();
 }
 if (!function_exists('getCartCount')) {
     function getCartCount()

@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('title', 'Categories - ')
+@section('title', 'Category - ')
 
 @section('content')
 
@@ -9,7 +9,7 @@
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-warning text-white mr-2">
                     <i class="mdi mdi-dns"></i>
-                </span> Categories
+                </span> Category
             </h3>
             <button class="btn btn-primary btn-lg btn-icon-text d-inline-flex" type="button" data-bs-toggle="modal" data-bs-target="#categoryModal"><i class="mdi mdi-plus-circle btn-icon-prepend"></i>
                 Add Category</button>

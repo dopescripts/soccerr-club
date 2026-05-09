@@ -58,7 +58,7 @@
 </section>
 <!-- Hero section end -->
 
-<!-- Categories section start  -->
+<!-- Category section start  -->
 <section class="categories-home w-100 py-5" data-aos="fade-up">
     <div class="container-fluid my-md-3">
         <div class="row w-100 gy-5 justify-content-center align-items-center text-center mx-auto mb-5">
@@ -124,7 +124,7 @@
         </div>
     </div>
 </section>
-<!-- Categories section end  -->
+<!-- Category section end  -->
 
 <!-- feautured-products -->
 <section class="feautured-products w-100 pb-5">

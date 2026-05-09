@@ -34,6 +34,7 @@
                         @endif
                         <div class="col-md-12">
                             <form class="forms-sample" action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                                @method('PUT')
                                 @csrf
                                 <input type="text" name="slug" value="{{ $product->slug }}" hidden>
                                 <input type="text" name="id" value="{{ $product->id }}" hidden>

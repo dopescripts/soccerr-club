@@ -9,7 +9,7 @@
     </div>
 </section>
 <!-- Hero Section ends-->
-<!-- Categories section start  -->
+<!-- Category section start  -->
 <section class="categories-home w-100 py-5" data-aos="fade-up">
     <div class="container-fluid my-md-3">
         <div class="row w-100 gy-5 justify-content-center align-items-center text-center mx-auto mb-5">
@@ -41,13 +41,13 @@
         </div>
     </div>
 </section>
-<!-- Categories section end  -->
+<!-- Category section end  -->
 <section class="category-detail w-100 px-1 px-md-4">
     <div class="row justify-content-center gy-5 gx-lg-5 pb-5 w-100 mx-auto">
         <div class="col-lg-3 col-md-4 col-sm-12 col-12 pe-lg-0 mx-auto justify-content-center">
             <div class="card card-bg">
                 <div class="card-body py-5">
-                    <h5 class="text-black fw-bolder mb-3">Product Categories</h5>
+                    <h5 class="text-black fw-bolder mb-3">Product Category</h5>
                     @foreach ($categories as $categoryitem)
                     <div class="clearfix py-1 text-black">
                         <a href="{{ route('category.detail', $categoryitem->id) }}" class="link-dark">
